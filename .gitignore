@@ -1,0 +1,6 @@
+.DS_Store
+*.log
+.svn/
+bin/
+out/
+
