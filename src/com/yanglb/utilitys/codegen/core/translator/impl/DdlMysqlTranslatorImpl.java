@@ -178,9 +178,9 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		StringBuilder sb = new StringBuilder();
 		if(this.foreignKeyList.size()>0) {
 			sb.append("\r\n");
-			sb.append("---------------------------------\r\n");
+			sb.append("-- ----------------------------- --\r\n");
 			sb.append("-- foreign key list\r\n");
-			sb.append("---------------------------------\r\n");
+			sb.append("-- ----------------------------- --\r\n");
 		}
 		
 		// 所有表的外键放在最后处理
