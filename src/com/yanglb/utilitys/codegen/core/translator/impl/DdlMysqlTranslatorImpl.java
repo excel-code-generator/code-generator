@@ -161,6 +161,11 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 			sb.append(" NOT NULL");
 		}
 		
+		// 自增长列
+		if(detail.getColAutoIncrement() != null) {
+			sb.append(" AUTO_INCREMENT");
+		}
+		
 		// TODO: 默认值还有问题
 		if(!StringUtility.isNullOrEmpty(detail.getColDefault())) {
 			sb.append(String.format(" DEFAULT '%s'", detail.getColDefault()));
