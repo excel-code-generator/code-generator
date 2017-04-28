@@ -93,6 +93,7 @@ public class BeanMapConverter<T> {
 		boolean value = false;
 		v = v.toLowerCase();
 		if("y".equals(v) 
+				|| "√".equals(v)
 				|| "yes".equals(v)
 				|| "true".equals(v)){
 			value = true;

@@ -98,9 +98,10 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		//　表名
 		String tableName = this.genFullTableName(model);
 		sb.append(String.format("-- %s \r\n", model.getSheetName()));
-		sb.append(String.format("-- DROP TABLE %s; \r\n", tableName));
+		sb.append(String.format("-- %s \r\n", model.getVersion()));
 		sb.append(String.format("CREATE TABLE %s (\r\n", tableName));
 		
+		Integer autoIncrement = null;
 		for(DdlDetail detail:model.getDetail()) {
 			if(detail.isColKey()) {
 				if(!StringUtility.isNullOrEmpty(primaryKey)) {
@@ -112,6 +113,9 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 						this.sqlColumnEnd);
 			}
 			
+			// 自增初始值
+			if (detail.getColAutoIncrement() != null) autoIncrement = detail.getColAutoIncrement(); 
+			
 			sb.append(this.genDdlDetail(detail));
 		}
 		
@@ -122,9 +126,17 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		
 		// 删除最后一个 ,号
 		sb.deleteCharAt(sb.lastIndexOf(","));		
-		sb.append(") ENGINE={my_sql_engine} DEFAULT CHARSET={my_sql_defaultCharSet};\r\n");
+		sb.append(")\r\n");
 		
-		sb.append("\r\n");
+		// 引擎、字符集等其它信息
+		sb.append("ENGINE={my_sql_engine}\r\n");
+		sb.append("DEFAULT CHARSET={my_sql_defaultCharSet}\r\n");
+		if (autoIncrement != null) {
+			sb.append("AUTO_INCREMENT="+autoIncrement);
+		}
+		
+		// 结束
+		sb.append("; \r\n\r\n");
 		
 		return sb.toString();
 	}
