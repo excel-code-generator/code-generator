@@ -31,11 +31,6 @@ public class BaseDdlTranslator extends BaseTranslator<List<DdlModel>> {
 	// 外键关系列表
 	protected List<ForeignModel> foreignKeyList = new ArrayList<ForeignModel>();
 	
-	// 列引号字符，如：SQL Server为[], MySQL为`等
-	protected String sqlColumnStart = "\"";
-	// 列引号字符，如：SQL Server为[], MySQL为`等
-	protected String sqlColumnEnd = "\"";
-	
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();

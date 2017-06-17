@@ -32,6 +32,10 @@ public class BaseTranslator<T> implements ITranslator<T> {
 	protected HashMap<String, String> settingMap;
 	protected ParamaModel paramaModel;
 	
+	// 列引号字符，如：SQL Server为[], MySQL为`等
+	protected String sqlColumnStart = "\"";
+	protected String sqlColumnEnd = "\"";
+	
 	protected BaseTranslator() {
 		this.writableModel = new WritableModel();
 	}

@@ -44,6 +44,14 @@ public class DmlTranslatorImpl extends BaseTranslator<List<DmlModel>> {
 			fileName = fileName.substring(0, index);
 		}
 		this.writableModel.setFileName(fileName);
+		
+		Map<String, String> options = this.paramaModel.getOptions();
+		if (options.containsKey("type")) {
+			String type = options.get("type");
+			if (type.equals("mysql")) {
+				this.sqlColumnEnd = this.sqlColumnStart = "`";
+			}
+		}
 	}
 
 	@Override
@@ -142,7 +150,7 @@ public class DmlTranslatorImpl extends BaseTranslator<List<DmlModel>> {
 			if(!StringUtility.isNullOrEmpty(columns)) {
 				columns += ", ";
 			}
-			columns += String.format("\"%s\"", col);
+			columns += String.format("%s%s%s", this.sqlColumnStart, col, this.sqlColumnEnd);
 		}
 		return columns;
 	}
