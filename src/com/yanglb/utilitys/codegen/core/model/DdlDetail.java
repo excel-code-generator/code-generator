@@ -37,15 +37,35 @@ public class DdlDetail extends BaseModel {
 	private boolean colKey;
 	// 允许NULL
 	private boolean colNullable;
-	// 索引（只是参考，至少目前）
+	// 索引
 	private String colIndex;
-	// 外键（只是参考，至少目前）
+	// 外键
 	private String colForeign;
 	// 默认值
 	private String colDefault;
+	// 约束信息
+	private String colUnique;
+	// 约束信息
+	private Integer colAutoIncrement;
 	
 	// 说明
 	private String description;
+
+	public String getColUnique() {
+		return colUnique;
+	}
+
+	public void setColUnique(String colUnique) {
+		this.colUnique = colUnique;
+	}
+
+	public Integer getColAutoIncrement() {
+		return colAutoIncrement;
+	}
+
+	public void setColAutoIncrement(Integer colAutoIncrement) {
+		this.colAutoIncrement = colAutoIncrement;
+	}
 
 	public String getColIndex() {
 		return colIndex;
