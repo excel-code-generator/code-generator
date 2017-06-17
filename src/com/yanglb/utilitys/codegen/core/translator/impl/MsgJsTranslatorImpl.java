@@ -50,7 +50,13 @@ public class MsgJsTranslatorImpl extends BaseTranslator<List<TableModel>> {
 	protected void onTranslate() throws CodeGenException {
 		super.onTranslate();
 		StringBuilder sb = this.writableModel.getData();
-		sb.append("var Lang = { \r\n");
+		String langName = "Lang";
+		if(this.paramaModel.getOptions().get("jsLangName") != null) {
+			langName = this.paramaModel.getOptions().get("jsLangName");
+		}
+		sb.append("var ");
+		sb.append(langName);
+		sb.append(" = { \r\n");
 		int rowIndex = 0;
 		
 		// 分组输出
