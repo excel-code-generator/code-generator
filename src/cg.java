@@ -20,6 +20,9 @@ public class cg {
 
 	public static void main(String[] args) {
 		CodeGenShell shell = new CodeGenShell();
-		shell.invoke(args);
+		boolean r = shell.invoke(args);
+		if (!r) {
+			System.exit(1);
+		}
 	}
 }

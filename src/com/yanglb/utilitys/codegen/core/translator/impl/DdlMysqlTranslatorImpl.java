@@ -246,8 +246,22 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 			if (colType.contains("text") || colType.contains("char")) {
 				sb.append(String.format(" DEFAULT '%s'", detail.getColDefault()));
 			} else {
-				sb.append(String.format(" DEFAULT %s", detail.getColDefault()));
+				String def = detail.getColDefault();
+				if (!StringUtility.isNullOrEmpty(def) && def.toUpperCase().startsWith("ON ")) {
+					sb.append(" " + detail.getColDefault());
+				} else {
+					sb.append(String.format(" DEFAULT %s", detail.getColDefault()));
+				}
 			}
+		}
+		
+		// 注释
+		if (!StringUtility.isNullOrEmpty(detail.getFieldName())) {
+			String name = detail.getFieldName();
+			name.replaceAll("'", "");
+			name.replaceAll("\r", "");
+			name.replaceAll("\n", "");
+			sb.append(String.format(" COMMENT '%s'", name));
 		}
 
 		sb.append(",\r\n");

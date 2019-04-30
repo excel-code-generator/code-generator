@@ -81,8 +81,8 @@ public class CodeGenShell {
 	 * 显示帮助信息
 	 */
 	private void showHelp() {
-		System.out.println("代码生成器 v2.0.1 使用说明");
-		System.out.println("Copyright 2015-2016 yanglb.com All Rights Reserved.");
+		System.out.println("代码生成器 v2.0.2 使用说明");
+		System.out.println("Copyright 2015-2019 yanglb.com All Rights Reserved.");
 		System.out.println();
 		System.out.println("用法：");
 		System.out.println("cg -type 生成类型 -lang 生成语言 -in 输入文件 [-sheets 要生成的Sheet名1[,2]] [-out 输出目录]");
