@@ -166,6 +166,9 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		if (autoIncrement != null) {
 			info.append(String.format("AUTO_INCREMENT=%d ", autoIncrement));
 		}
+		
+		// 注释
+		info.append(String.format("COMMENT='%s'", model.getSheetName()));
 
 		// 结束
 		sb.append(String.format(") %s;\r\n\r\n", info.toString().trim()));
