@@ -7,9 +7,9 @@ java -jar cg.jar -type ddl_mysql -lang sql -in xxx.xlsx -out ./out --type mysql
 
 ```
 
-## License
+> 详细请参考示例 [example](example)
 
-详细请参考 示例（example）
+## License
 
 Copyright (c) Copyright 2015-2019 yanglb.com. All rights reserved.
 
