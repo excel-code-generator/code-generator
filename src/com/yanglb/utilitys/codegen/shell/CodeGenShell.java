@@ -81,7 +81,7 @@ public class CodeGenShell {
 	 * 显示帮助信息
 	 */
 	private void showHelp() {
-		System.out.println("代码生成器 v2.0.3 使用说明");
+		System.out.println("代码生成器 v2.1.0 使用说明");
 		System.out.println("Copyright 2015-2019 yanglb.com All Rights Reserved.");
 		System.out.println();
 		System.out.println("用法：");

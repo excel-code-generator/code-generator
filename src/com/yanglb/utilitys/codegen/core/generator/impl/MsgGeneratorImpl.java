@@ -61,9 +61,9 @@ public class MsgGeneratorImpl extends BaseGenerator {
 				SupportGen supportTrans = SupportGen.msg_js_translator;
 				SupportGen supportWriter = SupportGen.utf8_writer;
 				if(this.paramaModel.getLang() == SupportLang.java) {
-					// TODO: 暂时使用UTF-8写入器
-//					supportWriter = SupportGen.ascii_writer;
 					supportTrans = SupportGen.msg_java_translator;
+				} else if (this.paramaModel.getLang() == SupportLang.json) {
+					supportTrans = SupportGen.msg_json_translator;
 				}
 				
 				// 转换为可写入的Model（单个文件）

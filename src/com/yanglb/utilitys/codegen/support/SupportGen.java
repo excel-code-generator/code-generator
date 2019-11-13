@@ -29,6 +29,7 @@ public enum SupportGen {
 	ddl_sqlserver_translator, // com.yanglb.utilitys.codegen.core.translator.impl.DdlSqlServerTranslatorImpl
 	dml_translator, // com.yanglb.utilitys.codegen.core.translator.impl.DmlTranslatorImpl
 	msg_js_translator, // com.yanglb.utilitys.codegen.core.translator.impl.MsgJsTranslatorImpl
+	msg_json_translator, // com.yanglb.utilitys.codegen.core.translator.impl.MsgJsonTranslatorImpl
 	msg_java_translator, // com.yanglb.utilitys.codegen.core.translator.impl.MsgJavaTranslatorImpl
 	po_cs_translator, // com.yanglb.utilitys.codegen.core.translator.impl.PoCSharpTranslatorImpl
 

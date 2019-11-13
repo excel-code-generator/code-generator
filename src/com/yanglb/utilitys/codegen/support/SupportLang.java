@@ -25,4 +25,5 @@ public enum SupportLang {
 	cs,
 	sql,
 	js,
+	json
 }
