@@ -15,15 +15,14 @@
  */
 package com.yanglb.utilitys.codegen.core.translator.impl;
 
-import java.util.List;
 import java.util.Map;
 
 import com.yanglb.utilitys.codegen.core.model.TableModel;
-import com.yanglb.utilitys.codegen.core.translator.BaseTranslator;
+import com.yanglb.utilitys.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
 import com.yanglb.utilitys.codegen.utility.StringUtility;
 
-public class MsgJavaTranslatorImpl extends BaseTranslator<List<TableModel>> {
+public class MsgJavaTranslatorImpl extends BaseMsgTranslator {
 	protected String msgLang = "";
 
 	@Override
@@ -33,11 +32,19 @@ public class MsgJavaTranslatorImpl extends BaseTranslator<List<TableModel>> {
 		// 当前生成的国际化语言
 		this.msgLang = this.settingMap.get("MsgLang");
 		
-		this.writableModel.setExtension("properties");
-		this.writableModel.setFileName("message");
-		if(!this.msgLang.equals("default")) {
-			this.writableModel.setFileName("message_"+this.msgLang);
+		// 文件名
+		String fileName = getFileName();
+		if (fileName.equals("")) {
+			// 空文件名
+			fileName = this.msgLang;
+		} else {
+			if(!this.msgLang.equals("default")) {
+				fileName = fileName + "_" + this.msgLang;
+			}
 		}
+		
+		this.writableModel.setFileName(fileName);
+		this.writableModel.setExtension("properties");
 		this.writableModel.setFilePath("msg/properties");
 	}
 
