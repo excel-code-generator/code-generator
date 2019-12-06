@@ -52,6 +52,8 @@ public class MsgJsonTranslatorImpl extends BaseTranslator<List<TableModel>> {
 		StringBuilder sb = this.writableModel.getData();
 		sb.append("{\r\n");
 		
+		boolean hasDot = false;
+		
 		// 分组输出
 		if(this.paramaModel.getOptions().get("group") != null) {
 			for(TableModel tblModel : this.model) {
@@ -66,6 +68,7 @@ public class MsgJsonTranslatorImpl extends BaseTranslator<List<TableModel>> {
 						sb.append(String.format("    \"%\"s: \"%s\",\r\n", id, value));
 					}
 				} else {
+					hasDot = false;
 					sb.append(String.format("    \"%s\": {\r\n", tblModel.getSheetName()));
 					for(Map<String, String> itm : tblModel.toList()) {
 						String id = itm.get("id");
@@ -73,9 +76,10 @@ public class MsgJsonTranslatorImpl extends BaseTranslator<List<TableModel>> {
 						// 对字符串进行转换
 						String value = this.convert2JsCode(itm.get(this.msgLang));
 						sb.append(String.format("        \"%s\": \"%s\",\r\n", id, value));
+						hasDot = true;
 					}
 					int idx = sb.lastIndexOf(",");
-					if(idx != -1) {
+					if(idx != -1 && hasDot) {
 						sb.deleteCharAt(idx);
 					}
 					
