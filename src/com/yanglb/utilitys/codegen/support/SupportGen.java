@@ -31,7 +31,6 @@ public enum SupportGen {
 	msg_js_translator, // com.yanglb.utilitys.codegen.core.translator.impl.MsgJsTranslatorImpl
 	msg_json_translator, // com.yanglb.utilitys.codegen.core.translator.impl.MsgJsonTranslatorImpl
 	msg_java_translator, // com.yanglb.utilitys.codegen.core.translator.impl.MsgJavaTranslatorImpl
-	po_cs_translator, // com.yanglb.utilitys.codegen.core.translator.impl.PoCSharpTranslatorImpl
 
 	// writer 
 	utf8_writer, // com.yanglb.utilitys.codegen.core.writer.impl.Utf8WriterImpl

@@ -22,7 +22,6 @@ package com.yanglb.utilitys.codegen.support;
  */
 public enum SupportLang {
 	java,
-	cs,
 	sql,
 	js,
 	json

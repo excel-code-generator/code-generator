@@ -22,16 +22,6 @@ package com.yanglb.utilitys.codegen.support;
  */
 public enum SupportType {
 	/**
-	 * 生成数据库设计
-	 */
-	//db,
-	
-	/**
-	 * 生成Services
-	 */
-	//services,
-	
-	/**
 	 * 生成DDL(SQL)
 	 */
 	ddl_mysql,
@@ -54,10 +44,5 @@ public enum SupportType {
 	/**
 	 * 生成Message文件（properties/js）
 	 */
-	msg,
-	
-	/**
-	 * 生成PO Model
-	 */
-	po,
+	msg
 }
