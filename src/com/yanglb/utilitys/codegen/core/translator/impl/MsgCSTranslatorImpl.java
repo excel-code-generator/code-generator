@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 yanglb.com
+ * Copyright 2020 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,9 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
+		
 		this.writableModel.setExtension("resx");
+		this.writableModel.setFilePath("msg/resx");
 	}
 
 	@Override

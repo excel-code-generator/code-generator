@@ -38,11 +38,15 @@ public class BaseMsgTranslator extends BaseTranslator<List<TableModel>> {
 			fileName = this.msgLang;
 		} else {
 			if(!this.isDefaultLanguage()) {
-				fileName = fileName + "." + this.msgLang;
+				fileName = fileName + this.getSplitString() + this.msgLang;
 			}
 		}
 		
 		this.writableModel.setFileName(fileName);
+	}
+	
+	protected String getSplitString() {
+		return ".";
 	}
 	
 	/**

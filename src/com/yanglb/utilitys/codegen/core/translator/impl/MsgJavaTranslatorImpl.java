@@ -23,27 +23,15 @@ import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
 import com.yanglb.utilitys.codegen.utility.StringUtility;
 
 public class MsgJavaTranslatorImpl extends BaseMsgTranslator {
-	protected String msgLang = "";
-
+	@Override
+	protected String getSplitString() {
+		return "_";
+	}
+	
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
 		
-		// 当前生成的国际化语言
-		this.msgLang = this.settingMap.get("MsgLang");
-		
-		// 文件名
-		String fileName = getFileName();
-		if (fileName.equals("")) {
-			// 空文件名
-			fileName = this.msgLang;
-		} else {
-			if(!this.msgLang.equals("default")) {
-				fileName = fileName + "_" + this.msgLang;
-			}
-		}
-		
-		this.writableModel.setFileName(fileName);
 		this.writableModel.setExtension("properties");
 		this.writableModel.setFilePath("msg/properties");
 	}
