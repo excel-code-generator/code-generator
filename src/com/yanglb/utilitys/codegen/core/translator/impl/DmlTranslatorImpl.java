@@ -21,12 +21,12 @@ import java.util.Map;
 
 import com.yanglb.utilitys.codegen.core.model.DmlModel;
 import com.yanglb.utilitys.codegen.core.model.TableModel;
-import com.yanglb.utilitys.codegen.core.translator.BaseTranslator;
+import com.yanglb.utilitys.codegen.core.translator.BaseSqlTranslator;
 import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
 import com.yanglb.utilitys.codegen.support.SupportLang;
 import com.yanglb.utilitys.codegen.utility.StringUtility;
 
-public class DmlTranslatorImpl extends BaseTranslator<List<DmlModel>> {
+public class DmlTranslatorImpl extends BaseSqlTranslator<List<DmlModel>> {
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();

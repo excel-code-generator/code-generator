@@ -27,7 +27,7 @@ import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
 import com.yanglb.utilitys.codegen.support.SupportLang;
 import com.yanglb.utilitys.codegen.utility.StringUtility;
 
-public class BaseDdlTranslator extends BaseTranslator<List<DdlModel>> {
+public class BaseDdlTranslator extends BaseSqlTranslator<List<DdlModel>> {
 	// 外键关系列表
 	protected List<ForeignModel> foreignKeyList = new ArrayList<ForeignModel>();
 	
