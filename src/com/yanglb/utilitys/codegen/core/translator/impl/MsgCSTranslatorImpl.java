@@ -45,7 +45,8 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 		sb.append(this.settingMap.get("resheader"));
 		
 		// 替换标记
-		sb = new StringBuilder(this.replaceFlags(sb.toString(), null));
+		String s = this.replaceFlags(sb.toString(), null);
+		sb = new StringBuilder(s);
 		
 		for(TableModel tblModel : this.model) {
 			// 添加Sheet注释

@@ -39,7 +39,7 @@ public class HashMapReaderImpl extends BaseReader<HashMap<String, String>> {
 	protected HashMap<String, String> onReader(XSSFSheet sheet) {
 		HashMap<String, String> result = new HashMap<String, String>();
 		
-		for(int row=this.startRowNo; row < sheet.getLastRowNum(); row++) {
+		for(int row=this.startRowNo; row <= sheet.getLastRowNum(); row++) {
 			XSSFRow xssfRow = sheet.getRow(row);
 			String key = this.getCellStringValue(xssfRow.getCell(this.startColNo));
 			// key不为空时添加到Map中
