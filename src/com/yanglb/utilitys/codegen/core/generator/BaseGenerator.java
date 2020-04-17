@@ -18,6 +18,8 @@ package com.yanglb.utilitys.codegen.core.generator;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.yanglb.utilitys.codegen.core.model.OptionModel;
@@ -28,6 +30,7 @@ import com.yanglb.utilitys.codegen.exceptions.ParamaCheckException;
 public class BaseGenerator implements IGenerator{
 	protected ParamaModel paramaModel;
 	protected List<OptionModel> supportOptions;
+	protected HashMap<String, String> settingMap;
 	
 	protected void printInfo() {
 		System.out.println("生成信息:");
@@ -68,6 +71,9 @@ public class BaseGenerator implements IGenerator{
 	public void init(ParamaModel paramaModel) {
 		this.paramaModel = paramaModel;
 		this.supportOptions = new ArrayList<OptionModel>();
+		this.settingMap = new HashMap<String, String>();
+		
+		this.settingMap.put("generationDate", new Date().toString());
 	}
 
 	@Override

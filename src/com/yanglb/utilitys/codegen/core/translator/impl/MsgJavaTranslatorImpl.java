@@ -65,12 +65,4 @@ public class MsgJavaTranslatorImpl extends BaseMsgTranslator {
 			}
 		}
 	}
-
-	@Override
-	protected void onAfterTranslate() throws CodeGenException {
-//		super.onAfterTranslate();
-		// 不需要替换标记
-		
-		// TODO: 调整格式（\u1234）
-	}
 }

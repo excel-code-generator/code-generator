@@ -26,7 +26,7 @@ import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
 import com.yanglb.utilitys.codegen.support.SupportLang;
 import com.yanglb.utilitys.codegen.utility.StringUtility;
 
-public class DmlTranslatorImpl extends BaseSqlTranslator<List<DmlModel>> {
+public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
@@ -66,17 +66,6 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<List<DmlModel>> {
 		for(DmlModel itm : this.model) {
 			sb.append(this.genDml(itm));
 		}
-	}
-
-	/**
-	 * 取得用于替换的Model
-	 */
-	@Override
-	protected Object getReplaceModel() {
-		if(this.model == null || this.model.size() <= 0) return null;
-		
-		// 只使用第一个Sheet替换
-		return this.model.get(0);
 	}
 
 	private String genDml(DmlModel model) {

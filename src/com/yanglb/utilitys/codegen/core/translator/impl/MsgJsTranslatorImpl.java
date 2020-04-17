@@ -126,10 +126,4 @@ public class MsgJsTranslatorImpl extends BaseMsgTranslator {
 		value = value.replaceAll("\n", "\\\\r\\\\n");
 		return value;
 	}
-
-	@Override
-	protected void onAfterTranslate() throws CodeGenException {
-//		super.onAfterTranslate();
-		// 不需要替换标记
-	}
 }

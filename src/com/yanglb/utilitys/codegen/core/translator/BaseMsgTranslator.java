@@ -19,8 +19,31 @@ import java.io.File;
 import java.util.List;
 
 import com.yanglb.utilitys.codegen.core.model.TableModel;
+import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
 
 public class BaseMsgTranslator extends BaseTranslator<List<TableModel>> {
+	protected String msgLang = "";
+	
+	@Override
+	protected void onBeforeTranslate() throws CodeGenException {
+		super.onBeforeTranslate();
+		
+		// 当前生成的国际化语言
+		this.msgLang = this.settingMap.get("MsgLang");
+		
+		// 文件名
+		String fileName = getFileName();
+		if (fileName.equals("")) {
+			// 空文件名
+			fileName = this.msgLang;
+		} else {
+			if(!this.isDefaultLanguage()) {
+				fileName = fileName + "." + this.msgLang;
+			}
+		}
+		
+		this.writableModel.setFileName(fileName);
+	}
 	
 	/**
 	 * 文件名，优先使用--fn参数指定的文件名，如不指定使用excel名称
@@ -42,5 +65,13 @@ public class BaseMsgTranslator extends BaseTranslator<List<TableModel>> {
 		}
 		
 		return fileName;
+	}
+	
+	/**
+	 * 获取当前语言是否为默认语言
+	 * @return
+	 */
+	protected boolean isDefaultLanguage() {
+		return this.msgLang.equals("default");
 	}
 }

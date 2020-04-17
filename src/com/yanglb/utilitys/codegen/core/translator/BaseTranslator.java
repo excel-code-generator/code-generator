@@ -85,10 +85,6 @@ public class BaseTranslator<T> implements ITranslator<T> {
 	 */
 	protected void onAfterTranslate() throws CodeGenException {
 		// 编码转换在写入器完成
-		// 标记替换
-		this.replaceFlags();
-		
-		// TODO: 代码格式调整（后期完善）
 	}
 	
 	// 翻译操作
@@ -99,14 +95,15 @@ public class BaseTranslator<T> implements ITranslator<T> {
 	}
 	
 	/**
-	 * 替换{标记}
-	 * 如果
-	 * @throws CodeGenException 
+	 * 模板替换
+	 * @param template 模板内容
+	 * @param replaceModel 
+	 * @return
+	 * @throws CodeGenException
 	 */
-	private void replaceFlags() throws CodeGenException {
-		Object replaceModel = this.getReplaceModel();
-		List<String> flags = StringUtility.findFlags(this.writableModel.getData());
-		String data = this.writableModel.getData().toString();
+	protected String replaceFlags(String template, Object replaceModel) throws CodeGenException {
+		List<String> flags = StringUtility.findFlags(template);
+		String data = new String(template);
 		for(String key:flags) {
 			// Map元素
 			String value = null;
@@ -142,14 +139,6 @@ public class BaseTranslator<T> implements ITranslator<T> {
 				data = data.replaceAll(f, value);
 			}
 		}
-		this.writableModel.setData(new StringBuilder(data));
-	}
-	
-	/**
-	 * 取得用于替换的Model
-	 * @return
-	 */
-	protected Object getReplaceModel() {
-		return this.model;
+		return data;
 	}
 }

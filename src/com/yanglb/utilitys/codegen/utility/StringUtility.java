@@ -48,7 +48,7 @@ public class StringUtility {
 	 * @param data 要查找的字符
 	 * @return
 	 */
-	public static List<String> findFlags(StringBuilder data) {
+	public static List<String> findFlags(String data) {
 		Pattern parttern = Pattern.compile("\\{([a-zA-Z\\_]*)\\}");
 		Matcher matcher = parttern.matcher(data);
 		List<String> listKey = new ArrayList<String>();

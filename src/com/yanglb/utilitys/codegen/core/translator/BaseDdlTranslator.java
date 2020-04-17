@@ -27,7 +27,7 @@ import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
 import com.yanglb.utilitys.codegen.support.SupportLang;
 import com.yanglb.utilitys.codegen.utility.StringUtility;
 
-public class BaseDdlTranslator extends BaseSqlTranslator<List<DdlModel>> {
+public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
 	// 外键关系列表
 	protected List<ForeignModel> foreignKeyList = new ArrayList<ForeignModel>();
 	
@@ -191,17 +191,6 @@ public class BaseDdlTranslator extends BaseSqlTranslator<List<DdlModel>> {
 		
 		// 没有外键时返回null
 		return null;
-	}
-
-	/**
-	 * 取得用于替换的Model
-	 */
-	@Override
-	protected Object getReplaceModel() {
-		if(this.model == null || this.model.size() <= 0) return null;
-		
-		// 只使用第一个Sheet替换
-		return this.model.get(0);
 	}
 
 	/**

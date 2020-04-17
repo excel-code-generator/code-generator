@@ -78,18 +78,6 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 	}
 
 	/**
-	 * 取得用于替换的Model
-	 */
-	@Override
-	protected Object getReplaceModel() {
-		if (this.model == null || this.model.size() <= 0)
-			return null;
-
-		// 只使用第一个Sheet替换
-		return this.model.get(0);
-	}
-
-	/**
 	 * 生成MySQL的DDL
 	 * 
 	 * @param model

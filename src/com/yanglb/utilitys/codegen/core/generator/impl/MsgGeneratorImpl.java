@@ -40,7 +40,9 @@ public class MsgGeneratorImpl extends BaseGenerator {
 		
 		// 读取必要的配置数据
 		ISettingReader settingReader = GenFactory.createByName(SupportGen.setting_reader);
-		HashMap<String, String> settingMap = settingReader.settingReader();
+		String genKey = String.format("%s_%s", paramaModel.getType().name(), paramaModel.getLang().name());
+		HashMap<String, String> map = settingReader.settingReader(genKey);
+		settingMap.putAll(map);
 		
 		// 读取DB信息表
 		ITableReader tableReader = GenFactory.createByName(SupportGen.table_reader);
@@ -64,6 +66,8 @@ public class MsgGeneratorImpl extends BaseGenerator {
 					supportTrans = SupportGen.msg_java_translator;
 				} else if (this.paramaModel.getLang() == SupportLang.json) {
 					supportTrans = SupportGen.msg_json_translator;
+				} else if (this.paramaModel.getLang() == SupportLang.cs) {
+					supportTrans = SupportGen.msg_cs_translator;
 				}
 				
 				// 转换为可写入的Model（单个文件）
