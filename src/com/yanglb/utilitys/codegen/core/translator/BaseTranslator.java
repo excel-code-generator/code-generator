@@ -142,7 +142,8 @@ public class BaseTranslator<T> implements ITranslator<T> {
 			
 			// 如果有值则替换
 			if(hasKey) {
-				data = data.replaceAll(String.format("\\{%s\\}", key), value);
+				String f = String.format("\\$\\{%s\\}", key);
+				data = data.replaceAll(f, value);
 			}
 		}
 		this.writableModel.setData(new StringBuilder(data));
