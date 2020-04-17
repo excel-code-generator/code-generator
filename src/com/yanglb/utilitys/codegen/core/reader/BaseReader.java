@@ -144,10 +144,9 @@ public class BaseReader<T> implements IReader<T>{
 				// 读取指定的Sheet
 				for(String sheetName:this.sheets) {
 					XSSFSheet sheet = wb.getSheet(sheetName);
-					if(sheet == null) {
-						throw new CodeGenException(String.format(MsgUtility.getString("E_004"), sheetName));
+					if(sheet != null) {
+						this.results.add(this.onReader(sheet));
 					}
-					this.results.add(this.onReader(sheet));
 				}
 			}
 		} catch (FileNotFoundException e) {
