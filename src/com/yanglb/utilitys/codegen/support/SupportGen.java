@@ -16,24 +16,25 @@
 package com.yanglb.utilitys.codegen.support;
 
 public enum SupportGen {
-	// reader
-	ddl_reader, // com.yanglb.utilitys.codegen.core.reader.impl.DdlReaderImpl
-	dml_reader, // com.yanglb.utilitys.codegen.core.reader.impl.DmlReaderImpl
-	hashmap_reader, // com.yanglb.utilitys.codegen.core.reader.impl.HashMapReaderImpl
-	setting_reader, // com.yanglb.utilitys.codegen.core.reader.impl.SettingReaderImpl
-	table_reader, // com.yanglb.utilitys.codegen.core.reader.impl.TableReaderImpl
+    // reader
+    ddl_reader,
+    dml_reader,
+    hashmap_reader,
+    setting_reader,
+    table_reader,
 
-	// translator
-	ddl_mysql_translator, // com.yanglb.utilitys.codegen.core.translator.impl.DdlMysqlTranslatorImpl
-	ddl_sqlite_translator, // com.yanglb.utilitys.codegen.core.translator.impl.DdlSqliteTranslatorImpl
-	ddl_sqlserver_translator, // com.yanglb.utilitys.codegen.core.translator.impl.DdlSqlServerTranslatorImpl
-	dml_translator, // com.yanglb.utilitys.codegen.core.translator.impl.DmlTranslatorImpl
-	msg_js_translator, // com.yanglb.utilitys.codegen.core.translator.impl.MsgJsTranslatorImpl
-	msg_json_translator, // com.yanglb.utilitys.codegen.core.translator.impl.MsgJsonTranslatorImpl
-	msg_java_translator, // com.yanglb.utilitys.codegen.core.translator.impl.MsgJavaTranslatorImpl
-	msg_cs_translator,
+    // translator
+    ddl_mysql_translator,
+    ddl_sqlite_translator,
+    ddl_sqlserver_translator,
+    dml_translator,
+    msg_js_translator,
+    msg_json_translator,
+    msg_java_translator,
+    msg_cs_translator,
+    msg_ios_translator,
 
-	// writer 
-	utf8_writer, // com.yanglb.utilitys.codegen.core.writer.impl.Utf8WriterImpl
-	ascii_writer, // com.yanglb.utilitys.codegen.core.writer.impl.AsciiWriterImpl
+    // writer 
+    utf8_writer,
+    ascii_writer,
 }
