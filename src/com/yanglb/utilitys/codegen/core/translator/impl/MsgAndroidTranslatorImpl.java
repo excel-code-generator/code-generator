@@ -23,7 +23,6 @@ import java.util.Map;
 import com.yanglb.utilitys.codegen.core.model.TableModel;
 import com.yanglb.utilitys.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
-import com.yanglb.utilitys.codegen.utility.MsgUtility;
 import com.yanglb.utilitys.codegen.utility.StringUtility;
 
 public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
@@ -37,6 +36,11 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 		
 		// 文件名
 		this.writableModel.setFileName("strings");
+	}
+	
+	@Override
+	protected String getSplitString() {
+		return "-";
 	}
 
 	@Override
