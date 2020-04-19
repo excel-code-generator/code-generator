@@ -15,11 +15,13 @@
  */
 package com.yanglb.utilitys.codegen.core.translator.impl;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.yanglb.utilitys.codegen.core.model.TableModel;
 import com.yanglb.utilitys.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
+import com.yanglb.utilitys.codegen.utility.MsgUtility;
 import com.yanglb.utilitys.codegen.utility.StringUtility;
 
 public class MsgCSTranslatorImpl extends BaseMsgTranslator {
@@ -50,6 +52,8 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 		String s = this.replaceFlags(sb.toString(), null);
 		sb = new StringBuilder(s);
 		
+		// 用于检查相同的key
+		Map<String, Boolean> keys = new HashMap<String, Boolean>();
 		for(TableModel tblModel : this.model) {
 			// 添加Sheet注释
 			sb.append(String.format("    \r\n"));
@@ -58,6 +62,8 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 			for(Map<String, String> itm : tblModel.toList()) {
 				String id = itm.get("id");
 				if(StringUtility.isNullOrEmpty(id)) continue;
+				if (keys.containsKey(id)) throw new CodeGenException(String.format(MsgUtility.getString("E_013"), id));
+				keys.put(id, true);
 				
 				// 对字符串进行转换
 				String value = this.convert2CSCode(itm.get(this.msgLang));
