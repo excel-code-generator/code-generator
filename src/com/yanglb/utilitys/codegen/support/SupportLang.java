@@ -26,5 +26,6 @@ public enum SupportLang {
 	js,
 	json,
 	cs,
-	ios
+	ios,
+	android
 }

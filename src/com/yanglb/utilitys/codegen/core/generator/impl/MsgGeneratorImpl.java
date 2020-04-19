@@ -70,6 +70,8 @@ public class MsgGeneratorImpl extends BaseGenerator {
 					supportTrans = SupportGen.msg_cs_translator;
 				} else if (this.paramaModel.getLang() == SupportLang.ios) {
 					supportTrans = SupportGen.msg_ios_translator;
+				} else if (this.paramaModel.getLang() == SupportLang.android) {
+					supportTrans = SupportGen.msg_android_translator;
 				}
 				
 				// 转换为可写入的Model（单个文件）

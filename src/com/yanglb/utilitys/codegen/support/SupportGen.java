@@ -33,6 +33,7 @@ public enum SupportGen {
     msg_java_translator,
     msg_cs_translator,
     msg_ios_translator,
+    msg_android_translator,
 
     // writer 
     utf8_writer,
