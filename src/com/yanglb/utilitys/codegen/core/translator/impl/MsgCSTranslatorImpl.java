@@ -86,9 +86,9 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 		if(value == null) return null;
 		
 		// 先替换\r\n，防止有文档只有\r或\n 后面再替换一次
-		value = value.replaceAll("\r\n", "\\\\r\\\\n");
-		value = value.replaceAll("\r", "\\\\r\\\\n");
-		value = value.replaceAll("\n", "\\\\r\\\\n");
+//		value = value.replaceAll("\r\n", "\\\\r\\\\n");
+//		value = value.replaceAll("\r", "\\\\r\\\\n");
+//		value = value.replaceAll("\n", "\\\\r\\\\n");
 		return value;
 	}
 }
