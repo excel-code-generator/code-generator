@@ -5,10 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.yanglb</groupId>
-    <artifactId>cg</artifactId>
+    <artifactId>code-generator</artifactId>
     <version>4.0.0</version>
     <packaging>jar</packaging>
-    <name>code-generator</name>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
@@ -46,6 +45,15 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
