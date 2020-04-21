@@ -22,7 +22,7 @@ public class ConfUtility {
 	
 	private static void init() {
 		if(resourceBundle != null) return;
-		resourceBundle = ResourceBundle.getBundle("conf.conf");
+		resourceBundle = ResourceBundle.getBundle("conf");
 	}
 	
 	public static String getString(String key) {

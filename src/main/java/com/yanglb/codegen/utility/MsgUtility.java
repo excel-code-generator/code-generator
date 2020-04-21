@@ -22,7 +22,7 @@ private static ResourceBundle resourceBundle = null;
 	
 	private static void init() {
 		if(resourceBundle != null) return;
-		resourceBundle = ResourceBundle.getBundle("conf.message");
+		resourceBundle = ResourceBundle.getBundle("message");
 	}
 	
 	public static String getString(String key) {
