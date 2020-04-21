@@ -32,6 +32,7 @@ rebel.xml
 .DS_Store
 ~$*
 
+target/
 /bin/
 /out/
 
