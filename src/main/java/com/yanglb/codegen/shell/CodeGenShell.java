@@ -27,6 +27,7 @@ import com.yanglb.codegen.support.SupportLang;
 import com.yanglb.codegen.support.SupportType;
 import com.yanglb.codegen.utility.Infos;
 import com.yanglb.codegen.utility.StringUtility;
+import org.apache.commons.cli.*;
 
 public class CodeGenShell {
 
@@ -38,6 +39,91 @@ public class CodeGenShell {
 //	private final String PAR_SHEETS = "-sheets";
 		
 	public boolean invoke(String[] args) {
+		CommandLineParser parser = new DefaultParser();
+		Options options = new Options();
+		Option opt;
+		opt = new Option("t", "type", true, "生成类型，ddl/dml/msg");
+		opt.setRequired(true);
+//		options.addOption(opt);
+
+		opt = new Option("l", "lang", false, "生成语言，java/sql/js/json/cs/ios/android");
+//		options.addOption(opt);
+
+		Option help = new Option("h", "help", false, "显示帮助信息。");
+		options.addOption(help);
+
+		Option version = new Option("v", "version", false, "打印版本信息。");
+		options.addOption(version);
+
+		Option outDir = Option.builder("out")
+				.longOpt("out-dir")
+				.argName("dir")
+				.desc("输出目录，默认输出到 ./out 目录下。")
+				.hasArg(true)
+				.build();
+		options.addOption(outDir);
+
+		Option inFile = Option.builder("in")
+				.longOpt("in-file")
+				.required()
+				.argName("file")
+				.desc("input excel file.")
+				.hasArg(true)
+				.build();
+//		options.addOption(inFile);
+
+		Option sheets = Option.builder("s")
+				.longOpt("sheets")
+				.argName("names")
+				.desc("要处理的Excel Sheet名，默认全部，\"#\"开头的不处理。")
+				.hasArg(true)
+				.hasArgs()
+				.build();
+		options.addOption(sheets);
+		try
+		{
+//			args = new String[]{ "-t=23", "--in-file", "hello.txt", "-out", "test"/*, "-s", "Sheet1", "Sheet2", "Sheet3", "--help"*/ };
+			CommandLine line = parser.parse(options, args);
+			System.out.println("t=" + line.getOptionValue("t"));
+			System.out.println("type=" + line.getOptionValue("type"));
+			System.out.println("in= " + line.getOptionValue("in"));
+			System.out.println("out= " + line.getOptionValue("out"));
+			System.out.println("file= " + line.getOptionValue("file"));
+
+			String[] ss = line.getOptionValues("sheets");
+			System.out.println("help= " + (line.hasOption("help") ? "YES" : "NO"));
+
+		} catch (ParseException exp){
+			System.out.println(exp.getMessage() + "\n");
+//			return false;
+		}
+
+		HelpFormatter formatter = new HelpFormatter();
+		formatter.setSyntaxPrefix("用法：");
+		formatter.printHelp("cg command target file [options]", options);
+
+		System.out.println();
+		System.out.println("command: ");
+		System.out.println(" ddl: 生成数据库结构SQL脚本。");
+		System.out.println(" dml: 生成数据库初始数据SQL脚本。");
+		System.out.println(" msg: 生成国际化资源文件。");
+		System.out.println();
+		System.out.println("示例：");
+		System.out.println("  cg msg json 001.xlsx");
+		System.out.println("  cg msg resx 001.xlsx --sheets Sheet1 Sheet2 Sheet5");
+		System.out.println();
+		System.out.println("帮助：");
+		System.out.println("  cg ddl --help  显示数生成据库结构的更多帮助信息。");
+		System.out.println("  cg dml --help  显示生成初始数据的更多帮助信息。");
+		System.out.println("  cg msg --help  显示生成国际化资源的更多帮助信息。");
+
+		System.out.println();
+		System.out.println("---");
+//		System.out.println(Infos.Copyright);
+		System.out.println(Infos.Name + " v" + Infos.Version);
+		return true;
+	}
+	public boolean invoke2(String[] args) {
 		if(args.length == 0 || this.PAR_HELP.equals(args[0])) {
 			this.showHelp();
 			return true;
@@ -98,7 +184,7 @@ public class CodeGenShell {
 		System.out.println("选项：");
 		System.out.printf("   -type: %s\r\n", StringUtility.enumToString(SupportType.class));
 		System.out.printf("   -lang: %s\r\n", StringUtility.enumToString(SupportLang.class));
-		
+
 		System.out.println();
 		System.out.println("默认值：");
 		System.out.println("   -type: 无");
