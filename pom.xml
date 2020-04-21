@@ -1,4 +1,6 @@
-/**
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
  * Copyright 2020 yanglb.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,14 +14,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-package com.yanglb.utilitys.codegen.utility;
+-->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-public class Infos {
-	public static final String Name       = "Code Generator";
-	public static final String Version    = "3.0.1";
-	public static final String Copyright  = "Copyright 2015-2020 yanglb.com All Rights Reserved.";
-	public static final String Author     = "me@yanglb.com";
-	public static final String Website    = "https://yanglb.com";
-	public static final String Repository = "https://github.com/excel-code-generator/code-generator";
-}
+    <groupId>com.yanglb</groupId>
+    <artifactId>codegen</artifactId>
+    <version>4.0.0</version>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+</project>
