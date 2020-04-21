@@ -28,6 +28,7 @@ import com.yanglb.codegen.support.SupportType;
 import com.yanglb.codegen.utility.Infos;
 import com.yanglb.codegen.utility.StringUtility;
 import org.apache.commons.cli.*;
+import org.apache.poi.util.StringUtil;
 
 public class CodeGenShell {
 
@@ -37,17 +38,13 @@ public class CodeGenShell {
 //	private final String PAR_IN     = "-in";
 //	private final String PAR_OUT    = "-out";
 //	private final String PAR_SHEETS = "-sheets";
-		
-	public boolean invoke(String[] args) {
-		CommandLineParser parser = new DefaultParser();
-		Options options = new Options();
-		Option opt;
-		opt = new Option("t", "type", true, "生成类型，ddl/dml/msg");
-		opt.setRequired(true);
-//		options.addOption(opt);
 
-		opt = new Option("l", "lang", false, "生成语言，java/sql/js/json/cs/ios/android");
-//		options.addOption(opt);
+
+	private Options options(String cmd) {
+		return options();
+	}
+	private Options options() {
+		Options options = new Options();
 
 		Option help = new Option("h", "help", false, "显示帮助信息。");
 		options.addOption(help);
@@ -63,15 +60,6 @@ public class CodeGenShell {
 				.build();
 		options.addOption(outDir);
 
-		Option inFile = Option.builder("in")
-				.longOpt("in-file")
-				.required()
-				.argName("file")
-				.desc("input excel file.")
-				.hasArg(true)
-				.build();
-//		options.addOption(inFile);
-
 		Option sheets = Option.builder("s")
 				.longOpt("sheets")
 				.argName("names")
@@ -80,33 +68,114 @@ public class CodeGenShell {
 				.hasArgs()
 				.build();
 		options.addOption(sheets);
-		try
-		{
-//			args = new String[]{ "-t=23", "--in-file", "hello.txt", "-out", "test"/*, "-s", "Sheet1", "Sheet2", "Sheet3", "--help"*/ };
-			CommandLine line = parser.parse(options, args);
-			System.out.println("t=" + line.getOptionValue("t"));
-			System.out.println("type=" + line.getOptionValue("type"));
-			System.out.println("in= " + line.getOptionValue("in"));
-			System.out.println("out= " + line.getOptionValue("out"));
-			System.out.println("file= " + line.getOptionValue("file"));
-
-			String[] ss = line.getOptionValues("sheets");
-			System.out.println("help= " + (line.hasOption("help") ? "YES" : "NO"));
-
-		} catch (ParseException exp){
-			System.out.println(exp.getMessage() + "\n");
-//			return false;
+		return options;
+	}
+	public boolean invoke(String[] args) {
+		if (args.length == 0) {
+			showHelp();
+			return true;
 		}
+
+		CommandLineParser parser = new DefaultParser();
+		SupportType command;
+		SupportLang type;
+		CommandLine line;
+		String file;
+		try {
+//			args = new String[] {"msg", "cs", "/Users/yanglibing/Work/ACON/src/ACON/i18n/AppResources.xlsx", "-s", "test"};
+//			args = new String[] {"msg"};
+
+			String cmd = notOption(0, args);
+
+			Options opts = options();
+			line = parser.parse(opts, args);
+			if (line.hasOption("help")) {
+				showHelp(cmd);
+				return true;
+			}
+			if (line.hasOption("version")) {
+				showVersion();
+				return true;
+			}
+
+			command = SupportType.valueOf(cmd);
+			type = SupportLang.valueOf(notOption(1, args));
+			file = notOption(2, args);
+
+			// 检查参数是否正确
+			File f = new File(file);
+			if(!(f.exists() && f.isFile())) {
+				System.out.printf("指定的文件(%s)不存在或者是一个目录。\r\n", file);
+				return false;
+			}
+
+			// 根据命令生成解析
+			opts = options(cmd);
+			line = parser.parse(opts, args);
+		} catch (IllegalArgumentException | NullPointerException | ParseException ex) {
+			System.out.println("您输入的参数不正确，请使用 --help 命令查看用法。");
+			return false;
+		}
+
+		try {
+			ParamaModel model = new ParamaModel();
+			model.setLang(type);
+			model.setType(command);
+			model.setSheets(line.getOptionValues("s"));
+			model.setIn(file);
+			model.setOut(line.getOptionValue("out", "./out"));
+			IGenerator generator = GenFactory.createGenerator(model);
+			generator.invoke();
+
+			// 不出错时就成功
+			System.out.println("恭喜你，代码生成成功！");
+		}
+		catch (ParamaCheckException | CodeGenException e) {
+			System.out.println("生成失败!");
+			System.out.println(e.getMessage());
+			return false;
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+
+		return true;
+	}
+
+	private String notOption(int idx, String[] args) {
+		int i = 0;
+		for (String itm : args) {
+			if (itm.startsWith("-")) continue;
+			if (i++ >= idx) return itm;
+		}
+		return null;
+	}
+
+	private void showVersion() {
+		System.out.println("v" + Infos.Version);
+	}
+
+	private void showHelp(String cmd) {
+		if (cmd == null) {
+			showHelp();
+			return;
+		}
+		System.out.println("cmd 用法 " + cmd);
+		showHelp();
+	}
+	private void showHelp() {
 
 		HelpFormatter formatter = new HelpFormatter();
 		formatter.setSyntaxPrefix("用法：");
-		formatter.printHelp("cg command target file [options]", options);
+		formatter.printHelp("cg command type file [options]", options());
 
 		System.out.println();
-		System.out.println("command: ");
+		System.out.println("command & type: ");
 		System.out.println(" ddl: 生成数据库结构SQL脚本。");
 		System.out.println(" dml: 生成数据库初始数据SQL脚本。");
 		System.out.println(" msg: 生成国际化资源文件。");
+		System.out.println("通过 cg command --help 查看type选项。");
 		System.out.println();
 		System.out.println("示例：");
 		System.out.println("  cg msg json 001.xlsx");
@@ -119,137 +188,137 @@ public class CodeGenShell {
 
 		System.out.println();
 		System.out.println("---");
-//		System.out.println(Infos.Copyright);
 		System.out.println(Infos.Name + " v" + Infos.Version);
-		return true;
+		System.out.println("By " + Infos.Website);
 	}
-	public boolean invoke2(String[] args) {
-		if(args.length == 0 || this.PAR_HELP.equals(args[0])) {
-			this.showHelp();
-			return true;
-		}
-		
-		// 根据命令行参数生成 model
-		ParamaModel model = this.convert2Model(args);
-		if(model == null 
-				|| StringUtility.isNullOrEmpty(model.getIn())
-				|| StringUtility.isNullOrEmpty(model.getOut())
-				|| model.getType() == null
-				|| model.getLang() == null) {
-			System.out.println("您输入的参数不正确，请使用 --help 命令查看用法。");
-			return false;
-		}
-		
-		// 检查参数是否正确
-		File f = new File(model.getIn());
-		if(!(f.exists() && f.isFile())) {
-			System.out.printf("指定的文件(%s)不存在或者是一个目录。\r\n", model.getIn());
-			return false;
-		}
-		
-		// 执行
-		try {
-			IGenerator generator = GenFactory.createGenerator(model);
-			generator.invoke();
-			
-			// 不出错时就成功
-			System.out.println("恭喜你，代码生成成功！");
-		}
-		catch (ParamaCheckException e) {
-			System.out.println("生成失败!");
-			System.out.println(e.getMessage());
-			return false;
-		}
-		catch (CodeGenException e) {
-			System.out.println("生成失败!");
-			System.out.println(e.getMessage());
-			return false;
-		}
-		
-		// 最终生成成功
-		return true;
-	}
-	
-	/**
-	 * 显示帮助信息
-	 */
-	private void showHelp() {
-		System.out.println(String.format("代码生成器 v%s 使用说明", Infos.Version));
-		System.out.println(Infos.Copyright);
-		System.out.println();
-		System.out.println("用法：");
-		System.out.println("cg -type 生成类型 -lang 生成语言 -in 输入文件 [-sheets 要生成的Sheet名1[,2]] [-out 输出目录]");
-		
-		System.out.println();
-		System.out.println("选项：");
-		System.out.printf("   -type: %s\r\n", StringUtility.enumToString(SupportType.class));
-		System.out.printf("   -lang: %s\r\n", StringUtility.enumToString(SupportLang.class));
-
-		System.out.println();
-		System.out.println("默认值：");
-		System.out.println("   -type: 无");
-		System.out.println("   -lang: java (type为 ddl/dml时默认值为sql)");
-		System.out.println("     -in: 无");
-		System.out.println(" -sheets: 所有");
-		System.out.println("    -out: ./out");
-		
-		System.out.println();
-		System.out.println("用例：");
-		System.out.println(" cg --help");
-//		System.out.println(" cg -type db -lang java -in 001.xlsx -sheets S001_配置表,S002_配置明细表 -out ./out");
-		System.out.println(" cg -type dml -in 001.xlsx -sheets 初始数据");
-		System.out.println(" cg -type ddl_mysql -in 001.xlsx");
-		System.out.println(" cg -type msg -lang js -in 001.xlsx");
-		System.out.println(" cg -type msg -lang java -in 001.xlsx");
-		System.out.println();
-	}
-	
-	private ParamaModel convert2Model(String[] args) {
-		ParamaModel model = new ParamaModel();
-		
-		// 默认值
-		model.setOut("./out");
-		model.setLang(SupportLang.java);
-		
-		// 根据参数设置
-		for(int i=0; i<args.length; i++) {
-			String key = args[i];
-			if(key.matches("-[a-zA-Z0-9]+")) {
-				key = key.substring(1, key.length());
-				
-				// 不可指定 -options 
-				if(key.equals("options")) return null;
-				
-				try {
-					String parValue = args[++i];
-					Object value = parValue;
-					Field field = ParamaModel.class.getDeclaredField(key);
-					if(field.getType().equals(SupportType.class)) {
-						value = SupportType.valueOf(parValue);
-					} else if(field.getType().equals(SupportLang.class)) {
-						value = SupportLang.valueOf(parValue);
-					} else if(field.getType().equals(String[].class)) {
-						value = parValue.split(",");
-					}
-					
-					field.setAccessible(true);
-					field.set(model, value);
-				} catch (Exception e) {
-					return null;
-				}
-			} else if (key.matches("--[a-zA-Z0-9]+")) {
-				key = key.substring(2, key.length());
-				model.getOptions().put(key, args[++i]);
-			}
-		}
-		
-		// DDL/DML时只可能是SQL
-		if(model.getType() == SupportType.ddl_mysql 
-				|| model.getType() == SupportType.ddl_sqlite
-				|| model.getType() == SupportType.ddl_sqlserver
-				|| model.getType() == SupportType.dml) {
-			model.setLang(SupportLang.sql);
-		}
-		return model;
-	}
+//
+//	public boolean invoke2(String[] args) {
+//		if(args.length == 0 || this.PAR_HELP.equals(args[0])) {
+//			this.showHelp();
+//			return true;
+//		}
+//
+//		// 根据命令行参数生成 model
+//		ParamaModel model = this.convert2Model(args);
+//		if(model == null
+//				|| StringUtility.isNullOrEmpty(model.getIn())
+//				|| StringUtility.isNullOrEmpty(model.getOut())
+//				|| model.getType() == null
+//				|| model.getLang() == null) {
+//			System.out.println("您输入的参数不正确，请使用 --help 命令查看用法。");
+//			return false;
+//		}
+//
+//		// 检查参数是否正确
+//		File f = new File(model.getIn());
+//		if(!(f.exists() && f.isFile())) {
+//			System.out.printf("指定的文件(%s)不存在或者是一个目录。\r\n", model.getIn());
+//			return false;
+//		}
+//
+//		// 执行
+//		try {
+//			IGenerator generator = GenFactory.createGenerator(model);
+//			generator.invoke();
+//
+//			// 不出错时就成功
+//			System.out.println("恭喜你，代码生成成功！");
+//		}
+//		catch (ParamaCheckException e) {
+//			System.out.println("生成失败!");
+//			System.out.println(e.getMessage());
+//			return false;
+//		}
+//		catch (CodeGenException e) {
+//			System.out.println("生成失败!");
+//			System.out.println(e.getMessage());
+//			return false;
+//		}
+//
+//		// 最终生成成功
+//		return true;
+//	}
+//
+//	/**
+//	 * 显示帮助信息
+//	 */
+//	private void showHelp2() {
+//		System.out.println(String.format("代码生成器 v%s 使用说明", Infos.Version));
+//		System.out.println(Infos.Copyright);
+//		System.out.println();
+//		System.out.println("用法：");
+//		System.out.println("cg -type 生成类型 -lang 生成语言 -in 输入文件 [-sheets 要生成的Sheet名1[,2]] [-out 输出目录]");
+//
+//		System.out.println();
+//		System.out.println("选项：");
+//		System.out.printf("   -type: %s\r\n", StringUtility.enumToString(SupportType.class));
+//		System.out.printf("   -lang: %s\r\n", StringUtility.enumToString(SupportLang.class));
+//
+//		System.out.println();
+//		System.out.println("默认值：");
+//		System.out.println("   -type: 无");
+//		System.out.println("   -lang: java (type为 ddl/dml时默认值为sql)");
+//		System.out.println("     -in: 无");
+//		System.out.println(" -sheets: 所有");
+//		System.out.println("    -out: ./out");
+//
+//		System.out.println();
+//		System.out.println("用例：");
+//		System.out.println(" cg --help");
+////		System.out.println(" cg -type db -lang java -in 001.xlsx -sheets S001_配置表,S002_配置明细表 -out ./out");
+//		System.out.println(" cg -type dml -in 001.xlsx -sheets 初始数据");
+//		System.out.println(" cg -type ddl_mysql -in 001.xlsx");
+//		System.out.println(" cg -type msg -lang js -in 001.xlsx");
+//		System.out.println(" cg -type msg -lang java -in 001.xlsx");
+//		System.out.println();
+//	}
+//
+//	private ParamaModel convert2Model(String[] args) {
+//		ParamaModel model = new ParamaModel();
+//
+//		// 默认值
+//		model.setOut("./out");
+//		model.setLang(SupportLang.java);
+//
+//		// 根据参数设置
+//		for(int i=0; i<args.length; i++) {
+//			String key = args[i];
+//			if(key.matches("-[a-zA-Z0-9]+")) {
+//				key = key.substring(1, key.length());
+//
+//				// 不可指定 -options
+//				if(key.equals("options")) return null;
+//
+//				try {
+//					String parValue = args[++i];
+//					Object value = parValue;
+//					Field field = ParamaModel.class.getDeclaredField(key);
+//					if(field.getType().equals(SupportType.class)) {
+//						value = SupportType.valueOf(parValue);
+//					} else if(field.getType().equals(SupportLang.class)) {
+//						value = SupportLang.valueOf(parValue);
+//					} else if(field.getType().equals(String[].class)) {
+//						value = parValue.split(",");
+//					}
+//
+//					field.setAccessible(true);
+//					field.set(model, value);
+//				} catch (Exception e) {
+//					return null;
+//				}
+//			} else if (key.matches("--[a-zA-Z0-9]+")) {
+//				key = key.substring(2, key.length());
+//				model.getOptions().put(key, args[++i]);
+//			}
+//		}
+//
+//		// DDL/DML时只可能是SQL
+//		if(model.getType() == SupportType.ddl_mysql
+//				|| model.getType() == SupportType.ddl_sqlite
+//				|| model.getType() == SupportType.ddl_sqlserver
+//				|| model.getType() == SupportType.dml) {
+//			model.setLang(SupportLang.sql);
+//		}
+//		return model;
+//	}
 }
