@@ -25,7 +25,7 @@ import com.yanglb.codegen.utility.Infos;
 
 public class SettingReaderImpl extends HashMapReaderImpl implements ISettingReader {
 	public SettingReaderImpl() {
-		this.excelFile = "jar:/conf/CodeGenerator.xlsx";
+		this.excelFile = "jar://code-generator.xlsx";
 		this.startRowNo = 3;
 		this.startColNo = 2;
 	}

@@ -115,8 +115,8 @@ public class BaseReader<T> implements IReader<T>{
 		XSSFWorkbook wb = null;
 		try {
 			// jar中读取时不能使用new File方法
-			if(this.excelFile.startsWith("jar:")) {
-				String path = this.excelFile.substring(4);
+			if(this.excelFile.startsWith("jar://")) {
+				String path = this.excelFile.substring(5);
 				InputStream is=this.getClass().getResourceAsStream(path);
 				wb = new XSSFWorkbook(is);
 			} else {
