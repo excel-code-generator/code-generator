@@ -21,10 +21,9 @@ import java.util.List;
 
 import com.yanglb.utilitys.codegen.core.reader.ISettingReader;
 import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
+import com.yanglb.utilitys.codegen.utility.Infos;
 
 public class SettingReaderImpl extends HashMapReaderImpl implements ISettingReader {
-	private static final String COMMON_SHEET = "common"; 
-	
 	public SettingReaderImpl() {
 		this.excelFile = "jar:/conf/CodeGenerator.xlsx";
 		this.startRowNo = 3;
@@ -41,7 +40,7 @@ public class SettingReaderImpl extends HashMapReaderImpl implements ISettingRead
 	}
 	
 	/**
-	 * 读取一个配置项目（会另外添加common Sheet的内容）
+	 * 读取一个配置项目（会将Infos内容添加到结果集中，且属性添加generator前缀）
 	 * @param settingSheet
 	 * @return
 	 * @throws CodeGenException
@@ -51,25 +50,29 @@ public class SettingReaderImpl extends HashMapReaderImpl implements ISettingRead
 	}
 	
 	/**
-	 * 读取多个配置项目（会另外添加common Sheet的内容）
+	 * 读取多个配置项目（会将Infos内容添加到结果集中，且属性添加generator前缀）
 	 * @param settingSheets
 	 * @return
 	 * @throws CodeGenException
 	 */
 	public HashMap<String, String> settingReader(String[] settingSheets) throws CodeGenException {
-		boolean hasCommon = false;
 		List<String> list = new ArrayList<String>();
 		for(String itm:settingSheets) {
 			list.add(itm);
-			if(SettingReaderImpl.COMMON_SHEET.equals(itm)) {
-				hasCommon = true;
-			}
 		}
-		if(!hasCommon) {
-			list.add(SettingReaderImpl.COMMON_SHEET);
-		}
+
 		settingSheets = list.toArray(new String[0]);
 		this.reader(this.excelFile, settingSheets);
+		
+		// static info
+		HashMap<String, String> infos = new HashMap<String, String>();
+		infos.put("generatorName", Infos.Name);
+		infos.put("generatorVersion", Infos.Version);
+		infos.put("generatorCopyright", Infos.Copyright);
+		infos.put("generatorAuthor", Infos.Author);
+		infos.put("generatorWebsite", Infos.Website);
+		infos.put("generatorRepository", Infos.Repository);
+		this.results.add(infos);
 		
 		// 返回合并后的结果
 		return this.mergeResult(this.results);

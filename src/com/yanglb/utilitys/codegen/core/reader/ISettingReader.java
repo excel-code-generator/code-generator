@@ -22,14 +22,14 @@ import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
 
 public interface ISettingReader extends IReader<HashMap<String, String>> {
 	/**
-	 * 读取common配置项目
+	 * 读取配置项目
 	 * @return
 	 * @throws CodeGenException
 	 */
 	public HashMap<String, String> settingReader() throws CodeGenException;
 	
 	/**
-	 * 读取一个配置项目（会另外添加common Sheet的内容）
+	 * 读取一个配置项目（会将Infos内容添加到结果集中，且属性添加generator前缀）
 	 * @param settingSheet
 	 * @return
 	 * @throws CodeGenException
@@ -37,7 +37,7 @@ public interface ISettingReader extends IReader<HashMap<String, String>> {
 	public HashMap<String, String> settingReader(String settingSheet) throws CodeGenException;
 	
 	/**
-	 * 读取多个配置项目（会另外添加common Sheet的内容）
+	 * 读取多个配置项目（会将Infos内容添加到结果集中，且属性添加generator前缀）
 	 * @param settingSheets
 	 * @return
 	 * @throws CodeGenException

@@ -25,6 +25,7 @@ import com.yanglb.utilitys.codegen.exceptions.CodeGenException;
 import com.yanglb.utilitys.codegen.exceptions.ParamaCheckException;
 import com.yanglb.utilitys.codegen.support.SupportLang;
 import com.yanglb.utilitys.codegen.support.SupportType;
+import com.yanglb.utilitys.codegen.utility.Infos;
 import com.yanglb.utilitys.codegen.utility.StringUtility;
 
 public class CodeGenShell {
@@ -81,8 +82,8 @@ public class CodeGenShell {
 	 * 显示帮助信息
 	 */
 	private void showHelp() {
-		System.out.println("代码生成器 v3.0.0 使用说明");
-		System.out.println("Copyright 2015-2020 yanglb.com All Rights Reserved.");
+		System.out.println(String.format("代码生成器 v%s 使用说明", Infos.Version));
+		System.out.println(Infos.Copyright);
 		System.out.println();
 		System.out.println("用法：");
 		System.out.println("cg -type 生成类型 -lang 生成语言 -in 输入文件 [-sheets 要生成的Sheet名1[,2]] [-out 输出目录]");
