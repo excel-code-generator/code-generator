@@ -24,7 +24,7 @@ import com.yanglb.codegen.exceptions.ParamaCheckException;
 public class CodeGenShell {
 	public boolean invoke(String[] args) {
 
-		args = new String[] {"msg.json", "/Users/yanglibing/Work/ACON/src/ACON/i18n/AppResources.xlsx", "-combine"};
+		args = new String[] {"msg.android", "/Users/yanglibing/Work/ACON/src/ACON/i18n/AppResources.xlsx", "-combine"};
 		ICmdParser parser = ICmdParser.parserByArgs(args);
 		ParamaModel model;
 		try {

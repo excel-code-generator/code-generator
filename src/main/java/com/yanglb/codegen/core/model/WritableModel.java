@@ -15,11 +15,8 @@
  */
 package com.yanglb.codegen.core.model;
 
-import com.yanglb.codegen.support.SupportLang;
-
 public class WritableModel {
 	private String encode;
-	private SupportLang lang;
 	private String extension;
 	private String filePath;
 	private String fileName;
@@ -63,18 +60,6 @@ public class WritableModel {
 	 */
 	public void setEncode(String encode) {
 		this.encode = encode;
-	}
-	/**
-	 * @return the lang
-	 */
-	public SupportLang getLang() {
-		return lang;
-	}
-	/**
-	 * @param lang the lang to set
-	 */
-	public void setLang(SupportLang lang) {
-		this.lang = lang;
 	}
 	/**
 	 * @return the extension

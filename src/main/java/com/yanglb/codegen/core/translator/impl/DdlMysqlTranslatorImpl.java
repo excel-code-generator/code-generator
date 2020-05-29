@@ -46,7 +46,6 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		super.onBeforeTranslate();
 		this.writableModel.setExtension("ddl");
 		this.writableModel.setFilePath("ddl_mysql");
-		this.writableModel.setLang(SupportLang.sql);
 
 		// 设置文件名（同Excel名）
 		String fileName = this.model.get(0).getExcelFileName();
