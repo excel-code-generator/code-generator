@@ -18,9 +18,8 @@ package com.yanglb.codegen.core;
 import com.yanglb.codegen.core.generator.IGenerator;
 import com.yanglb.codegen.core.model.ParamaModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.support.SupportGen;
 import com.yanglb.codegen.utils.Conf;
-import com.yanglb.codegen.utils.MsgUtility;
+import com.yanglb.codegen.utils.Resources;
 
 public class GenFactory<T> {
 	// 外部不可创建实例
@@ -41,7 +40,7 @@ public class GenFactory<T> {
 			generator = factory.createFromProperties(Conf.CATEGORY_GENERATOR, paramaModel.getCmd());
 			generator.init(paramaModel);
 		} catch (Exception e) {
-			throw new CodeGenException(MsgUtility.getString("E_010"));
+			throw new CodeGenException(Resources.getString("E_010"));
 		}
 		return generator;
 	}
@@ -59,7 +58,7 @@ public class GenFactory<T> {
 			GenFactory<T> factory = new GenFactory<T>();
 			result = factory.createFromProperties(category, name);
 		} catch (Exception e) {
-			throw new CodeGenException(String.format(MsgUtility.getString("E_011"), name, e.getMessage()));
+			throw new CodeGenException(String.format(Resources.getString("E_011"), name, e.getMessage()));
 		}
 		return result;
 	}

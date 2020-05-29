@@ -28,7 +28,7 @@ import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.reader.BaseModelReader;
 import com.yanglb.codegen.core.reader.ITableReader;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class TableReaderImpl extends BaseModelReader<TableModel> implements ITableReader {
 	
@@ -86,7 +86,7 @@ public class TableReaderImpl extends BaseModelReader<TableModel> implements ITab
 
 				// 第一行为KEY
 				if(rowNo == this.startRowNo) {
-					if(StringUtility.isNullOrEmpty(value) 
+					if(StringUtil.isNullOrEmpty(value)
 							|| cell.getCellType() ==XSSFCell.CELL_TYPE_BLANK
 							|| "-".equals(value)) {
 						// 空白/忽略的列无视
@@ -99,7 +99,7 @@ public class TableReaderImpl extends BaseModelReader<TableModel> implements ITab
 					
 					// 添加值
 					String key = keys[colNo];
-					if(!StringUtility.isNullOrEmpty(key)) {
+					if(!StringUtil.isNullOrEmpty(key)) {
 						curValue.put(keys[colNo], value);
 					}
 				}

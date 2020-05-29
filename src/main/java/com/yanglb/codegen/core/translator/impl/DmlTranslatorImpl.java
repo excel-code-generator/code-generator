@@ -22,8 +22,7 @@ import com.yanglb.codegen.core.model.DmlModel;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseSqlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.support.SupportLang;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 	@Override
@@ -42,15 +41,6 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 			fileName = fileName.substring(0, index);
 		}
 		this.writableModel.setFileName(fileName);
-
-		// TODO: paramaModel
-//		Map<String, String> options = this.paramaModel.getOptions();
-//		if (options.containsKey("type")) {
-//			String type = options.get("type");
-//			if (type.equals("mysql")) {
-//				this.sqlColumnEnd = this.sqlColumnStart = "`";
-//			}
-//		}
 	}
 
 	@Override
@@ -78,13 +68,13 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 		// 每一行dml语句
 		String columns = "";
 		String space = "";
-		if(!StringUtility.isNullOrEmpty(model.getNameSpace()) && !"-".equals(model.getNameSpace())) {
+		if(!StringUtil.isNullOrEmpty(model.getNameSpace()) && !"-".equals(model.getNameSpace())) {
 			space = String.format("%s.", model.getNameSpace());
 		}
 		TableModel table = model.getDmlData();
 		for(Map<String, String> itm : table.toList()) {
 			// 如果模板为空则先生成模板
-			if(StringUtility.isNullOrEmpty(columns)) {
+			if(StringUtil.isNullOrEmpty(columns)) {
 				columns = this.genColumns(table.getColumns());
 			}
 			
@@ -107,7 +97,7 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 		String result = "";
 		
 		for(String col : columns) {
-			if(!StringUtility.isNullOrEmpty(result)) {
+			if(!StringUtil.isNullOrEmpty(result)) {
 				result += ", ";
 			}
 			String value = data.get(col);
@@ -135,7 +125,7 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 		String columns = "";
 		
 		for(String col : data) {
-			if(!StringUtility.isNullOrEmpty(columns)) {
+			if(!StringUtil.isNullOrEmpty(columns)) {
 				columns += ", ";
 			}
 			columns += String.format("%s%s%s", this.sqlColumnStart, col, this.sqlColumnEnd);

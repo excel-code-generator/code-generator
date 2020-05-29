@@ -35,7 +35,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.UnImplementException;
 import com.yanglb.codegen.utils.DataFormatType;
-import com.yanglb.codegen.utils.MsgUtility;
+import com.yanglb.codegen.utils.Resources;
 
 /**
  * 读取类
@@ -156,7 +156,7 @@ public class BaseReader<T> implements IReader<T>{
 			this.results.clear();
 			e.printStackTrace();
 		} catch (IOException e) {
-			throw new CodeGenException(MsgUtility.getString("E_005"));
+			throw new CodeGenException(Resources.getString("E_005"));
 		} finally {
 			try {
 				if(wb != null) wb.close();

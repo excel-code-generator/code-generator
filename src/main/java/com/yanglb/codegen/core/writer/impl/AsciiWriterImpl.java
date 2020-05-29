@@ -20,7 +20,7 @@ import java.io.IOException;
 
 import com.yanglb.codegen.core.writer.BaseWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.MsgUtility;
+import com.yanglb.codegen.utils.Resources;
 
 /**
  * ANSI文件写入器
@@ -47,7 +47,7 @@ public class AsciiWriterImpl extends BaseWriter {
 			fos.flush();
 	        
 		} catch (IOException e) {
-			throw new CodeGenException(String.format(MsgUtility.getString("E_007"), e.getMessage()));
+			throw new CodeGenException(String.format(Resources.getString("E_007"), e.getMessage()));
 		} finally {
 			try{if(fos != null) fos.close();
 			} catch (Exception e){}

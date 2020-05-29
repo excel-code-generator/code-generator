@@ -23,7 +23,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import com.yanglb.codegen.core.reader.BaseReader;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.StringUtil;
 
 /**
  * HashMapReaderImpl 及其子类读取的数据不支持写入
@@ -44,7 +44,7 @@ public class HashMapReaderImpl extends BaseReader<HashMap<String, String>> {
 			String key = this.getCellStringValue(xssfRow.getCell(this.startColNo));
 			// key不为空时添加到Map中
 			if(xssfRow.getCell(this.startColNo).getCellType() == XSSFCell.CELL_TYPE_BLANK
-					|| StringUtility.isNullOrEmpty(key)) {
+					|| StringUtil.isNullOrEmpty(key)) {
 				continue;
 			}
 			String value = this.getCellStringValue(xssfRow.getCell(this.startColNo+1));			

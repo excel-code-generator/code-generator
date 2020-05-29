@@ -25,9 +25,9 @@ public class CodeGenShell {
 	public boolean invoke(String[] args) {
 
 		// test data
-		args = new String[] {"msg.android", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-combine"};
-		args = new String[] {"ddl.sqlite", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
-		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
+		args = new String[] {"msg.resx", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-combine", "-fn", "ttt"};
+//		args = new String[] {"ddl.sqlite", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
+//		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
 
 		ICmdParser parser = ICmdParser.parserByArgs(args);
 		ParamaModel model;

@@ -21,8 +21,8 @@ import com.yanglb.codegen.core.model.ForeignDetailModel;
 import com.yanglb.codegen.core.model.ForeignModel;
 import com.yanglb.codegen.core.translator.BaseDdlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.MsgUtility;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.Resources;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 	
@@ -78,10 +78,10 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 					model.getForeignColumns().get(0).getForeignDdlModel().getName());
 			
 			for(ForeignDetailModel foreignColumns:model.getForeignColumns()) {
-				if(!StringUtility.isNullOrEmpty(columnName)) {
+				if(!StringUtil.isNullOrEmpty(columnName)) {
 					columnName+=", ";
 				}
-				if(!StringUtility.isNullOrEmpty(referenceColumnName)) {
+				if(!StringUtil.isNullOrEmpty(referenceColumnName)) {
 					referenceColumnName += ", ";
 				}
 				
@@ -102,7 +102,7 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 			
 			// 超过128字符时截断
 			if(foreignKeyName.length() > 128) {
-				sb.append(String.format(MsgUtility.getString("E_012"), foreignKeyName));
+				sb.append(String.format(Resources.getString("E_012"), foreignKeyName));
 				foreignKeyName = foreignKeyName.substring(0, 128);
 			}
 			
@@ -141,7 +141,7 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 		// 逐列添加
 		for(DdlDetail detail:model.getDetail()) {
 			if(detail.isColKey()) {
-				if(!StringUtility.isNullOrEmpty(primaryKey)) {
+				if(!StringUtil.isNullOrEmpty(primaryKey)) {
 					primaryKey += ", ";
 				}
 				primaryKey += String.format("%s%s%s", 
@@ -153,7 +153,7 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 		}
 		
 		// 主键
-		if(!StringUtility.isNullOrEmpty(primaryKey)) {
+		if(!StringUtil.isNullOrEmpty(primaryKey)) {
 			sb.append(String.format("    PRIMARY KEY (%s),\r\n", primaryKey));
 		}
 		
@@ -197,7 +197,7 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 			sb.append(" NOT NULL");
 		}
 		
-		if(!StringUtility.isNullOrEmpty(detail.getColDefault())) {
+		if(!StringUtil.isNullOrEmpty(detail.getColDefault())) {
 			// 如果是函数类型的默认值则不添加引号
 			if(detail.getColDefault().trim().endsWith(")")) {
 				sb.append(String.format(" DEFAULT %s", detail.getColDefault()));

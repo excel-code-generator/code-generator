@@ -15,22 +15,19 @@
  */
 package com.yanglb.codegen.core.generator.impl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.generator.BaseGenerator;
 import com.yanglb.codegen.core.model.DdlModel;
-import com.yanglb.codegen.core.model.DmlModel;
 import com.yanglb.codegen.core.model.WritableModel;
 import com.yanglb.codegen.core.reader.IReader;
-import com.yanglb.codegen.core.reader.ISettingReader;
 import com.yanglb.codegen.core.translator.ITranslator;
 import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
 import com.yanglb.codegen.utils.Conf;
-import com.yanglb.codegen.utils.MsgUtility;
+import com.yanglb.codegen.utils.Resources;
 
 public class DmlGeneratorImpl extends BaseGenerator {
 
@@ -47,7 +44,7 @@ public class DmlGeneratorImpl extends BaseGenerator {
 		IReader<DdlModel> ddlReader = GenFactory.createByName(Conf.CATEGORY_READER, SupportGen.Reader.dml.name());
 		List<DdlModel> list = ddlReader.reader(this.paramaModel.getFile(), this.paramaModel.getSheets());
 		if(list.size() == 0) {
-			throw new CodeGenException(MsgUtility.getString("E_003"));
+			throw new CodeGenException(Resources.getString("E_003"));
 		}
 
 		// 转换为可写入的Model（单个文件）

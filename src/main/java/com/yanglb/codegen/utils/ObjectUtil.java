@@ -17,7 +17,7 @@ package com.yanglb.codegen.utils;
 
 import java.lang.reflect.Field;
 
-public class ObjectUtility {
+public class ObjectUtil {
 	
 	/**
 	 * 深层次

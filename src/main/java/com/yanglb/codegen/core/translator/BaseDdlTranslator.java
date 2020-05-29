@@ -24,8 +24,7 @@ import com.yanglb.codegen.core.model.DdlModel;
 import com.yanglb.codegen.core.model.ForeignDetailModel;
 import com.yanglb.codegen.core.model.ForeignModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.support.SupportLang;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
 	// 外键关系列表
@@ -137,7 +136,7 @@ public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
 	protected ForeignDetailModel getForeignByDdlDetail(DdlModel model, DdlDetail detail)
 			throws CodeGenException {
 		// 有外键
-		if(!StringUtility.isNullOrEmpty(detail.getColForeign())) {
+		if(!StringUtil.isNullOrEmpty(detail.getColForeign())) {
 			// 外键表信息
 			ForeignDetailModel foreignDetailModel = new ForeignDetailModel();
 			
@@ -214,7 +213,7 @@ public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
 	 */
 	protected String genFullTableName(DdlModel model) {
 		String space = "";
-		if(!StringUtility.isNullOrEmpty(model.getNameSpace()) && !"-".equals(model.getNameSpace())) {
+		if(!StringUtil.isNullOrEmpty(model.getNameSpace()) && !"-".equals(model.getNameSpace())) {
 			space = String.format("%s%s%s.", this.sqlColumnStart, model.getNameSpace(), this.sqlColumnEnd);
 		}
 		return String.format("%s%s%s%s", space, this.sqlColumnStart, model.getName(), this.sqlColumnEnd);

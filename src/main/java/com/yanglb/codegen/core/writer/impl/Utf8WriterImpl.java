@@ -21,7 +21,7 @@ import java.io.OutputStreamWriter;
 
 import com.yanglb.codegen.core.writer.BaseWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.MsgUtility;
+import com.yanglb.codegen.utils.Resources;
 
 /**
  * UTF-8文件写入器
@@ -43,7 +43,7 @@ public class Utf8WriterImpl extends BaseWriter {
 	        osw.flush();
 	        
 		} catch (IOException e) {
-			throw new CodeGenException(String.format(MsgUtility.getString("E_007"), e.getMessage()));
+			throw new CodeGenException(String.format(Resources.getString("E_007"), e.getMessage()));
 		} finally {
 			try{if(osw != null) osw.close();
 			} catch (Exception e){}

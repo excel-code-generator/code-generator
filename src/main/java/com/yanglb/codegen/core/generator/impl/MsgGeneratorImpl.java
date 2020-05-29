@@ -26,7 +26,7 @@ import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
 import com.yanglb.codegen.utils.Conf;
-import com.yanglb.codegen.utils.MsgUtility;
+import com.yanglb.codegen.utils.Resources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class MsgGeneratorImpl extends BaseGenerator {
 		tableReader.setStartPoint(3, 2);
 		List<TableModel> list = tableReader.reader(this.paramaModel.getFile(), this.paramaModel.getSheets());
 		if(list.size() == 0) {
-			throw new CodeGenException(MsgUtility.getString("E_003"));
+			throw new CodeGenException(Resources.getString("E_003"));
 		}
 		
 		// 获取语言（每种语言翻译一次）

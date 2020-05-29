@@ -20,7 +20,7 @@ import java.util.Map;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class MsgJsTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -54,7 +54,7 @@ public class MsgJsTranslatorImpl extends BaseMsgTranslator {
 				if(sheetName==null || sheetName.equals("") || sheetName.startsWith("@")) {
 					for(Map<String, String> itm : tblModel.toList()) {
 						String id = itm.get("id");
-						if(StringUtility.isNullOrEmpty(id)) continue;
+						if(StringUtil.isNullOrEmpty(id)) continue;
 						// 对字符串进行转换
 						String value = this.convert2JsCode(itm.get(this.msgLang));
 						sb.append(String.format("    %s: \"%s\", \r\n", id, value));
@@ -63,7 +63,7 @@ public class MsgJsTranslatorImpl extends BaseMsgTranslator {
 					sb.append(String.format("    %s: { \r\n", tblModel.getSheetName()));
 					for(Map<String, String> itm : tblModel.toList()) {
 						String id = itm.get("id");
-						if(StringUtility.isNullOrEmpty(id)) continue;
+						if(StringUtil.isNullOrEmpty(id)) continue;
 						// 对字符串进行转换
 						String value = this.convert2JsCode(itm.get(this.msgLang));
 						sb.append(String.format("        %s: \"%s\", \r\n", id, value));
@@ -87,7 +87,7 @@ public class MsgJsTranslatorImpl extends BaseMsgTranslator {
 				sb.append(String.format("%s    // %s\r\n", (rowIndex++ == 0)?"":"\r\n", tblModel.getSheetName()));
 				for(Map<String, String> itm : tblModel.toList()) {
 					String id = itm.get("id");
-					if(StringUtility.isNullOrEmpty(id)) continue;
+					if(StringUtil.isNullOrEmpty(id)) continue;
 					// 对字符串进行转换
 					String value = this.convert2JsCode(itm.get(this.msgLang));
 					sb.append(String.format("    %s: \"%s\", \r\n", id, value));

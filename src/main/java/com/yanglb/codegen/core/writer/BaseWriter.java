@@ -19,7 +19,7 @@ import java.io.File;
 
 import com.yanglb.codegen.core.model.WritableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.MsgUtility;
+import com.yanglb.codegen.utils.Resources;
 
 public class BaseWriter implements IWriter{
 	protected WritableModel writableModel;
@@ -68,13 +68,13 @@ public class BaseWriter implements IWriter{
 		File file = new File(outPath);
 		if(file.isDirectory()) {
 			// 文件已存在且是目录，不可继续处理
-			throw new CodeGenException(String.format(MsgUtility.getString("E_008"), outPath));
+			throw new CodeGenException(String.format(Resources.getString("E_008"), outPath));
 		}
 		
 		// 目录不存在时创建
 		if(!file.getParentFile().exists()) {
 			if(!file.getParentFile().mkdirs()) {
-				throw new CodeGenException(String.format(MsgUtility.getString("E_009"), outPath));
+				throw new CodeGenException(String.format(Resources.getString("E_009"), outPath));
 			}
 		}
 	}

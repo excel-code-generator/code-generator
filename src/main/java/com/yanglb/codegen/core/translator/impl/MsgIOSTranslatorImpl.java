@@ -21,8 +21,8 @@ import java.util.Map;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.MsgUtility;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.Resources;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -53,8 +53,8 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 		for(TableModel tblModel : this.model) {
 			for(Map<String, String> itm : tblModel.toList()) {
 				String id = itm.get("id");
-				if(StringUtility.isNullOrEmpty(id)) continue;
-				if (keys.containsKey(id)) throw new CodeGenException(String.format(MsgUtility.getString("E_013"), id));
+				if(StringUtil.isNullOrEmpty(id)) continue;
+				if (keys.containsKey(id)) throw new CodeGenException(String.format(Resources.getString("E_013"), id));
 				keys.put(id, true);
 				
 				// 对字符串进行转换

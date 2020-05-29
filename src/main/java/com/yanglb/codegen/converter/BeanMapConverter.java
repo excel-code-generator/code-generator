@@ -19,9 +19,9 @@ import java.lang.reflect.Field;
 import java.util.Map;
 
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.MsgUtility;
-import com.yanglb.codegen.utils.ObjectUtility;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.Resources;
+import com.yanglb.codegen.utils.ObjectUtil;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class BeanMapConverter<T> {
 	
@@ -37,7 +37,7 @@ public class BeanMapConverter<T> {
 		try {
 			result = cls.newInstance();
 			for(String key:map.keySet()) {
-				Field field = ObjectUtility.getDeepField(result.getClass(), key);
+				Field field = ObjectUtil.getDeepField(result.getClass(), key);
 				field.setAccessible(true);
 				
 				String mapValue = map.get(key);
@@ -47,12 +47,12 @@ public class BeanMapConverter<T> {
 				Class<?> type = field.getType();
 				if(boolean.class.equals(type)) {
 					value = false;
-					if(!StringUtility.isNullOrEmpty(mapValue)) {
+					if(!StringUtil.isNullOrEmpty(mapValue)) {
 						value = this.toBoolean(mapValue);
 					}
 				} else if (Boolean.class.equals(type)) {
 					value = null;
-					if(!StringUtility.isNullOrEmpty(mapValue)) {
+					if(!StringUtil.isNullOrEmpty(mapValue)) {
 						value = this.toBoolean(mapValue);
 					}
 				} else if (int.class.equals(type)) {
@@ -60,17 +60,17 @@ public class BeanMapConverter<T> {
 					try{
 						value = Integer.parseInt(mapValue);
 					}catch(NumberFormatException e) {
-						throw new CodeGenException(String.format(MsgUtility.getString("E_001"), key, e.getMessage()));
+						throw new CodeGenException(String.format(Resources.getString("E_001"), key, e.getMessage()));
 					}
 				} else if ( Integer.class.equals(type)) {
 					// 可以为Null的整型
-					if(StringUtility.isNullOrEmpty(mapValue)) {
+					if(StringUtil.isNullOrEmpty(mapValue)) {
 						value = null;
 					} else {
 						try{
 							value = Integer.parseInt(mapValue); 
 						}catch(NumberFormatException e) {
-							throw new CodeGenException(String.format(MsgUtility.getString("E_001"), key, e.getMessage()));
+							throw new CodeGenException(String.format(Resources.getString("E_001"), key, e.getMessage()));
 						}
 					}
 				} else {
@@ -80,7 +80,7 @@ public class BeanMapConverter<T> {
 				field.set(result, value);
 			}
 		} catch (NoSuchFieldException e) {
-			throw new CodeGenException(String.format(MsgUtility.getString("E_002"), e.getMessage()));
+			throw new CodeGenException(String.format(Resources.getString("E_002"), e.getMessage()));
 		} catch (SecurityException e) {
 			throw new CodeGenException(e.getMessage());
 		} catch (Exception e) {

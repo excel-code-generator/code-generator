@@ -17,7 +17,7 @@ package com.yanglb.codegen.utils;
 
 import java.util.ResourceBundle;
 
-public class MsgUtility {
+public class Resources {
 private static ResourceBundle resourceBundle = null;
 	
 	private static void init() {

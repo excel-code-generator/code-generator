@@ -26,8 +26,7 @@ import com.yanglb.codegen.core.model.ForeignDetailModel;
 import com.yanglb.codegen.core.model.ForeignModel;
 import com.yanglb.codegen.core.translator.BaseDdlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.support.SupportLang;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.StringUtil;
 
 /**
  * MySQL 的DDL生成翻译器（单文件）
@@ -103,7 +102,7 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		for (DdlDetail detail : model.getDetail()) {
 			// 主键
 			if (detail.isColKey()) {
-				if (!StringUtility.isNullOrEmpty(primaryKey)) {
+				if (!StringUtil.isNullOrEmpty(primaryKey)) {
 					primaryKey += ", ";
 				}
 				primaryKey += String.format("%s%s%s", this.sqlColumnStart,
@@ -125,7 +124,7 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		}
 
 		// 主键
-		if (!StringUtility.isNullOrEmpty(primaryKey)) {
+		if (!StringUtil.isNullOrEmpty(primaryKey)) {
 			sb.append(String.format("    PRIMARY KEY (%s),\r\n", primaryKey));
 		}
 		
@@ -164,7 +163,7 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 	}
 	
 	private void updateIndexUniqueMap(HashMap<String, List<DdlDetail>> map, String names, DdlDetail detail) {
-		if (!StringUtility.isNullOrEmpty(names)) {
+		if (!StringUtil.isNullOrEmpty(names)) {
 			String[] keys = names.split(",");
 			for (String key : keys) {
 				key = key.trim();
@@ -231,13 +230,13 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		}
 
 		// 默认值、只有text/char 需要加引号
-		if (!StringUtility.isNullOrEmpty(detail.getColDefault())) {
+		if (!StringUtil.isNullOrEmpty(detail.getColDefault())) {
 			String colType = detail.getColType().toLowerCase();
 			if (colType.contains("text") || colType.contains("char")) {
 				sb.append(String.format(" DEFAULT '%s'", detail.getColDefault()));
 			} else {
 				String def = detail.getColDefault();
-				if (!StringUtility.isNullOrEmpty(def) && def.toUpperCase().startsWith("ON ")) {
+				if (!StringUtil.isNullOrEmpty(def) && def.toUpperCase().startsWith("ON ")) {
 					sb.append(" " + detail.getColDefault());
 				} else {
 					sb.append(String.format(" DEFAULT %s", detail.getColDefault()));
@@ -246,7 +245,7 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		}
 		
 		// 注释
-		if (!StringUtility.isNullOrEmpty(detail.getFieldName())) {
+		if (!StringUtil.isNullOrEmpty(detail.getFieldName())) {
 			String name = detail.getFieldName();
 			name.replaceAll("'", "");
 			name.replaceAll("\r", "");
@@ -278,10 +277,10 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 			String columnName = "", referenceColumnName = "";
 
 			for (ForeignDetailModel foreignColumns : model.getForeignColumns()) {
-				if (!StringUtility.isNullOrEmpty(columnName)) {
+				if (!StringUtil.isNullOrEmpty(columnName)) {
 					columnName += ", ";
 				}
-				if (!StringUtility.isNullOrEmpty(referenceColumnName)) {
+				if (!StringUtil.isNullOrEmpty(referenceColumnName)) {
 					referenceColumnName += ", ";
 				}
 

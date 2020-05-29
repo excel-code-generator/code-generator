@@ -28,6 +28,9 @@ public class ParamaModel {
 	public String getOptDir() {
 		return options.getOptionValue("out", "out");
 	}
+	public String getFileName() {
+		return options.getOptionValue("fn");
+	}
 
 	public String getCmd() {
 		return cmd;

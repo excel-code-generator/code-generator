@@ -23,8 +23,7 @@ import com.yanglb.codegen.core.model.ForeignDetailModel;
 import com.yanglb.codegen.core.model.ForeignModel;
 import com.yanglb.codegen.core.translator.BaseDdlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.support.SupportLang;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 
@@ -77,7 +76,7 @@ public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 		sb.append(String.format("CREATE TABLE %s (\r\n", tableName));
 		for(DdlDetail detail:model.getDetail()) {
 			if(detail.isColKey()) {
-				if(!StringUtility.isNullOrEmpty(primaryKey)) {
+				if(!StringUtil.isNullOrEmpty(primaryKey)) {
 					primaryKey += ", ";
 				}
 				primaryKey += String.format("%s%s%s", 
@@ -90,7 +89,7 @@ public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 		}
 		
 		// 主键
-		if(!StringUtility.isNullOrEmpty(primaryKey)) {
+		if(!StringUtil.isNullOrEmpty(primaryKey)) {
 			sb.append(String.format("    PRIMARY KEY (%s),\r\n", primaryKey));
 		}
 		
@@ -139,7 +138,7 @@ public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 		}
 		
 		// TODO: 默认值还有问题
-		if(!StringUtility.isNullOrEmpty(detail.getColDefault())) {
+		if(!StringUtil.isNullOrEmpty(detail.getColDefault())) {
 			// 如果是函数类型的默认值则不添加引号
 			if(detail.getColDefault().trim().endsWith(")")) {
 				sb.append(String.format(" DEFAULT %s", detail.getColDefault()));
@@ -170,10 +169,10 @@ public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 			String columnName="",referenceColumnName="";
 			
 			for(ForeignDetailModel foreignColumns:model.getForeignColumns()) {
-				if(!StringUtility.isNullOrEmpty(columnName)) {
+				if(!StringUtil.isNullOrEmpty(columnName)) {
 					columnName+=", ";
 				}
-				if(!StringUtility.isNullOrEmpty(referenceColumnName)) {
+				if(!StringUtil.isNullOrEmpty(referenceColumnName)) {
 					referenceColumnName += ", ";
 				}
 				

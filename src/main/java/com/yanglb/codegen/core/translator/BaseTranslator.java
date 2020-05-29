@@ -22,9 +22,9 @@ import java.util.List;
 import com.yanglb.codegen.core.model.ParamaModel;
 import com.yanglb.codegen.core.model.WritableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.MsgUtility;
-import com.yanglb.codegen.utils.ObjectUtility;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.Resources;
+import com.yanglb.codegen.utils.ObjectUtil;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class BaseTranslator<T> implements ITranslator<T> {
 	protected T model;
@@ -99,7 +99,7 @@ public class BaseTranslator<T> implements ITranslator<T> {
 	 * @throws CodeGenException
 	 */
 	protected String replaceFlags(String template, Object replaceModel) throws CodeGenException {
-		List<String> flags = StringUtility.findFlags(template);
+		List<String> flags = StringUtil.findFlags(template);
 		String data = new String(template);
 		for(String key:flags) {
 			// Map元素
@@ -114,7 +114,7 @@ public class BaseTranslator<T> implements ITranslator<T> {
 				hasKey = true;
 				// 在replaceModel查找key属性，如果有则使用该属性值。
 				try {
-					field = ObjectUtility.getDeepField(replaceModel.getClass(), key);
+					field = ObjectUtil.getDeepField(replaceModel.getClass(), key);
 					field.setAccessible(true);
 					if(field.get(replaceModel) != null) {
 						value = field.get(replaceModel).toString();
@@ -123,7 +123,7 @@ public class BaseTranslator<T> implements ITranslator<T> {
 					// 没有此属性
 					hasKey = false;
 				} catch (Exception e) {
-					throw new CodeGenException(String.format(MsgUtility.getString("E_006"),
+					throw new CodeGenException(String.format(Resources.getString("E_006"),
 							replaceModel.getClass().toString(),
 							field.getName(),
 							e.getMessage()));

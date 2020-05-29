@@ -54,8 +54,7 @@ public class BaseMsgTranslator extends BaseTranslator<List<TableModel>> {
 	 * @return 文件名
 	 */
 	protected String getFileName() {
-//		TODO paramaModel
-		String fileName = null; //this.paramaModel.getOptions().get("fn");
+		String fileName = this.paramaModel.getFileName();
 		if (fileName != null) {
 			fileName.replaceAll("\"", "");
 		} else {

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringUtility {
+public class StringUtil {
 	
 	/**
 	 * 判断某个字符串是否为“空”字符串

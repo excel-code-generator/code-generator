@@ -49,6 +49,14 @@ public class BaseParser implements ICmdParser {
                 .build();
         options.addOption(outDir);
 
+        Option fn = Option.builder("fn")
+                .longOpt("file-name")
+                .argName("fn")
+                .desc("生成的文件名，默认为Excel名。")
+                .hasArg(true)
+                .build();
+        options.addOption(fn);
+
         Option sheets = Option.builder("s")
                 .longOpt("sheets")
                 .argName("names")

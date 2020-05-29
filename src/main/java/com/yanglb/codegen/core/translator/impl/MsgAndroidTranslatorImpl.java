@@ -23,7 +23,7 @@ import java.util.Map;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -61,7 +61,7 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 		for(TableModel tblModel : this.model) {
 			for(Map<String, String> itm : tblModel.toList()) {
 				String id = itm.get("id");
-				if(StringUtility.isNullOrEmpty(id)) continue;
+				if(StringUtil.isNullOrEmpty(id)) continue;
 				if (!arrays.containsKey(id)) {
 					arrays.put(id, new ArrayList<String>());
 				}

@@ -20,7 +20,7 @@ import java.util.Map;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.StringUtility;
+import com.yanglb.codegen.utils.StringUtil;
 
 public class MsgJavaTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -46,7 +46,7 @@ public class MsgJavaTranslatorImpl extends BaseMsgTranslator {
 			sb.append(String.format("%s# %s\r\n", (cnt++ == 0)?"":"\r\n", tblModel.getSheetName()));
 			for(Map<String, String> itm : tblModel.toList()) {
 				String id = itm.get("id");
-				if(StringUtility.isNullOrEmpty(id)) continue;
+				if(StringUtil.isNullOrEmpty(id)) continue;
 				// TODO: 对字符串进行编码转换
 				String value = itm.get(this.msgLang);
 				sb.append(String.format("%s=%s\r\n", id, value));
