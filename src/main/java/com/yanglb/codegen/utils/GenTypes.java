@@ -13,29 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.yanglb.codegen.core.model;
+package com.yanglb.codegen.utils;
 
-public class OptionModel {
-	private String name;
-	private String value;
-	private boolean necessary;
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
-	}
-	public boolean isNecessary() {
-		return necessary;
-	}
-	public void setNecessary(boolean necessary) {
-		this.necessary = necessary;
-	}
+public class GenTypes {
+    public enum Reader {
+        ddl, dml, hashmap, setting, table
+    };
+
+    public enum Writer {
+        utf8, ascii
+    };
 }

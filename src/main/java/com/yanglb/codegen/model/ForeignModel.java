@@ -13,26 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.yanglb.codegen.core.generator;
+package com.yanglb.codegen.model;
 
 import java.util.List;
 
-import com.yanglb.codegen.model.OptionModel;
-import com.yanglb.codegen.model.ParamaModel;
-import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.exceptions.ParamaCheckException;
-
-public interface IGenerator {
-	/**
-	 * 执行生成工作
-	 * @param paramaModel 参数模型
-	 * @throws CodeGenException 出错信息
-	 */
-	void invoke(ParamaModel paramaModel) throws CodeGenException, ParamaCheckException;
+public class ForeignModel {
+	// 表模型
+	private DdlModel ddlModel;
 	
-	/**
-	 * 取得该生成器支持的选项
-	 * @return 该生成器支持的选项
-	 */
-	List<OptionModel> getSupportOptions();
+	// 外键列（每一外键一条数据，联合主键时该列表才可能有多条数据）
+	private List<ForeignDetailModel> foreignColumns;
+
+	public DdlModel getDdlModel() {
+		return ddlModel;
+	}
+
+	public void setDdlModel(DdlModel ddlModel) {
+		this.ddlModel = ddlModel;
+	}
+
+	public List<ForeignDetailModel> getForeignColumns() {
+		return foreignColumns;
+	}
+
+	public void setForeignColumns(List<ForeignDetailModel> foreignColumns) {
+		this.foreignColumns = foreignColumns;
+	}
+	
+	
 }

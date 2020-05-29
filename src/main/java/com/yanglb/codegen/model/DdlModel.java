@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.yanglb.codegen.core.model;
+package com.yanglb.codegen.model;
 
 import java.util.List;
 

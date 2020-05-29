@@ -15,7 +15,7 @@
  */
 package com.yanglb.codegen.core.parser.impl;
 
-import com.yanglb.codegen.core.model.ParamaModel;
+import com.yanglb.codegen.model.ParamaModel;
 import com.yanglb.codegen.core.parser.IParser;
 import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Infos;

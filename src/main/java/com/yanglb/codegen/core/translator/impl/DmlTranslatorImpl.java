@@ -18,8 +18,8 @@ package com.yanglb.codegen.core.translator.impl;
 import java.io.File;
 import java.util.Map;
 
-import com.yanglb.codegen.core.model.DmlModel;
-import com.yanglb.codegen.core.model.TableModel;
+import com.yanglb.codegen.model.DmlModel;
+import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseSqlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.Infos;

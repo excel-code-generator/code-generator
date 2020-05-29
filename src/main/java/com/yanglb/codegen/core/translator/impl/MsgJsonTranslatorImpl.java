@@ -17,7 +17,7 @@ package com.yanglb.codegen.core.translator.impl;
 
 import java.util.Map;
 
-import com.yanglb.codegen.core.model.TableModel;
+import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.StringUtil;

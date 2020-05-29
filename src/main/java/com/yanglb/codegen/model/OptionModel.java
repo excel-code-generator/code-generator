@@ -13,32 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.yanglb.codegen.core.model;
+package com.yanglb.codegen.model;
 
-import java.util.List;
-
-public class ForeignModel {
-	// 表模型
-	private DdlModel ddlModel;
+public class OptionModel {
+	private String name;
+	private String value;
+	private boolean necessary;
 	
-	// 外键列（每一外键一条数据，联合主键时该列表才可能有多条数据）
-	private List<ForeignDetailModel> foreignColumns;
-
-	public DdlModel getDdlModel() {
-		return ddlModel;
+	public String getName() {
+		return name;
 	}
-
-	public void setDdlModel(DdlModel ddlModel) {
-		this.ddlModel = ddlModel;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public List<ForeignDetailModel> getForeignColumns() {
-		return foreignColumns;
+	public String getValue() {
+		return value;
 	}
-
-	public void setForeignColumns(List<ForeignDetailModel> foreignColumns) {
-		this.foreignColumns = foreignColumns;
+	public void setValue(String value) {
+		this.value = value;
 	}
-	
-	
+	public boolean isNecessary() {
+		return necessary;
+	}
+	public void setNecessary(boolean necessary) {
+		this.necessary = necessary;
+	}
 }

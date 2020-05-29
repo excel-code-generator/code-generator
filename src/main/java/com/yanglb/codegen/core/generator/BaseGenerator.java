@@ -15,8 +15,8 @@
  */
 package com.yanglb.codegen.core.generator;
 
-import com.yanglb.codegen.core.model.OptionModel;
-import com.yanglb.codegen.core.model.ParamaModel;
+import com.yanglb.codegen.model.OptionModel;
+import com.yanglb.codegen.model.ParamaModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
 import org.apache.commons.cli.CommandLine;

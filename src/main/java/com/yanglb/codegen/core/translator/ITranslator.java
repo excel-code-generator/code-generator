@@ -17,8 +17,8 @@ package com.yanglb.codegen.core.translator;
 
 import java.util.HashMap;
 
-import com.yanglb.codegen.core.model.ParamaModel;
-import com.yanglb.codegen.core.model.WritableModel;
+import com.yanglb.codegen.model.ParamaModel;
+import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 
 public interface ITranslator<T> {

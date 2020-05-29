@@ -1,4 +1,4 @@
-package com.yanglb.codegen.core.model;
+package com.yanglb.codegen.model;
 
 import java.util.Map;
 

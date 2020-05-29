@@ -18,7 +18,7 @@ package com.yanglb.codegen.core.translator;
 import java.io.File;
 import java.util.List;
 
-import com.yanglb.codegen.core.model.TableModel;
+import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 
 public class BaseMsgTranslator extends BaseTranslator<List<TableModel>> {

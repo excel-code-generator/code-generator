@@ -23,13 +23,13 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import com.yanglb.codegen.converter.TableModelConverter;
 import com.yanglb.codegen.core.GenFactory;
-import com.yanglb.codegen.core.model.DdlDetail;
-import com.yanglb.codegen.core.model.DdlModel;
-import com.yanglb.codegen.core.model.TableModel;
+import com.yanglb.codegen.model.DdlDetail;
+import com.yanglb.codegen.model.DdlModel;
+import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.core.reader.BaseModelReader;
 import com.yanglb.codegen.core.reader.ITableReader;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.support.SupportGen;
+import com.yanglb.codegen.utils.GenTypes;
 
 public class DdlReaderImpl extends BaseModelReader<DdlModel> {
 	/**
@@ -68,7 +68,7 @@ public class DdlReaderImpl extends BaseModelReader<DdlModel> {
 		List<DdlDetail> result = null;
 		
 		// 通过 TableReader读取表格内容
-		ITableReader tableReader = GenFactory.createByName(Conf.getString(Conf.CATEGORY_READER, SupportGen.Reader.table.name()));
+		ITableReader tableReader = GenFactory.createByName(Conf.getString(Conf.CATEGORY_READER, GenTypes.Reader.table.name()));
 		tableReader.setStartPoint(6, 2);
 		TableModel tableModel = tableReader.reader(sheet);
 		

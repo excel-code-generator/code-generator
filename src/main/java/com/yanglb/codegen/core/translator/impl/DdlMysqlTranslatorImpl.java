@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.yanglb.codegen.core.model.DdlDetail;
-import com.yanglb.codegen.core.model.DdlModel;
-import com.yanglb.codegen.core.model.ForeignDetailModel;
-import com.yanglb.codegen.core.model.ForeignModel;
+import com.yanglb.codegen.model.DdlDetail;
+import com.yanglb.codegen.model.DdlModel;
+import com.yanglb.codegen.model.ForeignDetailModel;
+import com.yanglb.codegen.model.ForeignModel;
 import com.yanglb.codegen.core.translator.BaseDdlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.Infos;

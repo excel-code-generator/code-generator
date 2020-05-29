@@ -20,12 +20,12 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import com.yanglb.codegen.core.GenFactory;
-import com.yanglb.codegen.core.model.DmlModel;
-import com.yanglb.codegen.core.model.TableModel;
+import com.yanglb.codegen.model.DmlModel;
+import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.core.reader.BaseModelReader;
 import com.yanglb.codegen.core.reader.ITableReader;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.support.SupportGen;
+import com.yanglb.codegen.utils.GenTypes;
 
 public class DmlReaderImpl extends BaseModelReader<DmlModel> {
 	/**
@@ -62,7 +62,7 @@ public class DmlReaderImpl extends BaseModelReader<DmlModel> {
 	 */
 	private TableModel readerTable(XSSFSheet sheet) throws CodeGenException {
 		// 通过 TableReader读取表格内容
-		ITableReader tableReader = GenFactory.createByName(Conf.getString(Conf.CATEGORY_READER, SupportGen.Reader.table.name()));
+		ITableReader tableReader = GenFactory.createByName(Conf.getString(Conf.CATEGORY_READER, GenTypes.Reader.table.name()));
 		tableReader.setStartPoint(7, 2);
 		return tableReader.reader(sheet);
 	}

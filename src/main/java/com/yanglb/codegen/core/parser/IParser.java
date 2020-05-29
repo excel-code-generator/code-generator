@@ -16,8 +16,8 @@
 package com.yanglb.codegen.core.parser;
 
 import com.yanglb.codegen.core.GenFactory;
-import com.yanglb.codegen.core.model.CmdModel;
-import com.yanglb.codegen.core.model.ParamaModel;
+import com.yanglb.codegen.model.CmdModel;
+import com.yanglb.codegen.model.ParamaModel;
 import com.yanglb.codegen.core.parser.impl.BaseParser;
 import com.yanglb.codegen.utils.Conf;
 

@@ -24,7 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
-import com.yanglb.codegen.core.model.TableModel;
+import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.core.reader.BaseModelReader;
 import com.yanglb.codegen.core.reader.ITableReader;
 import com.yanglb.codegen.exceptions.CodeGenException;

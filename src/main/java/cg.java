@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.yanglb.codegen.shell.CodeGenShell;
+import com.yanglb.codegen.shell.CGShell;
 
 
 public class cg {
 
 	public static void main(String[] args) {
-		CodeGenShell shell = new CodeGenShell();
+		CGShell shell = new CGShell();
 		boolean r = shell.invoke(args);
 		if (!r) {
 			System.exit(1);

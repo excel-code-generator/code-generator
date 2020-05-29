@@ -17,7 +17,7 @@ package com.yanglb.codegen.core.writer;
 
 import java.io.File;
 
-import com.yanglb.codegen.core.model.WritableModel;
+import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.Resources;
 

@@ -15,7 +15,7 @@
  */
 package com.yanglb.codegen.utils;
 
-import com.yanglb.codegen.core.model.CmdModel;
+import com.yanglb.codegen.model.CmdModel;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;

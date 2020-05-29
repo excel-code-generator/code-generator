@@ -17,20 +17,20 @@ package com.yanglb.codegen.shell;
 
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.generator.IGenerator;
-import com.yanglb.codegen.core.model.ParamaModel;
+import com.yanglb.codegen.model.ParamaModel;
 import com.yanglb.codegen.core.parser.IParser;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
 
-public class CodeGenShell {
+public class CGShell {
 	public boolean invoke(String[] args) {
 
 		// test data
-//		args = new String[] {"msg.json", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-c1", "-fn", "ttt"};
-//		args = new String[] {"ddl.mysql", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
-//		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
-//		args = new String[] {"dml2", "-h"};
-		args = new String[] {"msg.prop", "src/main/resources/i18n.xlsx", "-fn", "message"};
+		args = new String[] {"msg.json", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-c1", "-fn", "ttt"};
+		args = new String[] {"ddl.mysql", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
+		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
+		args = new String[] {"dml2", "-h"};
+//		args = new String[] {"msg.prop", "src/main/resources/i18n.xlsx", "-fn", "message"};
 
 		IParser parser = IParser.parserByArgs(args);
 		ParamaModel model;

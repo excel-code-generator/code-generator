@@ -15,7 +15,7 @@
  */
 package com.yanglb.codegen.core.writer;
 
-import com.yanglb.codegen.core.model.WritableModel;
+import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 
 public interface IWriter {

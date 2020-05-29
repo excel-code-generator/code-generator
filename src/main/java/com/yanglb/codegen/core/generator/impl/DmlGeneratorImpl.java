@@ -19,13 +19,13 @@ import java.util.List;
 
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.generator.BaseGenerator;
-import com.yanglb.codegen.core.model.DdlModel;
-import com.yanglb.codegen.core.model.WritableModel;
+import com.yanglb.codegen.model.DdlModel;
+import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.core.reader.IReader;
 import com.yanglb.codegen.core.translator.ITranslator;
 import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.support.SupportGen;
+import com.yanglb.codegen.utils.GenTypes;
 import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Resources;
 
@@ -47,8 +47,8 @@ public class DmlGeneratorImpl extends BaseGenerator {
 		WritableModel writableModel = translator.translate(settingMap, this.paramaModel, list);
 
 		// 默认使用UTF-8编码
-		SupportGen.Writer supportWriter = SupportGen.Writer.utf8;
-		if (writableModel.getEncode() == "ascii") supportWriter = SupportGen.Writer.ascii;
+		GenTypes.Writer supportWriter = GenTypes.Writer.utf8;
+		if (writableModel.getEncode() == "ascii") supportWriter = GenTypes.Writer.ascii;
 
 		// 写入到文件中
 		IWriter writer = GenFactory.createByName(Conf.getString(Conf.CATEGORY_WRITER, supportWriter.name()));

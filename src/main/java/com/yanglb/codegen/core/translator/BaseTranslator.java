@@ -19,8 +19,8 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 
-import com.yanglb.codegen.core.model.ParamaModel;
-import com.yanglb.codegen.core.model.WritableModel;
+import com.yanglb.codegen.model.ParamaModel;
+import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.Resources;
 import com.yanglb.codegen.utils.ObjectUtil;

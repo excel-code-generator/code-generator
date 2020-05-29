@@ -17,7 +17,7 @@ package com.yanglb.codegen.core.reader;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
-import com.yanglb.codegen.core.model.BaseModel;
+import com.yanglb.codegen.model.BaseModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 
 /**
