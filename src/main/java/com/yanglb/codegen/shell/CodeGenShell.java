@@ -25,9 +25,9 @@ public class CodeGenShell {
 	public boolean invoke(String[] args) {
 
 		// test data
-		args = new String[] {"msg.ios", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-combine", "-fn", "ttt"};
-		args = new String[] {"ddl.mysql", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
-		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
+		args = new String[] {"msg.json", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-c", "-fn", "ttt"};
+//		args = new String[] {"ddl.mysql", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
+//		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
 
 		ICmdParser parser = ICmdParser.parserByArgs(args);
 		ParamaModel model;

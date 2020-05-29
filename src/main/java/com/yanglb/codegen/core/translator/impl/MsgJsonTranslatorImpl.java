@@ -21,6 +21,7 @@ import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.StringUtil;
+import org.json.JSONObject;
 
 public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -34,76 +35,39 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
 	@Override
 	protected void onTranslate() throws CodeGenException {
 		super.onTranslate();
+		JSONObject json = new JSONObject();
 		StringBuilder sb = this.writableModel.getData();
-		sb.append("{\r\n");
-		
-		boolean hasDot = false;
-		
-		// 分组输出
-//		TODO paramaModel
-		if(false /*this.paramaModel.getOptions().get("group") != null*/) {
-			for(TableModel tblModel : this.model) {
-				// 如果没有Sheet名或Sheet名被#注释则添加到Root中
-				String sheetName = tblModel.getSheetName();
-				if(sheetName==null || sheetName.equals("") || sheetName.startsWith("@")) {
-					for(Map<String, String> itm : tblModel.toList()) {
-						String id = itm.get("id");
-						if(StringUtil.isNullOrEmpty(id)) continue;
-						// 对字符串进行转换
-						String value = this.convert2JsCode(itm.get(this.msgLang));
-						sb.append(String.format("    \"%\"s: \"%s\",\r\n", id, value));
-					}
-				} else {
-					hasDot = false;
-					sb.append(String.format("    \"%s\": {\r\n", tblModel.getSheetName()));
-					for(Map<String, String> itm : tblModel.toList()) {
-						String id = itm.get("id");
-						if(StringUtil.isNullOrEmpty(id)) continue;
-						// 对字符串进行转换
-						String value = this.convert2JsCode(itm.get(this.msgLang));
-						sb.append(String.format("        \"%s\": \"%s\",\r\n", id, value));
-						hasDot = true;
-					}
-					int idx = sb.lastIndexOf(",");
-					if(idx != -1 && hasDot) {
-						sb.deleteCharAt(idx);
-					}
-					
-					sb.append("    },\r\n");
-				}
-			}
-			
-			int idx = sb.lastIndexOf(",");
-			if(idx != -1) {
-				sb.deleteCharAt(idx);
-			}
-		} else {
+
+		if(this.paramaModel.getOptions().hasOption("combine")) {
 			// 合并输出
 			for(TableModel tblModel : this.model) {
 				for(Map<String, String> itm : tblModel.toList()) {
 					String id = itm.get("id");
+					String value = itm.get(this.msgLang);
 					if(StringUtil.isNullOrEmpty(id)) continue;
-					// 对字符串进行转换
-					String value = this.convert2JsCode(itm.get(this.msgLang));
-					sb.append(String.format("    \"%s\": \"%s\",\r\n", id, value));
+
+					json.put(id, value);
 				}
 			}
-			
-			int idx = sb.lastIndexOf(",");
-			if(idx != -1) {
-				sb.deleteCharAt(idx);
+		} else {
+			// 分组输出
+			for(TableModel tblModel : this.model) {
+				JSONObject sub = new JSONObject();
+				for(Map<String, String> itm : tblModel.toList()) {
+					String id = itm.get("id");
+					String value = itm.get(this.msgLang);
+					if(StringUtil.isNullOrEmpty(id)) continue;
+
+					sub.put(id, value);
+				}
+				String sheetName = tblModel.getSheetName();
+				json.put(sheetName, sub);
 			}
 		}
-		sb.append("}");
-	}
-	
-	private String convert2JsCode(String value) {
-		if(value == null) return null;
-		
-		// 先替换\r\n，防止有文档只有\r或\n 后面再替换一次
-		value = value.replaceAll("\r\n", "\\\\r\\\\n");
-		value = value.replaceAll("\r", "\\\\r\\\\n");
-		value = value.replaceAll("\n", "\\\\r\\\\n");
-		return value;
+
+		// to JSON string
+		int indentFactor = 4;
+		if (paramaModel.getOptions().hasOption("minify")) indentFactor = 0;
+		sb.append(json.toString(indentFactor));
 	}
 }
