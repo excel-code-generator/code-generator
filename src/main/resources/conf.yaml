@@ -15,9 +15,7 @@ generator:
   ddl.mssql: .core.generator.impl.DdlGeneratorImpl
   ddl.mysql: .core.generator.impl.DdlGeneratorImpl
   ddl.sqlite: .core.generator.impl.DdlGeneratorImpl
-
   dml: .core.generator.impl.DmlGeneratorImpl
-
   msg.resx: .core.generator.impl.MsgGeneratorImpl
   msg.json: .core.generator.impl.MsgGeneratorImpl
   msg.ios: .core.generator.impl.MsgGeneratorImpl
@@ -37,9 +35,7 @@ translator:
   ddl.mysql: .core.translator.impl.DdlMysqlTranslatorImpl
   ddl.sqlite: .core.translator.impl.DdlSqliteTranslatorImpl
   ddl.mssql: .core.translator.impl.DdlSqlServerTranslatorImpl
-
   dml: .core.translator.impl.DmlTranslatorImpl
-
   msg.resx: .core.translator.impl.MsgCSTranslatorImpl
   msg.json: .core.translator.impl.MsgJsonTranslatorImpl
   msg.ios: .core.translator.impl.MsgIOSTranslatorImpl
