@@ -24,7 +24,7 @@ import com.yanglb.codegen.exceptions.ParamaCheckException;
 public class CodeGenShell {
 	public boolean invoke(String[] args) {
 
-		args = new String[] {"msg.json", "/Users/yanglibing/Work/ACON/src/ACON/i18n/AppResources.xlsx", "-combine", "-out", "ttf"};
+		args = new String[] {"msg.json", "/Users/yanglibing/Work/ACON/src/ACON/i18n/AppResources.xlsx", "-combine"};
 		ICmdParser parser = ICmdParser.parserByArgs(args);
 		ParamaModel model;
 		try {
@@ -51,7 +51,7 @@ public class CodeGenShell {
 			return false;
 		}
 
-		System.out.println("恭喜你，代码生成成功！");
+		System.out.println("代码生成成功！");
 		return true;
 	}
 }

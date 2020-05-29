@@ -15,27 +15,12 @@
  */
 package com.yanglb.codegen.support;
 
-public enum SupportGen {
-    // reader
-    ddl_reader,
-    dml_reader,
-    hashmap_reader,
-    setting_reader,
-    table_reader,
+public class SupportGen {
+    public enum Reader {
+        ddl, dml, hashmap, setting, table
+    };
 
-    // translator
-    ddl_mysql_translator,
-    ddl_sqlite_translator,
-    ddl_sqlserver_translator,
-    dml_translator,
-    msg_js_translator,
-    msg_json_translator,
-    msg_java_translator,
-    msg_cs_translator,
-    msg_ios_translator,
-    msg_android_translator,
-
-    // writer 
-    utf8_writer,
-    ascii_writer,
+    public enum Writer {
+        utf8, ascii
+    };
 }

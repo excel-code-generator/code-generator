@@ -22,6 +22,13 @@ public class ParamaModel {
 	private String file;
 	CommandLine options;
 
+	public String[] getSheets() {
+		return options.getOptionValues("sheets");
+	}
+	public String getOptDir() {
+		return options.getOptionValue("out", "out");
+	}
+
 	public String getCmd() {
 		return cmd;
 	}

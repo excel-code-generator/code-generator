@@ -60,15 +60,11 @@ public class BaseTranslator<T> implements ITranslator<T> {
 	 */
 	protected void onBeforeTranslate() throws CodeGenException {
 		// 设置文件名、等初始化操作
-//		TODO: paramaModel
 		this.writableModel.setEncode("utf-8");
-//		this.writableModel.setExtension(this.paramaModel.getLang().name());
 		this.writableModel.setFileName("untitled");
 		this.writableModel.setFilePath("");
-//		this.writableModel.setLang(this.paramaModel.getLang());
 		this.writableModel.setData(new StringBuilder());
-//		this.writableModel.setOutputDir(this.paramaModel.getOut());
-		
+		this.writableModel.setOutputDir(this.paramaModel.getOptDir());
 		return;
 	}
 	

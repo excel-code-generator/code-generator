@@ -16,23 +16,20 @@
 package com.yanglb.codegen.core.generator.impl;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.generator.BaseGenerator;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.model.WritableModel;
-import com.yanglb.codegen.core.reader.ISettingReader;
 import com.yanglb.codegen.core.reader.ITableReader;
 import com.yanglb.codegen.core.translator.ITranslator;
 import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
-import com.yanglb.codegen.support.SupportLang;
 import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.MsgUtility;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MsgGeneratorImpl extends BaseGenerator {
 	@Override
@@ -40,18 +37,16 @@ public class MsgGeneratorImpl extends BaseGenerator {
 		super.onGeneration();
 		
 		// 读取必要的配置数据
+		// TODO: setting
 //		ISettingReader settingReader = GenFactory.createByName(Conf.CATEGORY_READER, "setting");
-		// TODO: paramaModel
 //		String genKey = String.format("%s_%s", paramaModel.getType().name(), paramaModel.getLang().name());
 //		HashMap<String, String> map = settingReader.settingReader(genKey);
 //		settingMap.putAll(map);
 		
 		// 读取DB信息表
-		ITableReader tableReader = GenFactory.createByName(Conf.CATEGORY_READER, "table");
+		ITableReader tableReader = GenFactory.createByName(Conf.CATEGORY_READER, SupportGen.Reader.table.name());
 		tableReader.setStartPoint(3, 2);
-		// TODO: paramaModel
-//		List<TableModel> list = tableReader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
-		List<TableModel> list = tableReader.reader(this.paramaModel.getFile(), this.paramaModel.getOptions().getOptionValues("sheets"));
+		List<TableModel> list = tableReader.reader(this.paramaModel.getFile(), this.paramaModel.getSheets());
 		if(list.size() == 0) {
 			throw new CodeGenException(MsgUtility.getString("E_003"));
 		}
@@ -64,25 +59,16 @@ public class MsgGeneratorImpl extends BaseGenerator {
 				langList.add(key);
 				
 				settingMap.put("MsgLang", key);
-				SupportGen supportTrans = SupportGen.msg_js_translator;
-				SupportGen supportWriter = SupportGen.utf8_writer;
-				// TODO: paramaModel
-//				if(this.paramaModel.getLang() == SupportLang.java) {
-//					supportTrans = SupportGen.msg_java_translator;
-//				} else if (this.paramaModel.getLang() == SupportLang.json) {
-//					supportTrans = SupportGen.msg_json_translator;
-//				} else if (this.paramaModel.getLang() == SupportLang.cs) {
-//					supportTrans = SupportGen.msg_cs_translator;
-//				} else if (this.paramaModel.getLang() == SupportLang.ios) {
-//					supportTrans = SupportGen.msg_ios_translator;
-//				} else if (this.paramaModel.getLang() == SupportLang.android) {
-//					supportTrans = SupportGen.msg_android_translator;
-//				}
-				
+				String trans = paramaModel.getCmd();
+
 				// 转换为可写入的Model（单个文件）
-				ITranslator<List<TableModel>> translator = GenFactory.createByName(Conf.CATEGORY_TRANSLATOR, supportTrans.name());
-				WritableModel writableModel = translator.translate(settingMap, this.paramaModel, list);
-				
+				ITranslator<List<TableModel>> translator = GenFactory.createByName(Conf.CATEGORY_TRANSLATOR, trans);
+				WritableModel writableModel = translator.translate(settingMap, paramaModel, list);
+
+				// 默认使用UTF-8编码
+				SupportGen.Writer supportWriter = SupportGen.Writer.utf8;
+				if (writableModel.getEncode() == "ascii") supportWriter = SupportGen.Writer.ascii;
+
 				// 写入到文件中
 				IWriter writer = GenFactory.createByName(Conf.CATEGORY_WRITER, supportWriter.name());
 				writer.writer(writableModel);
