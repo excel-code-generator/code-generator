@@ -25,9 +25,10 @@ public class CodeGenShell {
 	public boolean invoke(String[] args) {
 
 		// test data
-		args = new String[] {"msg.json", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-c", "-fn", "ttt"};
+//		args = new String[] {"msg.json", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-c1", "-fn", "ttt"};
 //		args = new String[] {"ddl.mysql", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
 //		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
+		args = new String[] {"dml", "-h"};
 
 		ICmdParser parser = ICmdParser.parserByArgs(args);
 		ParamaModel model;

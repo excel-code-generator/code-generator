@@ -24,9 +24,14 @@ public class MsgJSONParser extends MsgParser {
     }
 
     @Override
-    public void printHelp() {
-        super.printHelp();
+    protected boolean headerHelp() {
+        System.out.println("生成JSON格式的多语言资源。");
+        System.out.println("用法：cg msg.json file [options]");
+        return true;
+    }
 
-        System.out.println("from MsgJSONParser.");
+    @Override
+    protected boolean examplesHelp() {
+        return false;
     }
 }

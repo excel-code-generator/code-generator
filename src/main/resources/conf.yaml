@@ -1,40 +1,64 @@
+# support commands
+command:
+  - ddl.mysql
+  - ddl.sqlite
+  - ddl.mssql
+  - dml
+  - msg.resx
+  - msg.json
+  - msg.ios
+  - msg.android
+  - msg.prop
+
 # generator
 generator:
-  ddl.mssql: .generator.impl.DdlGeneratorImpl
-  ddl.mysql: .generator.impl.DdlGeneratorImpl
-  ddl.sqlite: .generator.impl.DdlGeneratorImpl
+  ddl.mssql: .core.generator.impl.DdlGeneratorImpl
+  ddl.mysql: .core.generator.impl.DdlGeneratorImpl
+  ddl.sqlite: .core.generator.impl.DdlGeneratorImpl
 
-  dml: .generator.impl.DmlGeneratorImpl
+  dml: .core.generator.impl.DmlGeneratorImpl
 
-  msg.resx: .generator.impl.MsgGeneratorImpl
-  msg.json: .generator.impl.MsgGeneratorImpl
-  msg.ios: .generator.impl.MsgGeneratorImpl
-  msg.android: .generator.impl.MsgGeneratorImpl
-  msg.prop: .generator.impl.MsgGeneratorImpl
+  msg.resx: .core.generator.impl.MsgGeneratorImpl
+  msg.json: .core.generator.impl.MsgGeneratorImpl
+  msg.ios: .core.generator.impl.MsgGeneratorImpl
+  msg.android: .core.generator.impl.MsgGeneratorImpl
+  msg.prop: .core.generator.impl.MsgGeneratorImpl
 
 # reader
 reader:
-  ddl: .reader.impl.DdlReaderImpl
-  dml: .reader.impl.DmlReaderImpl
-  hashmap: .reader.impl.HashMapReaderImpl
-  setting: .reader.impl.SettingReaderImpl
-  table: .reader.impl.TableReaderImpl
+  ddl: .core.reader.impl.DdlReaderImpl
+  dml: .core.reader.impl.DmlReaderImpl
+  hashmap: .core.reader.impl.HashMapReaderImpl
+  setting: .core.reader.impl.SettingReaderImpl
+  table: .core.reader.impl.TableReaderImpl
 
 # translator
 translator:
-  ddl.mysql: .translator.impl.DdlMysqlTranslatorImpl
-  ddl.sqlite: .translator.impl.DdlSqliteTranslatorImpl
-  ddl.mssql: .translator.impl.DdlSqlServerTranslatorImpl
+  ddl.mysql: .core.translator.impl.DdlMysqlTranslatorImpl
+  ddl.sqlite: .core.translator.impl.DdlSqliteTranslatorImpl
+  ddl.mssql: .core.translator.impl.DdlSqlServerTranslatorImpl
 
-  dml: .translator.impl.DmlTranslatorImpl
+  dml: .core.translator.impl.DmlTranslatorImpl
 
-  msg.resx: .translator.impl.MsgCSTranslatorImpl
-  msg.json: .translator.impl.MsgJsonTranslatorImpl
-  msg.ios: .translator.impl.MsgIOSTranslatorImpl
-  msg.android: .translator.impl.MsgAndroidTranslatorImpl
-  msg.prop: .translator.impl.MsgJavaTranslatorImpl
+  msg.resx: .core.translator.impl.MsgCSTranslatorImpl
+  msg.json: .core.translator.impl.MsgJsonTranslatorImpl
+  msg.ios: .core.translator.impl.MsgIOSTranslatorImpl
+  msg.android: .core.translator.impl.MsgAndroidTranslatorImpl
+  msg.prop: .core.translator.impl.MsgJavaTranslatorImpl
 
 # writer
 writer:
-  utf8: .writer.impl.Utf8WriterImpl
-  ascii: .writer.impl.AsciiWriterImpl
+  utf8: .core.writer.impl.Utf8WriterImpl
+  ascii: .core.writer.impl.AsciiWriterImpl
+
+# parser
+parser:
+  ddl.mysql: .shell.parsers.MsgJSONParser
+  ddl.sqlite: .shell.parsers.MsgJSONParser
+  ddl.mssql: .shell.parsers.MsgJSONParser
+  dml: .shell.parsers.MsgJSONParser
+  msg.resx: .shell.parsers.MsgJSONParser
+  msg.json: .shell.parsers.MsgJSONParser
+  msg.ios: .shell.parsers.MsgJSONParser
+  msg.android: .shell.parsers.MsgJSONParser
+  msg.prop: .shell.parsers.MsgJSONParser

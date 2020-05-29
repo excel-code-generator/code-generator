@@ -19,6 +19,7 @@ import jdk.nashorn.internal.ir.CallNode;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 public class Conf {
@@ -38,6 +39,7 @@ public class Conf {
 	public static String CATEGORY_READER = "reader";
 	public static String CATEGORY_TRANSLATOR = "translator";
 	public static String CATEGORY_WRITER = "writer";
+	public static String CATEGORY_PARSER = "parser";
 	
 	public static String getString(String category, String key) {
 		// 初始化
@@ -46,5 +48,12 @@ public class Conf {
 		Map<String, Object> values = (Map<String, Object>) settings.get(category);
 		String value = values.get(key).toString();
 		return value;
+	}
+
+	public static List<String> supportCommands() {
+		init();
+
+		Object value = settings.get("command");
+		return (List<String>) value;
 	}
 }

@@ -15,13 +15,18 @@
  */
 package com.yanglb.codegen.shell;
 
+import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.model.ParamaModel;
 
+import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.shell.parsers.BaseParser;
 import com.yanglb.codegen.shell.parsers.MsgJSONParser;
+import com.yanglb.codegen.utils.Conf;
 import org.apache.commons.cli.Options;
 
 public interface ICmdParser {
+    void setArgs(String[] args);
+
     /**
      * 显示帮助信息
      */
@@ -34,8 +39,18 @@ public interface ICmdParser {
     ParamaModel parsing() throws IllegalArgumentException;
 
     static ICmdParser parserByArgs(String[] args) {
-        // TODO: 根据命令生成处理器
-        BaseParser parser = new MsgJSONParser();
+        ICmdParser parser;
+        String cmd = args[0];
+        if (Conf.supportCommands().indexOf(cmd) >= 0) {
+            try {
+                parser = GenFactory.createByName(Conf.CATEGORY_PARSER, cmd);
+            } catch (CodeGenException e) {
+                parser = new BaseParser();
+                e.printStackTrace();
+            }
+        } else {
+            parser = new BaseParser();
+        }
 
         parser.setArgs(args);
         return parser;

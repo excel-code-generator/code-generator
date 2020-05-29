@@ -28,6 +28,7 @@ import java.util.List;
 
 public class BaseParser implements ICmdParser {
     protected String[] args;
+    @Override
     public void setArgs(String[] args) {
         this.args = args;
     }
@@ -68,11 +69,63 @@ public class BaseParser implements ICmdParser {
         return options;
     }
 
+    protected boolean headerHelp() {
+        System.out.println("用法：cg command file [options]");
+        return true;
+    }
+    protected boolean commandHelp() {
+        System.out.println("Commands: ");
+
+        List<String> keys = new ArrayList<String>(SupportCmd.SupportCmds().keySet());
+        Collections.sort(keys);
+        for (String key : keys) {
+            SupportCmd cmd = SupportCmd.SupportCmds().get(key);
+            System.out.println(String.format(" %-23s%s", cmd.getCmd(), cmd.getDescription()));
+        }
+        return true;
+    }
+
+    protected boolean optionsHelp() {
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.setSyntaxPrefix("");
+        formatter.printHelp("Options: ", options());
+        return true;
+    }
+
+    protected boolean examplesHelp() {
+        System.out.println("示例: ");
+        System.out.println(" cg msg.json 001.xlsx");
+        System.out.println(" cg msg.resx 001.xlsx --sheets Sheet1 Sheet2 Sheet5");
+
+        System.out.println();
+        System.out.println("帮助: ");
+        System.out.println(String.format(" %-23s显示数生成据库结构的更多帮助信息。", "cg ddl.mysql --help"));
+        System.out.println(String.format(" %-23s显示生成初始数据的更多帮助信息。", "cg dml --help"));
+        System.out.println(String.format(" %-23s显示生成国际化资源的更多帮助信息。", "cg msg.json --help"));
+        System.out.println("通过 cg command --help 查看详细命令。");
+        return true;
+    }
+
+    protected boolean footerHelp() {
+        System.out.println("---");
+        System.out.println(Infos.Name + " v" + Infos.Version);
+        System.out.println("By " + Infos.Website);
+        return true;
+    }
+
     @Override
     public void printHelp() {
-        HelpFormatter formatter = new HelpFormatter();
-        formatter.setSyntaxPrefix("用法：");
-        formatter.printHelp("cg command file [options]", options());
+        headerHelp();
+
+        if (commandHelp()) System.out.println();
+        if (optionsHelp()) System.out.println();
+        if (examplesHelp()) System.out.println();
+        if (footerHelp()) System.out.println();
+    }
+
+    public void printHelp1() {
+
+        System.out.println("用法：cg command file [options]");
 
         System.out.println();
         System.out.println("command: ");
@@ -82,10 +135,17 @@ public class BaseParser implements ICmdParser {
             SupportCmd cmd = SupportCmd.SupportCmds().get(key);
             System.out.println(String.format(" %-23s%s", cmd.getCmd(), cmd.getDescription()));
         }
+
+        System.out.println();
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.setSyntaxPrefix("options: ");
+        formatter.printHelp(" ", options());
+
+        System.out.println();
         System.out.println("通过 cg command --help 查看详细命令。");
 
         System.out.println();
-        System.out.println("示例：");
+        System.out.println("examples: ");
         System.out.println("  cg msg json 001.xlsx");
         System.out.println("  cg msg resx 001.xlsx --sheets Sheet1 Sheet2 Sheet5");
         System.out.println();
