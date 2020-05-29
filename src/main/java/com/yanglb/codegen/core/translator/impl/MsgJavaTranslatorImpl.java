@@ -33,7 +33,6 @@ public class MsgJavaTranslatorImpl extends BaseMsgTranslator {
 		super.onBeforeTranslate();
 		
 		this.writableModel.setExtension("properties");
-		this.writableModel.setFilePath("msg/properties");
 	}
 
 	@Override

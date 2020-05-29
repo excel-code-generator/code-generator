@@ -18,7 +18,6 @@ package com.yanglb.codegen.model;
 public class WritableModel {
 	private String encode;
 	private String extension;
-	private String filePath;
 	private String fileName;
 	private String outputDir;
 	private String fullPath;
@@ -84,18 +83,6 @@ public class WritableModel {
 	 */
 	public void setData(StringBuilder data) {
 		this.data = data;
-	}
-	/**
-	 * @return the filePath
-	 */
-	public String getFilePath() {
-		return filePath;
-	}
-	/**
-	 * @param filePath the filePath to set
-	 */
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
 	}
 	/**
 	 * @return the fileName

@@ -30,7 +30,6 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
 		this.writableModel.setExtension("dml");
-		this.writableModel.setFilePath("dml");
 
 		// 设置文件名（同Excel名）
 		String fileName = this.model.get(0).getExcelFileName();

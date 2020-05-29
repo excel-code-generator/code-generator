@@ -35,7 +35,6 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
-		this.writableModel.setFilePath("ddl_sqlserver");
 	}
 
 	@Override

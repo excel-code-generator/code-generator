@@ -32,13 +32,16 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 		super.onBeforeTranslate();
 		
 		this.writableModel.setExtension("xml");
-		String path =  (this.isDefaultLanguage() ? "" : this.getSplitString() + this.msgLang);
-		this.writableModel.setFilePath("msg/android/values" + path);
-		
+
 		// 文件名
 		if (this.paramaModel.getFileName() == null) {
 			this.writableModel.setFileName("strings");
 		}
+
+		String fileName = writableModel.getFileName();
+		String path =  (this.isDefaultLanguage() ? "" : this.getSplitString() + this.msgLang);
+		fileName = ("values" + path) + "/" + fileName;
+		writableModel.setFileName(fileName);
 	}
 	
 	@Override

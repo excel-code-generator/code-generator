@@ -45,7 +45,6 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
 		this.writableModel.setExtension("ddl");
-		this.writableModel.setFilePath("ddl_mysql");
 
 		// 设置文件名（同Excel名）
 		String fileName = this.model.get(0).getExcelFileName();

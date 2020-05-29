@@ -29,7 +29,6 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
 		super.onBeforeTranslate();
 		
 		this.writableModel.setExtension("json");
-		this.writableModel.setFilePath("msg/json");
 	}
 
 	@Override

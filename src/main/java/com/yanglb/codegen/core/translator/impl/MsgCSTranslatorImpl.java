@@ -31,7 +31,6 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 		super.onBeforeTranslate();
 		
 		this.writableModel.setExtension("resx");
-		this.writableModel.setFilePath("msg/resx");
 	}
 
 	@Override

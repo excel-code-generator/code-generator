@@ -62,7 +62,6 @@ public class BaseTranslator<T> implements ITranslator<T> {
 		// 设置文件名、等初始化操作
 		this.writableModel.setEncode("utf-8");
 		this.writableModel.setFileName("untitled");
-		this.writableModel.setFilePath("");
 		this.writableModel.setData(new StringBuilder());
 		this.writableModel.setOutputDir(this.paramaModel.getOptDir());
 		return;

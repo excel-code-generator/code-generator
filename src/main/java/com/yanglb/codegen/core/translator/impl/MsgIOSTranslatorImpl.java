@@ -32,10 +32,9 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 		
 		this.writableModel.setExtension("strings");
 		String path = (this.isDefaultLanguage() ? "Base" : this.msgLang) + ".lproj";
-		this.writableModel.setFilePath("msg/strings/" + path);
-		
+
 		// 文件名
-		String fileName = getFileName();
+		String fileName = path + "/" + getFileName();
 		this.writableModel.setFileName(fileName);
 	}
 
