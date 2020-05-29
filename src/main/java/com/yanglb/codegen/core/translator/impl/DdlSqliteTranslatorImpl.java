@@ -23,6 +23,7 @@ import com.yanglb.codegen.core.model.ForeignDetailModel;
 import com.yanglb.codegen.core.model.ForeignModel;
 import com.yanglb.codegen.core.translator.BaseDdlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.StringUtil;
 
 public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
@@ -51,7 +52,8 @@ public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 		StringBuilder sb = this.writableModel.getData();
 		
 		// 添加文件头
-		sb.append(this.settingMap.get("head"));
+		sb.append(Infos.sqlHeader());
+		sb.append("\n");
 		
 		// 逐个添加内容
 		for(DdlModel itm : this.model) {

@@ -22,6 +22,7 @@ import com.yanglb.codegen.core.model.DmlModel;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseSqlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.StringUtil;
 
 public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
@@ -49,8 +50,8 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 		StringBuilder sb = this.writableModel.getData();
 		
 		// 添加文件头
-		sb.append(this.settingMap.get("head"));
-		
+		sb.append(Infos.sqlHeader());
+
 		// 逐个添加内容
 		for(DmlModel itm : this.model) {
 			sb.append(this.genDml(itm));

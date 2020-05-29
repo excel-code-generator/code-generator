@@ -26,8 +26,8 @@ public class CodeGenShell {
 
 		// test data
 		args = new String[] {"msg.ios", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-combine", "-fn", "ttt"};
-//		args = new String[] {"ddl.sqlite", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
-//		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
+		args = new String[] {"ddl.mysql", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
+		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
 
 		ICmdParser parser = ICmdParser.parserByArgs(args);
 		ParamaModel model;

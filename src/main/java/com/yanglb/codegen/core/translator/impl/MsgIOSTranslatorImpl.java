@@ -45,6 +45,8 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 		StringBuilder sb = this.writableModel.getData();
 		
 		sb.append(Infos.cHeader());
+		sb.append("\n");
+
 		// 替换标记
 		String s = this.replaceFlags(sb.toString(), null);
 		sb = new StringBuilder(s);
