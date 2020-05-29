@@ -36,7 +36,7 @@ public class DdlGeneratorImpl extends BaseGenerator {
 		super.onGeneration();
 
 		// 读取DB信息表
-		IReader<DdlModel> ddlReader = GenFactory.createByName(Conf.CATEGORY_READER, SupportGen.Reader.ddl.name());
+		IReader<DdlModel> ddlReader = GenFactory.createByName(paramaModel.getCmdModel().getReader());
 		List<DdlModel> list = ddlReader.reader(this.paramaModel.getFile(), this.paramaModel.getSheets());
 		if(list.size() == 0) {
 			throw new CodeGenException(Resources.getString("E_003"));
@@ -44,7 +44,7 @@ public class DdlGeneratorImpl extends BaseGenerator {
 
 		// 转换为可写入的Model（单个文件）
 		String trans = paramaModel.getCmd();
-		ITranslator<List<DdlModel>> translator = GenFactory.createByName(Conf.CATEGORY_TRANSLATOR, trans);
+		ITranslator<List<DdlModel>> translator = GenFactory.createByName(paramaModel.getCmdModel().getTranslator());
 		WritableModel writableModel = translator.translate(settingMap, this.paramaModel, list);
 
 		// 默认使用UTF-8编码
@@ -52,7 +52,7 @@ public class DdlGeneratorImpl extends BaseGenerator {
 		if (writableModel.getEncode() == "ascii") supportWriter = SupportGen.Writer.ascii;
 
 		// 写入到文件中
-		IWriter writer = GenFactory.createByName(Conf.CATEGORY_WRITER, supportWriter.name());
+		IWriter writer = GenFactory.createByName(Conf.getString(Conf.CATEGORY_WRITER, supportWriter.name()));
 		writer.writer(writableModel);
 	}
 }

@@ -15,10 +15,12 @@
  */
 package com.yanglb.codegen.utils;
 
+import com.yanglb.codegen.core.model.CmdModel;
 import jdk.nashorn.internal.ir.CallNode;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +35,17 @@ public class Conf {
 				.getClassLoader()
 				.getResourceAsStream("conf.yaml");
 		settings = yaml.load(inputStream);
+	}
+
+	public static CmdModel getCmdModel(String cmd) {
+		init();
+
+		Map<String, Map<String, String>> values = (Map<String, Map<String, String>>) settings.get("command");
+		Map<String, String> map = values.get(cmd);
+		if (map == null) return null;
+
+		CmdModel model = new CmdModel(map);
+		return model;
 	}
 
 	public static String CATEGORY_GENERATOR = "generator";
@@ -53,7 +66,7 @@ public class Conf {
 	public static List<String> supportCommands() {
 		init();
 
-		Object value = settings.get("command");
-		return (List<String>) value;
+		Map<String, Map<String, String>> values = (Map<String, Map<String, String>>) settings.get("command");
+		return new ArrayList<>(values.keySet());
 	}
 }

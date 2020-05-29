@@ -21,6 +21,7 @@ public class ParamaModel {
 	private String cmd;
 	private String file;
 	CommandLine options;
+	CmdModel cmdModel;
 
 	public String[] getSheets() {
 		return options.getOptionValues("sheets");
@@ -54,5 +55,13 @@ public class ParamaModel {
 
 	public void setOptions(CommandLine options) {
 		this.options = options;
+	}
+
+	public CmdModel getCmdModel() {
+		return cmdModel;
+	}
+
+	public void setCmdModel(CmdModel cmdModel) {
+		this.cmdModel = cmdModel;
 	}
 }

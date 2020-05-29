@@ -26,39 +26,37 @@ public class GenFactory<T> {
 	private GenFactory() {
 		
 	}
-
-	/**
-	 * 创建生成器
-	 * @param paramaModel 参数模型
-	 * @return IGenerator
-	 * @throws CodeGenException
-	 */
-	public static IGenerator createGenerator(ParamaModel paramaModel) throws CodeGenException{
-		IGenerator generator = null;
-		try {
-			GenFactory<IGenerator> factory = new GenFactory<IGenerator>(); 
-			generator = factory.createFromProperties(Conf.CATEGORY_GENERATOR, paramaModel.getCmd());
-			generator.init(paramaModel);
-		} catch (Exception e) {
-			throw new CodeGenException(Resources.getString("E_010"));
-		}
-		return generator;
-	}
+//
+//	/**
+//	 * 创建生成器
+//	 * @param paramaModel 参数模型
+//	 * @return IGenerator
+//	 * @throws CodeGenException
+//	 */
+//	public static IGenerator createGenerator(ParamaModel paramaModel) throws CodeGenException{
+//		IGenerator generator = null;
+//		try {
+//			generator = createByName(paramaModel.getCmdModel().getGenerator());
+//			generator.init(paramaModel);
+//		} catch (Exception e) {
+//			throw new CodeGenException(Resources.getString("E_010"));
+//		}
+//		return generator;
+//	}
 	
 	/**
 	 * 根据配置文件中配置的名字创建
 	 * @param <T> 创建接口类型
- 	 * @param name 名称
 	 * @return T的接口实例
 	 * @throws CodeGenException 错误信息
 	 */
-	public static <T> T createByName(String category, String name) throws CodeGenException {
+	public static <T> T createByName(String className) throws CodeGenException {
 		T result = null;
 		try {
 			GenFactory<T> factory = new GenFactory<T>();
-			result = factory.createFromProperties(category, name);
+			result = factory.create(className);
 		} catch (Exception e) {
-			throw new CodeGenException(String.format(Resources.getString("E_011"), name, e.getMessage()));
+			throw new CodeGenException(String.format(Resources.getString("E_011"), className, e.getMessage()));
 		}
 		return result;
 	}
@@ -71,26 +69,11 @@ public class GenFactory<T> {
 	 * @throws IllegalAccessException
 	 * @throws ClassNotFoundException
 	 */
-	@SuppressWarnings("unchecked")
-	protected T create(String implName) 
+	protected T create(String implName)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException  {
 		T instance = null;
 		if (implName.startsWith(".")) implName = "com.yanglb.codegen" + implName;
 		instance = (T) Class.forName(implName).newInstance();
 		return instance;
-	}
-	
-	/**
-	 * 根据配置文件创建
-	 * @param key
-	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ClassNotFoundException
-	 */
-	protected T createFromProperties(String category, String key)
-			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		String className = Conf.getString(category, key);
-		return this.create(className);
 	}
 }

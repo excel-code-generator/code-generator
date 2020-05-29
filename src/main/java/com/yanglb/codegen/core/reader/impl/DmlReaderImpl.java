@@ -62,7 +62,7 @@ public class DmlReaderImpl extends BaseModelReader<DmlModel> {
 	 */
 	private TableModel readerTable(XSSFSheet sheet) throws CodeGenException {
 		// 通过 TableReader读取表格内容
-		ITableReader tableReader = GenFactory.createByName(Conf.CATEGORY_READER, "table");
+		ITableReader tableReader = GenFactory.createByName(Conf.getString(Conf.CATEGORY_READER, "table"));
 		tableReader.setStartPoint(7, 2);
 		return tableReader.reader(sheet);
 	}

@@ -37,7 +37,7 @@ public class MsgGeneratorImpl extends BaseGenerator {
 		super.onGeneration();
 
 		// 读取DB信息表
-		ITableReader tableReader = GenFactory.createByName(Conf.CATEGORY_READER, SupportGen.Reader.table.name());
+		ITableReader tableReader = GenFactory.createByName(paramaModel.getCmdModel().getReader());
 		tableReader.setStartPoint(3, 2);
 		List<TableModel> list = tableReader.reader(this.paramaModel.getFile(), this.paramaModel.getSheets());
 		if(list.size() == 0) {
@@ -55,7 +55,7 @@ public class MsgGeneratorImpl extends BaseGenerator {
 				String trans = paramaModel.getCmd();
 
 				// 转换为可写入的Model（单个文件）
-				ITranslator<List<TableModel>> translator = GenFactory.createByName(Conf.CATEGORY_TRANSLATOR, trans);
+				ITranslator<List<TableModel>> translator = GenFactory.createByName(paramaModel.getCmdModel().getTranslator());
 				WritableModel writableModel = translator.translate(settingMap, paramaModel, list);
 
 				// 默认使用UTF-8编码
@@ -63,7 +63,7 @@ public class MsgGeneratorImpl extends BaseGenerator {
 				if (writableModel.getEncode() == "ascii") supportWriter = SupportGen.Writer.ascii;
 
 				// 写入到文件中
-				IWriter writer = GenFactory.createByName(Conf.CATEGORY_WRITER, supportWriter.name());
+				IWriter writer = GenFactory.createByName(Conf.getString(Conf.CATEGORY_WRITER, supportWriter.name()));
 				writer.writer(writableModel);
 			}
 		}

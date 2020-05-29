@@ -56,8 +56,7 @@ public class BaseGenerator implements IGenerator{
 	 * 初始化
 	 * @param paramaModel
 	 */
-	@Override
-	public void init(ParamaModel paramaModel) {
+	protected void init(ParamaModel paramaModel) {
 		this.paramaModel = paramaModel;
 		this.supportOptions = new ArrayList<OptionModel>();
 		this.settingMap = new HashMap<String, String>();
@@ -66,13 +65,15 @@ public class BaseGenerator implements IGenerator{
 	}
 
 	@Override
-	public final void invoke() throws CodeGenException, ParamaCheckException {
-		this.onCheck();
+	public final void invoke(ParamaModel paramaModel) throws CodeGenException, ParamaCheckException {
+		init(paramaModel);
+
+		onCheck();
 		
-		this.printInfo();
+		printInfo();
 		
 		// 生成代码
-		this.onGeneration();
+		onGeneration();
 	}
 
 	@Override

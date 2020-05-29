@@ -170,6 +170,7 @@ public class BaseParser implements ICmdParser {
         model.setCmd(cmd);
         model.setFile(file);
         model.setOptions(commandLine);
+        model.setCmdModel(Conf.getCmdModel(cmd));
         return model;
     }
 }

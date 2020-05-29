@@ -23,18 +23,12 @@ import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
 
 public interface IGenerator {
-	
-	/**
-	 * 初始化
-	 * @param paramaModel 参数模型
-	 */
-	void init(ParamaModel paramaModel);
-
 	/**
 	 * 执行生成工作
+	 * @param paramaModel 参数模型
 	 * @throws CodeGenException 出错信息
 	 */
-	void invoke() throws CodeGenException, ParamaCheckException;
+	void invoke(ParamaModel paramaModel) throws CodeGenException, ParamaCheckException;
 	
 	/**
 	 * 取得该生成器支持的选项

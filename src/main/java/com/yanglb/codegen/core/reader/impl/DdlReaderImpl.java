@@ -32,7 +32,6 @@ import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
 
 public class DdlReaderImpl extends BaseModelReader<DdlModel> {
-	
 	/**
 	 * 读取DB定义Sheet
 	 * @throws CodeGenException 
@@ -48,9 +47,7 @@ public class DdlReaderImpl extends BaseModelReader<DdlModel> {
 		model.setAuthor(this.getCellStringValue(row.getCell(4)));
 		model.setVersion(this.getCellStringValue(row.getCell(6)));
 		model.setDescription(this.getCellStringValue(row.getCell(8)));
-//		model.setIndex(this.getCellStringValue(row.getCell(8)));
-//		model.setForeign(this.getCellStringValue(row.getCell(12)));
-		
+
 		row = sheet.getRow(2);
 		model.setName(this.getCellStringValue(row.getCell(2)));
 		model.setResponsibility(this.getCellStringValue(row.getCell(4)));
@@ -71,7 +68,7 @@ public class DdlReaderImpl extends BaseModelReader<DdlModel> {
 		List<DdlDetail> result = null;
 		
 		// 通过 TableReader读取表格内容
-		ITableReader tableReader = GenFactory.createByName(Conf.CATEGORY_READER, "table");
+		ITableReader tableReader = GenFactory.createByName(Conf.getString(Conf.CATEGORY_READER, "table"));
 		tableReader.setStartPoint(6, 2);
 		TableModel tableModel = tableReader.reader(sheet);
 		

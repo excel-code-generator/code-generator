@@ -16,13 +16,11 @@
 package com.yanglb.codegen.shell;
 
 import com.yanglb.codegen.core.GenFactory;
+import com.yanglb.codegen.core.model.CmdModel;
 import com.yanglb.codegen.core.model.ParamaModel;
-
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.shell.parsers.BaseParser;
-import com.yanglb.codegen.shell.parsers.MsgJSONParser;
 import com.yanglb.codegen.utils.Conf;
-import org.apache.commons.cli.Options;
 
 public interface ICmdParser {
     void setArgs(String[] args);
@@ -41,14 +39,11 @@ public interface ICmdParser {
     static ICmdParser parserByArgs(String[] args) {
         ICmdParser parser;
         String cmd = args[0];
-        if (Conf.supportCommands().indexOf(cmd) >= 0) {
-            try {
-                parser = GenFactory.createByName(Conf.CATEGORY_PARSER, cmd);
-            } catch (CodeGenException e) {
-                parser = new BaseParser();
-                e.printStackTrace();
-            }
-        } else {
+        CmdModel model = Conf.getCmdModel(cmd);
+
+        try {
+            parser = GenFactory.createByName(model.getParser());
+        } catch (Exception e) {
             parser = new BaseParser();
         }
 
