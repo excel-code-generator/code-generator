@@ -28,23 +28,17 @@ public interface IGenerator {
 	 * 初始化
 	 * @param paramaModel 参数模型
 	 */
-	public void init(ParamaModel paramaModel);
-	
-//	/**
-//	 * 检查输入参数是否正确
-//	 * @throws ParamaCheckException 出错信息
-//	 */
-//	public void check() throws ParamaCheckException;
-	
+	void init(ParamaModel paramaModel);
+
 	/**
 	 * 执行生成工作
 	 * @throws CodeGenException 出错信息
 	 */
-	public void invoke() throws CodeGenException, ParamaCheckException;
+	void invoke() throws CodeGenException, ParamaCheckException;
 	
 	/**
 	 * 取得该生成器支持的选项
 	 * @return 该生成器支持的选项
 	 */
-	public List<OptionModel> getSupportOptions();
+	List<OptionModel> getSupportOptions();
 }
