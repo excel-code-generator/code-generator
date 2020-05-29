@@ -35,14 +35,7 @@ public class MsgGeneratorImpl extends BaseGenerator {
 	@Override
 	protected void onGeneration() throws CodeGenException {
 		super.onGeneration();
-		
-		// 读取必要的配置数据
-		// TODO: setting
-//		ISettingReader settingReader = GenFactory.createByName(Conf.CATEGORY_READER, "setting");
-//		String genKey = String.format("%s_%s", paramaModel.getType().name(), paramaModel.getLang().name());
-//		HashMap<String, String> map = settingReader.settingReader(genKey);
-//		settingMap.putAll(map);
-		
+
 		// 读取DB信息表
 		ITableReader tableReader = GenFactory.createByName(Conf.CATEGORY_READER, SupportGen.Reader.table.name());
 		tableReader.setStartPoint(3, 2);

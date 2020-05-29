@@ -21,6 +21,7 @@ import java.util.Map;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
 import com.yanglb.codegen.utils.StringUtil;
 
@@ -43,7 +44,7 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 		super.onTranslate();
 		StringBuilder sb = this.writableModel.getData();
 		
-		sb.append(this.settingMap.get("head"));
+		sb.append(Infos.cHeader());
 		// 替换标记
 		String s = this.replaceFlags(sb.toString(), null);
 		sb = new StringBuilder(s);

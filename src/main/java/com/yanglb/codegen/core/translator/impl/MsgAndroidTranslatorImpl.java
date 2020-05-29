@@ -23,6 +23,7 @@ import java.util.Map;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.StringUtil;
 
 public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
@@ -35,7 +36,9 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 		this.writableModel.setFilePath("msg/android/values" + path);
 		
 		// 文件名
-		this.writableModel.setFileName("strings");
+		if (this.paramaModel.getFileName() == null) {
+			this.writableModel.setFileName("strings");
+		}
 	}
 	
 	@Override
@@ -47,8 +50,8 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 	protected void onTranslate() throws CodeGenException {
 		super.onTranslate();
 		StringBuilder sb = this.writableModel.getData();
-		sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" + 
-				this.settingMap.get("head") +
+		sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
+				Infos.xmlHeader() +
 				"<resources>\r\n");
 		
 		// 替换标记

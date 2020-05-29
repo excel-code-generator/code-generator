@@ -25,7 +25,7 @@ public class CodeGenShell {
 	public boolean invoke(String[] args) {
 
 		// test data
-		args = new String[] {"msg.resx", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-combine", "-fn", "ttt"};
+		args = new String[] {"msg.ios", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-combine", "-fn", "ttt"};
 //		args = new String[] {"ddl.sqlite", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
 //		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
 

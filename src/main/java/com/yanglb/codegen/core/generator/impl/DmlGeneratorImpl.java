@@ -35,11 +35,6 @@ public class DmlGeneratorImpl extends BaseGenerator {
 	protected void onGeneration() throws CodeGenException {
 		super.onGeneration();
 
-		// 读取必要的配置数据
-		// TODO: setting
-//		ISettingReader settingReader = GenFactory.createByName(SupportGen.setting_reader);
-//		HashMap<String, String> settingMap = settingReader.settingReader("dml");
-
 		// 读取DML信息表
 		IReader<DdlModel> ddlReader = GenFactory.createByName(Conf.CATEGORY_READER, SupportGen.Reader.dml.name());
 		List<DdlModel> list = ddlReader.reader(this.paramaModel.getFile(), this.paramaModel.getSheets());

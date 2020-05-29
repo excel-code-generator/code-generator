@@ -38,4 +38,3 @@ translator:
 writer:
   utf8: .writer.impl.Utf8WriterImpl
   ascii: .writer.impl.AsciiWriterImpl
-
