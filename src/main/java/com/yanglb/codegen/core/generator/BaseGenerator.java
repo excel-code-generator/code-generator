@@ -15,19 +15,17 @@
  */
 package com.yanglb.codegen.core.generator;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
 import com.yanglb.codegen.core.model.OptionModel;
 import com.yanglb.codegen.core.model.ParamaModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 public class BaseGenerator implements IGenerator{
 	protected ParamaModel paramaModel;

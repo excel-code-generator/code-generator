@@ -1,40 +1,40 @@
 # generator
 generator:
-  ddl.mssql: generator.impl.DdlSqlServerGeneratorImpl
-  ddl.mysql: generator.impl.DdlMySqlGeneratorImpl
-  ddl.sqlite: generator.impl.DdlSqliteGeneratorImpl
+  ddl.mssql: .generator.impl.DdlSqlServerGeneratorImpl
+  ddl.mysql: .generator.impl.DdlMySqlGeneratorImpl
+  ddl.sqlite: .generator.impl.DdlSqliteGeneratorImpl
 
-  dml: generator.impl.DmlGeneratorImpl
+  dml: .generator.impl.DmlGeneratorImpl
 
-  msg.resx: generator.impl.MsgGeneratorImpl
-  msg.json: generator.impl.MsgGeneratorImpl
-  msg.ios: generator.impl.MsgGeneratorImpl
-  msg.android: generator.impl.MsgGeneratorImpl
-  msg.prop: generator.impl.MsgGeneratorImpl
+  msg.resx: .generator.impl.MsgGeneratorImpl
+  msg.json: .generator.impl.MsgGeneratorImpl
+  msg.ios: .generator.impl.MsgGeneratorImpl
+  msg.android: .generator.impl.MsgGeneratorImpl
+  msg.prop: .generator.impl.MsgGeneratorImpl
 
 # reader
 reader:
-  ddl: reader.impl.DdlReaderImpl
-  dml: reader.impl.DmlReaderImpl
-  hashmap: reader.impl.HashMapReaderImpl
-  setting: reader.impl.SettingReaderImpl
-  table: reader.impl.TableReaderImpl
+  ddl: .reader.impl.DdlReaderImpl
+  dml: .reader.impl.DmlReaderImpl
+  hashmap: .reader.impl.HashMapReaderImpl
+  setting: .reader.impl.SettingReaderImpl
+  table: .reader.impl.TableReaderImpl
 
 # translator
 translator:
-  ddl.mysql: translator.impl.DdlMysqlTranslatorImpl
-  ddl.sqlite: translator.impl.DdlSqliteTranslatorImpl
-  ddl.mssql: translator.impl.DdlSqlServerTranslatorImpl
+  ddl.mysql: .translator.impl.DdlMysqlTranslatorImpl
+  ddl.sqlite: .translator.impl.DdlSqliteTranslatorImpl
+  ddl.mssql: .translator.impl.DdlSqlServerTranslatorImpl
 
-  dml: translator.impl.DmlTranslatorImpl
+  dml: .translator.impl.DmlTranslatorImpl
 
-  msg.resx: translator.impl.MsgCSTranslatorImpl
-  msg.json: translator.impl.MsgJsonTranslatorImpl
-  msg.ios: translator.impl.MsgIOSTranslatorImpl
-  msg.android: translator.impl.MsgAndroidTranslatorImpl
-  msg.prop: translator.impl.MsgJavaTranslatorImpl
+  msg.resx: .translator.impl.MsgCSTranslatorImpl
+  msg.json: .translator.impl.MsgJsonTranslatorImpl
+  msg.ios: .translator.impl.MsgIOSTranslatorImpl
+  msg.android: .translator.impl.MsgAndroidTranslatorImpl
+  msg.prop: .translator.impl.MsgJavaTranslatorImpl
 
 # writer
 writer:
-  utf8: writer.impl.Utf8WriterImpl
-  ascii: writer.impl.AsciiWriterImpl
+  utf8: .writer.impl.Utf8WriterImpl
+  ascii: .writer.impl.AsciiWriterImpl

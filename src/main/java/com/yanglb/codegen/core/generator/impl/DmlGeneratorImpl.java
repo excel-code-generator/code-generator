@@ -35,25 +35,25 @@ public class DmlGeneratorImpl extends BaseGenerator {
 	@Override
 	protected void onGeneration() throws CodeGenException {
 		super.onGeneration();
-
-		// 读取必要的配置数据
-		ISettingReader settingReader = GenFactory.createByName(SupportGen.setting_reader);
-		HashMap<String, String> settingMap = settingReader.settingReader("dml");
-		
-		// 读取DML信息表
-		IReader<DmlModel> reader = GenFactory.createByName(SupportGen.dml_reader);
-		// TODO: paramaModel
-		List<DmlModel> list = null;// reader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
-		if(list.size() == 0) {
-			throw new CodeGenException(MsgUtility.getString("E_003"));
-		}
-		
-		// 转换为可写入的Model（单个文件）
-		ITranslator<List<DmlModel>> translator = GenFactory.createByName(SupportGen.dml_translator);
-		WritableModel writableModel = translator.translate(settingMap, this.paramaModel, list);
-		
-		// 写入到文件中
-		IWriter writer = GenFactory.createByName(SupportGen.utf8_writer);
-		writer.writer(writableModel);
+//
+//		// 读取必要的配置数据
+//		ISettingReader settingReader = GenFactory.createByName(SupportGen.setting_reader);
+//		HashMap<String, String> settingMap = settingReader.settingReader("dml");
+//
+//		// 读取DML信息表
+//		IReader<DmlModel> reader = GenFactory.createByName(SupportGen.dml_reader);
+//		// TODO: paramaModel
+//		List<DmlModel> list = null;// reader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
+//		if(list.size() == 0) {
+//			throw new CodeGenException(MsgUtility.getString("E_003"));
+//		}
+//
+//		// 转换为可写入的Model（单个文件）
+//		ITranslator<List<DmlModel>> translator = GenFactory.createByName(SupportGen.dml_translator);
+//		WritableModel writableModel = translator.translate(settingMap, this.paramaModel, list);
+//
+//		// 写入到文件中
+//		IWriter writer = GenFactory.createByName(SupportGen.utf8_writer);
+//		writer.writer(writableModel);
 	}
 }

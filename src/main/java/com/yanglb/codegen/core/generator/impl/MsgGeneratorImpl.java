@@ -31,6 +31,7 @@ import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
 import com.yanglb.codegen.support.SupportLang;
+import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.MsgUtility;
 
 public class MsgGeneratorImpl extends BaseGenerator {
@@ -39,17 +40,18 @@ public class MsgGeneratorImpl extends BaseGenerator {
 		super.onGeneration();
 		
 		// 读取必要的配置数据
-		ISettingReader settingReader = GenFactory.createByName(SupportGen.setting_reader);
+//		ISettingReader settingReader = GenFactory.createByName(Conf.CATEGORY_READER, "setting");
 		// TODO: paramaModel
-		String genKey = null; //String.format("%s_%s", paramaModel.getType().name(), paramaModel.getLang().name());
-		HashMap<String, String> map = settingReader.settingReader(genKey);
-		settingMap.putAll(map);
+//		String genKey = String.format("%s_%s", paramaModel.getType().name(), paramaModel.getLang().name());
+//		HashMap<String, String> map = settingReader.settingReader(genKey);
+//		settingMap.putAll(map);
 		
 		// 读取DB信息表
-		ITableReader tableReader = GenFactory.createByName(SupportGen.table_reader);
+		ITableReader tableReader = GenFactory.createByName(Conf.CATEGORY_READER, "table");
 		tableReader.setStartPoint(3, 2);
 		// TODO: paramaModel
-		List<TableModel> list = null;// tableReader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
+//		List<TableModel> list = tableReader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
+		List<TableModel> list = tableReader.reader(this.paramaModel.getFile(), this.paramaModel.getOptions().getOptionValues("sheets"));
 		if(list.size() == 0) {
 			throw new CodeGenException(MsgUtility.getString("E_003"));
 		}
@@ -78,11 +80,11 @@ public class MsgGeneratorImpl extends BaseGenerator {
 //				}
 				
 				// 转换为可写入的Model（单个文件）
-				ITranslator<List<TableModel>> translator = GenFactory.createByName(supportTrans);
+				ITranslator<List<TableModel>> translator = GenFactory.createByName(Conf.CATEGORY_TRANSLATOR, supportTrans.name());
 				WritableModel writableModel = translator.translate(settingMap, this.paramaModel, list);
 				
 				// 写入到文件中
-				IWriter writer = GenFactory.createByName(supportWriter);
+				IWriter writer = GenFactory.createByName(Conf.CATEGORY_WRITER, supportWriter.name());
 				writer.writer(writableModel);
 			}
 		}

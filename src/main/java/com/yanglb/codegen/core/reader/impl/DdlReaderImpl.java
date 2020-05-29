@@ -17,6 +17,7 @@ package com.yanglb.codegen.core.reader.impl;
 
 import java.util.List;
 
+import com.yanglb.codegen.utils.Conf;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
@@ -70,7 +71,7 @@ public class DdlReaderImpl extends BaseModelReader<DdlModel> {
 		List<DdlDetail> result = null;
 		
 		// 通过 TableReader读取表格内容
-		ITableReader tableReader = GenFactory.createByName(SupportGen.table_reader);
+		ITableReader tableReader = GenFactory.createByName(Conf.CATEGORY_READER, "table");
 		tableReader.setStartPoint(6, 2);
 		TableModel tableModel = tableReader.reader(sheet);
 		

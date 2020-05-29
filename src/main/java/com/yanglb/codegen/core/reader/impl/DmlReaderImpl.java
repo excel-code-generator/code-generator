@@ -15,6 +15,7 @@
  */
 package com.yanglb.codegen.core.reader.impl;
 
+import com.yanglb.codegen.utils.Conf;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
@@ -61,7 +62,7 @@ public class DmlReaderImpl extends BaseModelReader<DmlModel> {
 	 */
 	private TableModel readerTable(XSSFSheet sheet) throws CodeGenException {
 		// 通过 TableReader读取表格内容
-		ITableReader tableReader = GenFactory.createByName(SupportGen.table_reader);
+		ITableReader tableReader = GenFactory.createByName(Conf.CATEGORY_READER, "table");
 		tableReader.setStartPoint(7, 2);
 		return tableReader.reader(sheet);
 	}

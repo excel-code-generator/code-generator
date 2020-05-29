@@ -20,7 +20,6 @@ import com.yanglb.codegen.core.model.ParamaModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
 import com.yanglb.codegen.utils.Conf;
-import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.MsgUtility;
 
 public class GenFactory<T> {
@@ -39,7 +38,7 @@ public class GenFactory<T> {
 		IGenerator generator = null;
 		try {
 			GenFactory<IGenerator> factory = new GenFactory<IGenerator>(); 
-			generator = factory.createFromProperties(paramaModel.getCmd());
+			generator = factory.createFromProperties(Conf.CATEGORY_GENERATOR, paramaModel.getCmd());
 			generator.init(paramaModel);
 		} catch (Exception e) {
 			throw new CodeGenException(MsgUtility.getString("E_010"));
@@ -54,18 +53,17 @@ public class GenFactory<T> {
 	 * @return T的接口实例
 	 * @throws CodeGenException 错误信息
 	 */
-	public static <T> T createByName(SupportGen name) throws CodeGenException {
+	public static <T> T createByName(String category, String name) throws CodeGenException {
 		T result = null;
 		try {
 			GenFactory<T> factory = new GenFactory<T>();
-			result = factory.createFromProperties(name.name());
+			result = factory.createFromProperties(category, name);
 		} catch (Exception e) {
 			throw new CodeGenException(String.format(MsgUtility.getString("E_011"), name, e.getMessage()));
 		}
 		return result;
 	}
-	
-	
+
 	/**
 	 * 根据类名创建
 	 * @param implName
@@ -78,6 +76,7 @@ public class GenFactory<T> {
 	protected T create(String implName) 
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException  {
 		T instance = null;
+		if (implName.startsWith(".")) implName = "com.yanglb.codegen.core" + implName;
 		instance = (T) Class.forName(implName).newInstance();
 		return instance;
 	}
@@ -90,9 +89,9 @@ public class GenFactory<T> {
 	 * @throws IllegalAccessException
 	 * @throws ClassNotFoundException
 	 */
-	protected T createFromProperties(String key) 
+	protected T createFromProperties(String category, String key)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		String className = "com.yanglb.codegen.core." + Conf.getString(Conf.CATEGORY_GENERATOR, key);
+		String className = Conf.getString(category, key);
 		return this.create(className);
 	}
 }
