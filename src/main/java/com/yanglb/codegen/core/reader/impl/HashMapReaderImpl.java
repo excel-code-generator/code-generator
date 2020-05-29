@@ -23,7 +23,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import com.yanglb.codegen.core.reader.BaseReader;
-import com.yanglb.codegen.utility.StringUtility;
+import com.yanglb.codegen.utils.StringUtility;
 
 /**
  * HashMapReaderImpl 及其子类读取的数据不支持写入

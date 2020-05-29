@@ -40,7 +40,8 @@ public class BaseGenerator implements IGenerator{
 				String val = null;
 				Object value = field.get(paramaModel);
 				if(field.getName().equals("sheets")) {
-					val = (paramaModel.getSheets() == null) ? "All" : Arrays.toString(paramaModel.getSheets());
+					// TODO: paramaModel
+//					val = (paramaModel.getSheets() == null) ? "All" : Arrays.toString(paramaModel.getSheets());
 				} else {
 					if(value != null) {
 						val = value.toString();

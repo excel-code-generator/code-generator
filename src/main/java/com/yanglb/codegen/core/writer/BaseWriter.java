@@ -19,7 +19,7 @@ import java.io.File;
 
 import com.yanglb.codegen.core.model.WritableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utility.MsgUtility;
+import com.yanglb.codegen.utils.MsgUtility;
 
 public class BaseWriter implements IWriter{
 	protected WritableModel writableModel;

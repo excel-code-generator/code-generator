@@ -20,7 +20,7 @@ import java.util.Map;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utility.StringUtility;
+import com.yanglb.codegen.utils.StringUtility;
 
 public class MsgJsTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -36,16 +36,18 @@ public class MsgJsTranslatorImpl extends BaseMsgTranslator {
 		super.onTranslate();
 		StringBuilder sb = this.writableModel.getData();
 		String langName = "Lang";
-		if(this.paramaModel.getOptions().get("jsLangName") != null) {
-			langName = this.paramaModel.getOptions().get("jsLangName");
-		}
+		// TODO: paramaModel
+//		if(this.paramaModel.getOptions().get("jsLangName") != null) {
+//			langName = this.paramaModel.getOptions().get("jsLangName");
+//		}
 		sb.append("var ");
 		sb.append(langName);
 		sb.append(" = { \r\n");
 		int rowIndex = 0;
 		
 		// 分组输出
-		if(this.paramaModel.getOptions().get("group") != null) {
+		// TODO: paramaModel
+		if(true /*this.paramaModel.getOptions().get("group") != null*/) {
 			for(TableModel tblModel : this.model) {
 				// 如果没有Sheet名或Sheet名被#注释则添加到Root中
 				String sheetName = tblModel.getSheetName();

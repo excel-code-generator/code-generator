@@ -28,7 +28,7 @@ import com.yanglb.codegen.core.translator.ITranslator;
 import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
-import com.yanglb.codegen.utility.MsgUtility;
+import com.yanglb.codegen.utils.MsgUtility;
 
 public class DmlGeneratorImpl extends BaseGenerator {
 
@@ -42,7 +42,8 @@ public class DmlGeneratorImpl extends BaseGenerator {
 		
 		// 读取DML信息表
 		IReader<DmlModel> reader = GenFactory.createByName(SupportGen.dml_reader);
-		List<DmlModel> list = reader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
+		// TODO: paramaModel
+		List<DmlModel> list = null;// reader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
 		if(list.size() == 0) {
 			throw new CodeGenException(MsgUtility.getString("E_003"));
 		}

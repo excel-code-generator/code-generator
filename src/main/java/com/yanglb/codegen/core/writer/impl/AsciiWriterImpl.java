@@ -20,7 +20,7 @@ import java.io.IOException;
 
 import com.yanglb.codegen.core.writer.BaseWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utility.MsgUtility;
+import com.yanglb.codegen.utils.MsgUtility;
 
 /**
  * ANSI文件写入器

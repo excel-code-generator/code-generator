@@ -20,7 +20,7 @@ import java.util.Map;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utility.StringUtility;
+import com.yanglb.codegen.utils.StringUtility;
 
 public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -40,7 +40,8 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
 		boolean hasDot = false;
 		
 		// 分组输出
-		if(this.paramaModel.getOptions().get("group") != null) {
+//		TODO paramaModel
+		if(false /*this.paramaModel.getOptions().get("group") != null*/) {
 			for(TableModel tblModel : this.model) {
 				// 如果没有Sheet名或Sheet名被#注释则添加到Root中
 				String sheetName = tblModel.getSheetName();

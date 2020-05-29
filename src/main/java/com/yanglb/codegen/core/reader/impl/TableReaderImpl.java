@@ -28,7 +28,7 @@ import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.reader.BaseModelReader;
 import com.yanglb.codegen.core.reader.ITableReader;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utility.StringUtility;
+import com.yanglb.codegen.utils.StringUtility;
 
 public class TableReaderImpl extends BaseModelReader<TableModel> implements ITableReader {
 	

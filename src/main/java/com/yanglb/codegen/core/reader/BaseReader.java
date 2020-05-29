@@ -34,8 +34,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.UnImplementException;
-import com.yanglb.codegen.utility.DataFormatType;
-import com.yanglb.codegen.utility.MsgUtility;
+import com.yanglb.codegen.utils.DataFormatType;
+import com.yanglb.codegen.utils.MsgUtility;
 
 /**
  * 读取类

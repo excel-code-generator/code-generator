@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 yanglb.com
+ * Copyright 2020 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,64 +15,34 @@
  */
 package com.yanglb.codegen.core.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.yanglb.codegen.support.SupportLang;
-import com.yanglb.codegen.support.SupportType;
+import org.apache.commons.cli.CommandLine;
 
 public class ParamaModel {
-	// 生成类型
-	private SupportType type;
-	// 生成语言
-	private SupportLang lang;
-	
-	// 输入Excel文件
-	private String in;
-	
-	// 输出目录
-	private String out;
-		
-	// 要处理的Sheet列表（空时处理所有Sheet）
-	private String[] sheets;
-	
-	// 选项
-	Map<String, String> options = new HashMap<String, String>();
-	
-	public String getOut() {
-		return out;
+	private String cmd;
+	private String file;
+	CommandLine options;
+
+	public String getCmd() {
+		return cmd;
 	}
-	public void setOut(String out) {
-		this.out = out;
+
+	public void setCmd(String cmd) {
+		this.cmd = cmd;
 	}
-	public String getIn() {
-		return in;
+
+	public String getFile() {
+		return file;
 	}
-	public void setIn(String in) {
-		this.in = in;
+
+	public void setFile(String file) {
+		this.file = file;
 	}
-	public String[] getSheets() {
-		return sheets;
-	}
-	public void setSheets(String[] sheets) {
-		this.sheets = sheets;
-	}
-	public SupportType getType() {
-		return type;
-	}
-	public void setType(SupportType type) {
-		this.type = type;
-	}
-	public SupportLang getLang() {
-		return lang;
-	}
-	public void setLang(SupportLang lang) {
-		this.lang = lang;
-	}
-	public Map<String, String> getOptions() {
+
+	public CommandLine getOptions() {
 		return options;
 	}
-	public void setOptions(Map<String, String> options) {
+
+	public void setOptions(CommandLine options) {
 		this.options = options;
 	}
 }

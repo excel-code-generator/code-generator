@@ -21,7 +21,7 @@ import java.util.List;
 
 import com.yanglb.codegen.core.reader.ISettingReader;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utility.Infos;
+import com.yanglb.codegen.utils.Infos;
 
 public class SettingReaderImpl extends HashMapReaderImpl implements ISettingReader {
 	public SettingReaderImpl() {

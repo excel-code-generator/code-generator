@@ -19,9 +19,9 @@ import java.lang.reflect.Field;
 import java.util.Map;
 
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utility.MsgUtility;
-import com.yanglb.codegen.utility.ObjectUtility;
-import com.yanglb.codegen.utility.StringUtility;
+import com.yanglb.codegen.utils.MsgUtility;
+import com.yanglb.codegen.utils.ObjectUtility;
+import com.yanglb.codegen.utils.StringUtility;
 
 public class BeanMapConverter<T> {
 	

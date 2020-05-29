@@ -28,7 +28,7 @@ import com.yanglb.codegen.core.translator.ITranslator;
 import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
-import com.yanglb.codegen.utility.MsgUtility;
+import com.yanglb.codegen.utils.MsgUtility;
 
 public class DdlMySqlGeneratorImpl extends BaseGenerator {
 
@@ -42,7 +42,8 @@ public class DdlMySqlGeneratorImpl extends BaseGenerator {
 		
 		// 读取DB信息表
 		IReader<DdlModel> ddlReader = GenFactory.createByName(SupportGen.ddl_reader);
-		List<DdlModel> list = ddlReader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
+		// TODO: paramaModel
+		List<DdlModel> list = null; //ddlReader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
 		if(list.size() == 0) {
 			throw new CodeGenException(MsgUtility.getString("E_003"));
 		}

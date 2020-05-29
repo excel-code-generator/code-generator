@@ -22,9 +22,9 @@ import java.util.List;
 import com.yanglb.codegen.core.model.ParamaModel;
 import com.yanglb.codegen.core.model.WritableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utility.MsgUtility;
-import com.yanglb.codegen.utility.ObjectUtility;
-import com.yanglb.codegen.utility.StringUtility;
+import com.yanglb.codegen.utils.MsgUtility;
+import com.yanglb.codegen.utils.ObjectUtility;
+import com.yanglb.codegen.utils.StringUtility;
 
 public class BaseTranslator<T> implements ITranslator<T> {
 	protected T model;
@@ -60,13 +60,14 @@ public class BaseTranslator<T> implements ITranslator<T> {
 	 */
 	protected void onBeforeTranslate() throws CodeGenException {
 		// 设置文件名、等初始化操作
+//		TODO: paramaModel
 		this.writableModel.setEncode("utf-8");
-		this.writableModel.setExtension(this.paramaModel.getLang().name());
+//		this.writableModel.setExtension(this.paramaModel.getLang().name());
 		this.writableModel.setFileName("untitled");
 		this.writableModel.setFilePath("");
-		this.writableModel.setLang(this.paramaModel.getLang());
+//		this.writableModel.setLang(this.paramaModel.getLang());
 		this.writableModel.setData(new StringBuilder());
-		this.writableModel.setOutputDir(this.paramaModel.getOut());
+//		this.writableModel.setOutputDir(this.paramaModel.getOut());
 		
 		return;
 	}

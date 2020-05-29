@@ -20,7 +20,7 @@ import java.util.Map;
 import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utility.StringUtility;
+import com.yanglb.codegen.utils.StringUtility;
 
 public class MsgJavaTranslatorImpl extends BaseMsgTranslator {
 	@Override

@@ -16,7 +16,7 @@
 package com.yanglb.codegen.shell;
 
 import com.yanglb.codegen.core.model.ParamaModel;
-import com.yanglb.codegen.core.model.ParamaModel2;
+
 import com.yanglb.codegen.shell.parsers.BaseParser;
 import com.yanglb.codegen.shell.parsers.MsgJSONParser;
 import org.apache.commons.cli.Options;
@@ -31,7 +31,7 @@ public interface ICmdParser {
      * 解析命令数据
      * @return 命令行参数
      */
-    ParamaModel2 parsing() throws IllegalArgumentException;
+    ParamaModel parsing() throws IllegalArgumentException;
 
     static ICmdParser parserByArgs(String[] args) {
         // TODO: 根据命令生成处理器

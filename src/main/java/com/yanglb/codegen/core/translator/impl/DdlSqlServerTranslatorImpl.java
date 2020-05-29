@@ -21,8 +21,8 @@ import com.yanglb.codegen.core.model.ForeignDetailModel;
 import com.yanglb.codegen.core.model.ForeignModel;
 import com.yanglb.codegen.core.translator.BaseDdlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utility.MsgUtility;
-import com.yanglb.codegen.utility.StringUtility;
+import com.yanglb.codegen.utils.MsgUtility;
+import com.yanglb.codegen.utils.StringUtility;
 
 public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 	

@@ -19,8 +19,9 @@ import com.yanglb.codegen.core.generator.IGenerator;
 import com.yanglb.codegen.core.model.ParamaModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
-import com.yanglb.codegen.utility.ConfUtility;
-import com.yanglb.codegen.utility.MsgUtility;
+import com.yanglb.codegen.utils.Conf;
+import com.yanglb.codegen.utils.Conf;
+import com.yanglb.codegen.utils.MsgUtility;
 
 public class GenFactory<T> {
 	// 外部不可创建实例
@@ -35,12 +36,10 @@ public class GenFactory<T> {
 	 * @throws CodeGenException
 	 */
 	public static IGenerator createGenerator(ParamaModel paramaModel) throws CodeGenException{
-		String key = String.format("%s_%s", paramaModel.getType().name(), paramaModel.getLang().name());
-		
 		IGenerator generator = null;
 		try {
 			GenFactory<IGenerator> factory = new GenFactory<IGenerator>(); 
-			generator = factory.createFromProperties(key);
+			generator = factory.createFromProperties(paramaModel.getCmd());
 			generator.init(paramaModel);
 		} catch (Exception e) {
 			throw new CodeGenException(MsgUtility.getString("E_010"));
@@ -93,7 +92,7 @@ public class GenFactory<T> {
 	 */
 	protected T createFromProperties(String key) 
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		String className = ConfUtility.getString(key);
+		String className = "com.yanglb.codegen.core." + Conf.getString(Conf.CATEGORY_GENERATOR, key);
 		return this.create(className);
 	}
 }

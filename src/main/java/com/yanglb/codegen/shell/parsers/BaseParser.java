@@ -16,12 +16,9 @@
 package com.yanglb.codegen.shell.parsers;
 
 import com.yanglb.codegen.core.model.ParamaModel;
-import com.yanglb.codegen.core.model.ParamaModel2;
 import com.yanglb.codegen.shell.ICmdParser;
 import com.yanglb.codegen.support.SupportCmd;
-import com.yanglb.codegen.support.SupportLang;
-import com.yanglb.codegen.support.SupportType;
-import com.yanglb.codegen.utility.Infos;
+import com.yanglb.codegen.utils.Infos;
 import org.apache.commons.cli.*;
 
 import java.io.File;
@@ -100,7 +97,7 @@ public class BaseParser implements ICmdParser {
     }
 
     @Override
-    public ParamaModel2 parsing() {
+    public ParamaModel parsing() {
         CommandLineParser parser = new DefaultParser();
         CommandLine commandLine;
         String cmd;
@@ -139,7 +136,7 @@ public class BaseParser implements ICmdParser {
             throw new IllegalArgumentException("您输入的参数不正确，请使用 --help 命令查看用法。");
         }
 
-        ParamaModel2 model = new ParamaModel2();
+        ParamaModel model = new ParamaModel();
         model.setCmd(cmd);
         model.setFile(file);
         model.setOptions(commandLine);

@@ -23,7 +23,7 @@ import com.yanglb.codegen.core.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseSqlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportLang;
-import com.yanglb.codegen.utility.StringUtility;
+import com.yanglb.codegen.utils.StringUtility;
 
 public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 	@Override
@@ -43,14 +43,15 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 			fileName = fileName.substring(0, index);
 		}
 		this.writableModel.setFileName(fileName);
-		
-		Map<String, String> options = this.paramaModel.getOptions();
-		if (options.containsKey("type")) {
-			String type = options.get("type");
-			if (type.equals("mysql")) {
-				this.sqlColumnEnd = this.sqlColumnStart = "`";
-			}
-		}
+
+		// TODO: paramaModel
+//		Map<String, String> options = this.paramaModel.getOptions();
+//		if (options.containsKey("type")) {
+//			String type = options.get("type");
+//			if (type.equals("mysql")) {
+//				this.sqlColumnEnd = this.sqlColumnStart = "`";
+//			}
+//		}
 	}
 
 	@Override

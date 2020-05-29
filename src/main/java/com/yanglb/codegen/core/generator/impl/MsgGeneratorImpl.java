@@ -31,7 +31,7 @@ import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
 import com.yanglb.codegen.support.SupportLang;
-import com.yanglb.codegen.utility.MsgUtility;
+import com.yanglb.codegen.utils.MsgUtility;
 
 public class MsgGeneratorImpl extends BaseGenerator {
 	@Override
@@ -40,14 +40,16 @@ public class MsgGeneratorImpl extends BaseGenerator {
 		
 		// 读取必要的配置数据
 		ISettingReader settingReader = GenFactory.createByName(SupportGen.setting_reader);
-		String genKey = String.format("%s_%s", paramaModel.getType().name(), paramaModel.getLang().name());
+		// TODO: paramaModel
+		String genKey = null; //String.format("%s_%s", paramaModel.getType().name(), paramaModel.getLang().name());
 		HashMap<String, String> map = settingReader.settingReader(genKey);
 		settingMap.putAll(map);
 		
 		// 读取DB信息表
 		ITableReader tableReader = GenFactory.createByName(SupportGen.table_reader);
 		tableReader.setStartPoint(3, 2);
-		List<TableModel> list = tableReader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
+		// TODO: paramaModel
+		List<TableModel> list = null;// tableReader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
 		if(list.size() == 0) {
 			throw new CodeGenException(MsgUtility.getString("E_003"));
 		}
@@ -62,17 +64,18 @@ public class MsgGeneratorImpl extends BaseGenerator {
 				settingMap.put("MsgLang", key);
 				SupportGen supportTrans = SupportGen.msg_js_translator;
 				SupportGen supportWriter = SupportGen.utf8_writer;
-				if(this.paramaModel.getLang() == SupportLang.java) {
-					supportTrans = SupportGen.msg_java_translator;
-				} else if (this.paramaModel.getLang() == SupportLang.json) {
-					supportTrans = SupportGen.msg_json_translator;
-				} else if (this.paramaModel.getLang() == SupportLang.cs) {
-					supportTrans = SupportGen.msg_cs_translator;
-				} else if (this.paramaModel.getLang() == SupportLang.ios) {
-					supportTrans = SupportGen.msg_ios_translator;
-				} else if (this.paramaModel.getLang() == SupportLang.android) {
-					supportTrans = SupportGen.msg_android_translator;
-				}
+				// TODO: paramaModel
+//				if(this.paramaModel.getLang() == SupportLang.java) {
+//					supportTrans = SupportGen.msg_java_translator;
+//				} else if (this.paramaModel.getLang() == SupportLang.json) {
+//					supportTrans = SupportGen.msg_json_translator;
+//				} else if (this.paramaModel.getLang() == SupportLang.cs) {
+//					supportTrans = SupportGen.msg_cs_translator;
+//				} else if (this.paramaModel.getLang() == SupportLang.ios) {
+//					supportTrans = SupportGen.msg_ios_translator;
+//				} else if (this.paramaModel.getLang() == SupportLang.android) {
+//					supportTrans = SupportGen.msg_android_translator;
+//				}
 				
 				// 转换为可写入的Model（单个文件）
 				ITranslator<List<TableModel>> translator = GenFactory.createByName(supportTrans);
