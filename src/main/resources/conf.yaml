@@ -1,8 +1,8 @@
 # generator
 generator:
-  ddl.mssql: .generator.impl.DdlSqlServerGeneratorImpl
-  ddl.mysql: .generator.impl.DdlMySqlGeneratorImpl
-  ddl.sqlite: .generator.impl.DdlSqliteGeneratorImpl
+  ddl.mssql: .generator.impl.DdlGeneratorImpl
+  ddl.mysql: .generator.impl.DdlGeneratorImpl
+  ddl.sqlite: .generator.impl.DdlGeneratorImpl
 
   dml: .generator.impl.DmlGeneratorImpl
 

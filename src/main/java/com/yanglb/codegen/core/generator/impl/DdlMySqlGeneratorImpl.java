@@ -28,6 +28,7 @@ import com.yanglb.codegen.core.translator.ITranslator;
 import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.support.SupportGen;
+import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.MsgUtility;
 
 public class DdlMySqlGeneratorImpl extends BaseGenerator {
@@ -35,25 +36,31 @@ public class DdlMySqlGeneratorImpl extends BaseGenerator {
 	@Override
 	protected void onGeneration() throws CodeGenException {
 		super.onGeneration();
-//
-//		// 读取必要的配置数据
+
+		// 读取必要的配置数据
+		// TODO: setting
 //		ISettingReader settingReader = GenFactory.createByName(SupportGen.setting_reader);
 //		HashMap<String, String> settingMap = settingReader.settingReader("ddl");
-//
-//		// 读取DB信息表
-//		IReader<DdlModel> ddlReader = GenFactory.createByName(SupportGen.ddl_reader);
-//		// TODO: paramaModel
-//		List<DdlModel> list = null; //ddlReader.reader(this.paramaModel.getIn(), this.paramaModel.getSheets());
-//		if(list.size() == 0) {
-//			throw new CodeGenException(MsgUtility.getString("E_003"));
-//		}
-//
-//		// 转换为可写入的Model（单个文件）
-//		ITranslator<List<DdlModel>> translator = GenFactory.createByName(SupportGen.ddl_mysql_translator);
-//		WritableModel writableModel = translator.translate(settingMap, this.paramaModel, list);
-//
-//		// 写入到文件中
-//		IWriter writer = GenFactory.createByName(SupportGen.utf8_writer);
-//		writer.writer(writableModel);
+
+		// 读取DB信息表
+		IReader<DdlModel> ddlReader = GenFactory.createByName(Conf.CATEGORY_READER, SupportGen.Reader.ddl.name());
+		// TODO: paramaModel
+		List<DdlModel> list = ddlReader.reader(this.paramaModel.getFile(), this.paramaModel.getSheets());
+		if(list.size() == 0) {
+			throw new CodeGenException(MsgUtility.getString("E_003"));
+		}
+
+		// 转换为可写入的Model（单个文件）
+		String trans = paramaModel.getCmd();
+		ITranslator<List<DdlModel>> translator = GenFactory.createByName(Conf.CATEGORY_TRANSLATOR, trans);
+		WritableModel writableModel = translator.translate(settingMap, this.paramaModel, list);
+
+		// 默认使用UTF-8编码
+		SupportGen.Writer supportWriter = SupportGen.Writer.utf8;
+		if (writableModel.getEncode() == "ascii") supportWriter = SupportGen.Writer.ascii;
+
+		// 写入到文件中
+		IWriter writer = GenFactory.createByName(Conf.CATEGORY_WRITER, supportWriter.name());
+		writer.writer(writableModel);
 	}
 }

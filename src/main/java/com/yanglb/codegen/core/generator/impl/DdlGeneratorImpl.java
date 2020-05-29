@@ -15,16 +15,11 @@
  */
 package com.yanglb.codegen.core.generator.impl;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.generator.BaseGenerator;
 import com.yanglb.codegen.core.model.DdlModel;
-import com.yanglb.codegen.core.model.DmlModel;
 import com.yanglb.codegen.core.model.WritableModel;
 import com.yanglb.codegen.core.reader.IReader;
-import com.yanglb.codegen.core.reader.ISettingReader;
 import com.yanglb.codegen.core.translator.ITranslator;
 import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
@@ -32,7 +27,9 @@ import com.yanglb.codegen.support.SupportGen;
 import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.MsgUtility;
 
-public class DmlGeneratorImpl extends BaseGenerator {
+import java.util.List;
+
+public class DdlGeneratorImpl extends BaseGenerator {
 
 	@Override
 	protected void onGeneration() throws CodeGenException {
@@ -41,17 +38,18 @@ public class DmlGeneratorImpl extends BaseGenerator {
 		// 读取必要的配置数据
 		// TODO: setting
 //		ISettingReader settingReader = GenFactory.createByName(SupportGen.setting_reader);
-//		HashMap<String, String> settingMap = settingReader.settingReader("dml");
+//		HashMap<String, String> settingMap = settingReader.settingReader("ddl");
 
-		// 读取DML信息表
-		IReader<DdlModel> ddlReader = GenFactory.createByName(Conf.CATEGORY_READER, SupportGen.Reader.dml.name());
+		// 读取DB信息表
+		IReader<DdlModel> ddlReader = GenFactory.createByName(Conf.CATEGORY_READER, SupportGen.Reader.ddl.name());
 		List<DdlModel> list = ddlReader.reader(this.paramaModel.getFile(), this.paramaModel.getSheets());
 		if(list.size() == 0) {
 			throw new CodeGenException(MsgUtility.getString("E_003"));
 		}
 
 		// 转换为可写入的Model（单个文件）
-		ITranslator<List<DdlModel>> translator = GenFactory.createByName(Conf.CATEGORY_TRANSLATOR, "dml");
+		String trans = paramaModel.getCmd();
+		ITranslator<List<DdlModel>> translator = GenFactory.createByName(Conf.CATEGORY_TRANSLATOR, trans);
 		WritableModel writableModel = translator.translate(settingMap, this.paramaModel, list);
 
 		// 默认使用UTF-8编码

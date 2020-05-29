@@ -24,7 +24,11 @@ import com.yanglb.codegen.exceptions.ParamaCheckException;
 public class CodeGenShell {
 	public boolean invoke(String[] args) {
 
-		args = new String[] {"msg.android", "/Users/yanglibing/Work/ACON/src/ACON/i18n/AppResources.xlsx", "-combine"};
+		// test data
+		args = new String[] {"msg.android", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-combine"};
+		args = new String[] {"ddl.sqlite", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
+		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
+
 		ICmdParser parser = ICmdParser.parserByArgs(args);
 		ParamaModel model;
 		try {
