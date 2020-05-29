@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.yanglb.codegen.core.parser.impl;
+package com.yanglb.codegen.core.parser;
 
 import com.yanglb.codegen.model.ParamaModel;
 import com.yanglb.codegen.core.parser.IParser;

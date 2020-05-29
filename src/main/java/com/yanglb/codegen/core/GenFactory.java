@@ -19,7 +19,6 @@ import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.Resources;
 
 public class GenFactory<T> {
-	// 外部不可创建实例
 	private GenFactory() {
 	}
 

@@ -1,23 +1,23 @@
 # Commands
 command:
   ddl.mysql:
-    parser: .core.parser.impl.BaseParser
+    parser: .core.parser.BaseParser
     generator: .core.generator.impl.DdlGeneratorImpl
     reader: .core.reader.impl.DdlReaderImpl
     translator: .core.translator.impl.DdlMysqlTranslatorImpl
   ddl.mssql:
-    parser: .core.parser.impl.BaseParser
+    parser: .core.parser.BaseParser
     generator: .core.generator.impl.DdlGeneratorImpl
     reader: .core.reader.impl.DdlReaderImpl
     translator: .core.translator.impl.DdlSqlServerTranslatorImpl
   ddl.sqlite:
-    parser: .core.parser.impl.BaseParser
+    parser: .core.parser.BaseParser
     generator: .core.generator.impl.DdlGeneratorImpl
     reader: .core.reader.impl.DdlReaderImpl
     translator: .core.translator.impl.DdlSqliteTranslatorImpl
 
   dml:
-    parser: .core.parser.impl.BaseParser
+    parser: .core.parser.BaseParser
     generator: .core.generator.impl.DmlGeneratorImpl
     reader: .core.reader.impl.DmlReaderImpl
     translator: .core.translator.impl.DmlTranslatorImpl

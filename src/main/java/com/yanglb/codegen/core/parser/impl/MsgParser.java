@@ -1,5 +1,7 @@
 package com.yanglb.codegen.core.parser.impl;
 
+import com.yanglb.codegen.core.parser.BaseParser;
+
 public class MsgParser extends BaseParser {
     @Override
     protected boolean headerHelp() {
