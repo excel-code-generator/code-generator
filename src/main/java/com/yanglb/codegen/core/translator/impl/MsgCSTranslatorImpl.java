@@ -15,15 +15,21 @@
  */
 package com.yanglb.codegen.core.translator.impl;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
 import com.yanglb.codegen.utils.StringUtil;
+import org.yaml.snakeyaml.reader.StreamReader;
+import org.yaml.snakeyaml.reader.UnicodeReader;
 
 public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -31,6 +37,26 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 		super.onBeforeTranslate();
 		
 		this.writableModel.setExtension("resx");
+	}
+
+	protected String readResource(String path) throws CodeGenException {
+		InputStream inputStream = Conf.class
+				.getClassLoader()
+				.getResourceAsStream(path);
+
+		BufferedReader reader = new BufferedReader(new UnicodeReader(inputStream));
+		StringBuilder sb = new StringBuilder();
+		try {
+			String tmp;
+			while ((tmp = reader.readLine()) != null) {
+				sb.append(tmp);
+				sb.append("\n");
+			}
+			reader.close();
+		} catch (IOException ex) {
+			throw new CodeGenException(String.format(Resources.getString("E_014"), path));
+		}
+		return sb.toString();
 	}
 
 	@Override
@@ -42,11 +68,12 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 				"<root>\r\n");
 		
 		if (this.isDefaultLanguage()) {
-			sb.append(this.settingMap.get("schema"));
+			sb.append(readResource("msg/resx/schema.txt"));
 		}
 		
 		// 添加 resheader 
-		sb.append(this.settingMap.get("resheader"));
+//		sb.append(this.settingMap.get("resheader"));
+		sb.append(readResource("msg/resx/resheader.txt"));
 		
 		// 替换标记
 		String s = this.replaceFlags(sb.toString(), null);

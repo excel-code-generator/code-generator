@@ -26,10 +26,10 @@ public class CGShell {
 	public boolean invoke(String[] args) {
 
 		// test data
-//		args = new String[] {"msg.prop", "/Users/yanglibing/Work/cg/tests/msg.xlsx"};
+		args = new String[] {"msg.resx", "/Users/yanglibing/Work/cg/tests/msg.xlsx"};
 //		args = new String[] {"ddl.sqlite", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
 //		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
-		args = new String[] {"ddl.mssql", "-h"};
+//		args = new String[] {"ddl.mssql", "-v"};
 //		args = new String[] {"msg.prop", "src/main/resources/message.xlsx", "-fn", "message"};
 
 		IParser parser = IParser.parserByArgs(args);
