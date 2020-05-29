@@ -18,6 +18,7 @@ package com.yanglb.codegen.shell;
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.generator.IGenerator;
 import com.yanglb.codegen.core.model.ParamaModel;
+import com.yanglb.codegen.core.parser.IParser;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
 
@@ -31,7 +32,7 @@ public class CodeGenShell {
 //		args = new String[] {"dml2", "-h"};
 		args = new String[] {"msg.prop", "src/main/resources/i18n.xlsx", "-fn", "message"};
 
-		ICmdParser parser = ICmdParser.parserByArgs(args);
+		IParser parser = IParser.parserByArgs(args);
 		ParamaModel model;
 		try {
 			model = parser.parsing();

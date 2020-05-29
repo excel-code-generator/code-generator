@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.yanglb.codegen.shell.parsers;
+package com.yanglb.codegen.core.parser.impl;
 
 import com.yanglb.codegen.core.model.ParamaModel;
-import com.yanglb.codegen.shell.ICmdParser;
+import com.yanglb.codegen.core.parser.IParser;
 import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
@@ -26,7 +26,7 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
-public class BaseParser implements ICmdParser {
+public class BaseParser implements IParser {
     protected String[] args;
     @Override
     public void setArgs(String[] args) {

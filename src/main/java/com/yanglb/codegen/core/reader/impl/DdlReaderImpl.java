@@ -68,7 +68,7 @@ public class DdlReaderImpl extends BaseModelReader<DdlModel> {
 		List<DdlDetail> result = null;
 		
 		// 通过 TableReader读取表格内容
-		ITableReader tableReader = GenFactory.createByName(Conf.getString(Conf.CATEGORY_READER, "table"));
+		ITableReader tableReader = GenFactory.createByName(Conf.getString(Conf.CATEGORY_READER, SupportGen.Reader.table.name()));
 		tableReader.setStartPoint(6, 2);
 		TableModel tableModel = tableReader.reader(sheet);
 		

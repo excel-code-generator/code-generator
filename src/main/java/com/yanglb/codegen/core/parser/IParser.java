@@ -13,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.yanglb.codegen.shell;
+package com.yanglb.codegen.core.parser;
 
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.model.CmdModel;
 import com.yanglb.codegen.core.model.ParamaModel;
-import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.shell.parsers.BaseParser;
+import com.yanglb.codegen.core.parser.impl.BaseParser;
 import com.yanglb.codegen.utils.Conf;
 
-public interface ICmdParser {
+public interface IParser {
     void setArgs(String[] args);
 
     /**
@@ -36,8 +35,8 @@ public interface ICmdParser {
      */
     ParamaModel parsing() throws IllegalArgumentException;
 
-    static ICmdParser parserByArgs(String[] args) {
-        ICmdParser parser;
+    static IParser parserByArgs(String[] args) {
+        IParser parser;
         String cmd = args[0];
         CmdModel model = Conf.getCmdModel(cmd);
 

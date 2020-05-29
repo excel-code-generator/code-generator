@@ -1,4 +1,4 @@
-package com.yanglb.codegen.shell.parsers;
+package com.yanglb.codegen.core.parser.impl;
 
 public class MsgParser extends BaseParser {
     @Override

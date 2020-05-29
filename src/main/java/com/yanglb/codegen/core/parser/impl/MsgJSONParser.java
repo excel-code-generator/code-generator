@@ -1,4 +1,4 @@
-package com.yanglb.codegen.shell.parsers;
+package com.yanglb.codegen.core.parser.impl;
 
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
