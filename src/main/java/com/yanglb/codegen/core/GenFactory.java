@@ -15,35 +15,14 @@
  */
 package com.yanglb.codegen.core;
 
-import com.yanglb.codegen.core.generator.IGenerator;
-import com.yanglb.codegen.core.model.ParamaModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Resources;
 
 public class GenFactory<T> {
 	// 外部不可创建实例
 	private GenFactory() {
-		
 	}
-//
-//	/**
-//	 * 创建生成器
-//	 * @param paramaModel 参数模型
-//	 * @return IGenerator
-//	 * @throws CodeGenException
-//	 */
-//	public static IGenerator createGenerator(ParamaModel paramaModel) throws CodeGenException{
-//		IGenerator generator = null;
-//		try {
-//			generator = createByName(paramaModel.getCmdModel().getGenerator());
-//			generator.init(paramaModel);
-//		} catch (Exception e) {
-//			throw new CodeGenException(Resources.getString("E_010"));
-//		}
-//		return generator;
-//	}
-	
+
 	/**
 	 * 根据配置文件中配置的名字创建
 	 * @param <T> 创建接口类型
@@ -61,15 +40,7 @@ public class GenFactory<T> {
 		return result;
 	}
 
-	/**
-	 * 根据类名创建
-	 * @param implName
-	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ClassNotFoundException
-	 */
-	protected T create(String implName)
+	private T create(String implName)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException  {
 		T instance = null;
 		if (implName.startsWith(".")) implName = "com.yanglb.codegen" + implName;

@@ -16,7 +16,6 @@
 package com.yanglb.codegen.utils;
 
 import com.yanglb.codegen.core.model.CmdModel;
-import jdk.nashorn.internal.ir.CallNode;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
@@ -48,12 +47,9 @@ public class Conf {
 		return model;
 	}
 
-	public static String CATEGORY_GENERATOR = "generator";
 	public static String CATEGORY_READER = "reader";
-	public static String CATEGORY_TRANSLATOR = "translator";
 	public static String CATEGORY_WRITER = "writer";
-	public static String CATEGORY_PARSER = "parser";
-	
+
 	public static String getString(String category, String key) {
 		// 初始化
 		init();
