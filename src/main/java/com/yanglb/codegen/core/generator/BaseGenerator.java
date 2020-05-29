@@ -26,6 +26,8 @@ import com.yanglb.codegen.core.model.OptionModel;
 import com.yanglb.codegen.core.model.ParamaModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
 
 public class BaseGenerator implements IGenerator{
 	protected ParamaModel paramaModel;
@@ -34,34 +36,22 @@ public class BaseGenerator implements IGenerator{
 	
 	protected void printInfo() {
 		System.out.println("生成信息:");
-		for(Field field:this.paramaModel.getClass().getDeclaredFields()) {
-			try {
-				field.setAccessible(true);
-				String val = null;
-				Object value = field.get(paramaModel);
-				if(field.getName().equals("sheets")) {
-					// TODO: paramaModel
-//					val = (paramaModel.getSheets() == null) ? "All" : Arrays.toString(paramaModel.getSheets());
-				} else {
-					if(value != null) {
-						val = value.toString();
-					}
-				}
-				System.out.printf("%8s: %s\r\n", field.getName(), val);
-			} catch (Exception e) {
-				e.printStackTrace();
+		System.out.printf("%8s: %s\r\n", "cmd", paramaModel.getCmd());
+		System.out.printf("%8s: %s\r\n", "file", paramaModel.getFile());
+		System.out.printf("%8s: \r\n", "options");
+		CommandLine cl = paramaModel.getOptions();
+		for(Option opt : cl.getOptions()) {
+			String s = opt.getLongOpt();
+			if (s == null) s = opt.getOpt();
+			if (opt.hasArgs()) {
+				System.out.printf("%8s-%s=%s\r\n", "", s, opt.getValuesList());
+			} else if (opt.hasArg()) {
+				System.out.printf("%8s-%s=%s\r\n", "", s, opt.getValue());
+			} else {
+				System.out.printf("%8s-%s\r\n", "", s);
 			}
 		}
 		System.out.println();
-		if(this.supportOptions.size()>0) {
-			System.out.println("可用的选项:");
-			for(OptionModel itm : this.supportOptions) {
-				System.out.println(String.format("  --%-10s [%s]", 
-						itm.getName(),
-						itm.isNecessary()? "必要" : "可选"));
-			}
-			System.out.println();
-		}
 	}
 
 	/**

@@ -20,12 +20,11 @@ import com.yanglb.codegen.core.generator.IGenerator;
 import com.yanglb.codegen.core.model.ParamaModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
-import org.apache.commons.cli.Options;
 
 public class CodeGenShell {
 	public boolean invoke(String[] args) {
 
-		args = new String[] {"msg.json", "/Users/yanglibing/Work/ACON/src/ACON/i18n/AppResources.xlsx", "-s", "test", "test1", "v"};
+		args = new String[] {"msg.json", "/Users/yanglibing/Work/ACON/src/ACON/i18n/AppResources.xlsx", "-s", "test", "test1", "v", "-combine", "-out", "ttf"};
 		ICmdParser parser = ICmdParser.parserByArgs(args);
 		ParamaModel model;
 		try {
