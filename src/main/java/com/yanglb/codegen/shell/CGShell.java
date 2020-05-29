@@ -29,7 +29,7 @@ public class CGShell {
 		args = new String[] {"msg.json", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-c1", "-fn", "ttt"};
 		args = new String[] {"ddl.mysql", "/Users/yanglibing/Work/cg/tests/ddl.xlsx"};
 		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
-		args = new String[] {"dml2", "-h"};
+		args = new String[] {"msg.ios", "-h"};
 //		args = new String[] {"msg.prop", "src/main/resources/i18n.xlsx", "-fn", "message"};
 
 		IParser parser = IParser.parserByArgs(args);

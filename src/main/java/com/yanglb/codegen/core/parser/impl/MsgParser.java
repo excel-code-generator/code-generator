@@ -12,4 +12,9 @@ public class MsgParser extends BaseParser {
     protected boolean commandHelp() {
         return false;
     }
+
+    @Override
+    protected boolean examplesHelp() {
+        return false;
+    }
 }

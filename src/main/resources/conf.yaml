@@ -1,47 +1,49 @@
 # Commands
 command:
   ddl.mysql:
-    parser: .core.parser.BaseParser
+    parser: .core.parser.impl.BaseParser
     generator: .core.generator.impl.DdlGeneratorImpl
     reader: .core.reader.impl.DdlReaderImpl
     translator: .core.translator.impl.DdlMysqlTranslatorImpl
   ddl.mssql:
-    parser: .core.parser.BaseParser
+    parser: .core.parser.impl.BaseParser
     generator: .core.generator.impl.DdlGeneratorImpl
     reader: .core.reader.impl.DdlReaderImpl
     translator: .core.translator.impl.DdlSqlServerTranslatorImpl
   ddl.sqlite:
-    parser: .core.parser.BaseParser
+    parser: .core.parser.impl.BaseParser
     generator: .core.generator.impl.DdlGeneratorImpl
     reader: .core.reader.impl.DdlReaderImpl
     translator: .core.translator.impl.DdlSqliteTranslatorImpl
+
   dml:
-    parser: .core.parser.BaseParser
+    parser: .core.parser.impl.BaseParser
     generator: .core.generator.impl.DmlGeneratorImpl
     reader: .core.reader.impl.DmlReaderImpl
     translator: .core.translator.impl.DmlTranslatorImpl
+
   msg.resx:
-    parser: .core.parser.BaseParser
+    parser: .core.parser.impl.MsgParser
     generator: .core.generator.impl.MsgGeneratorImpl
     reader: .core.reader.impl.TableReaderImpl
     translator: .core.translator.impl.MsgCSTranslatorImpl
   msg.json:
-    parser: .core.parser.BaseParser
+    parser: .core.parser.impl.MsgJSONParser
     generator: .core.generator.impl.MsgGeneratorImpl
     reader: .core.reader.impl.TableReaderImpl
     translator: .core.translator.impl.MsgJsonTranslatorImpl
   msg.ios:
-    parser: .core.parser.BaseParser
+    parser: .core.parser.impl.MsgParser
     generator: .core.generator.impl.MsgGeneratorImpl
     reader: .core.reader.impl.TableReaderImpl
     translator: .core.translator.impl.MsgIOSTranslatorImpl
   msg.android:
-    parser: .core.parser.BaseParser
+    parser: .core.parser.impl.MsgParser
     generator: .core.generator.impl.MsgGeneratorImpl
     reader: .core.reader.impl.TableReaderImpl
     translator: .core.translator.impl.MsgAndroidTranslatorImpl
   msg.prop:
-    parser: .core.parser.BaseParser
+    parser: .core.parser.impl.MsgParser
     generator: .core.generator.impl.MsgGeneratorImpl
     reader: .core.reader.impl.TableReaderImpl
     translator: .core.translator.impl.MsgJavaTranslatorImpl

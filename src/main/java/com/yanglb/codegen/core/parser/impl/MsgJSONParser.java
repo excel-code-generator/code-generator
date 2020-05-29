@@ -29,9 +29,4 @@ public class MsgJSONParser extends MsgParser {
         System.out.println("用法：cg msg.json file [options]");
         return true;
     }
-
-    @Override
-    protected boolean examplesHelp() {
-        return false;
-    }
 }
