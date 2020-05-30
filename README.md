@@ -1,38 +1,62 @@
-# Code Generator
+# Code Generator 4
 此工具主要用于将Excel模板文档转换为数据库结构、初始数据的sql及多语言资源代码。
 
 ## 主要功能
 * 生成Mysql/SQLServer/SQLite的数据库结构代码（ddl）
 * 生成初始数据的sql代码（dml）
-* 生成js/json/java格式的国际化资源代码
+* 生成适用于android/ios/json/java/.net等格式的国际化资源代码
 
 ## 参数说明
 ```
-用法：
-cg -type 生成类型 -lang 生成语言 -in 输入文件 [-sheets 要生成的Sheet名1[,2]] [-out 输出目录]
+用法：cg command file [options]
+Commands: 
+ ddl.mssql              生成SqlServer数据库结构SQL脚本（.ddl）。
+ ddl.mysql              生成MySql数据库结构SQL脚本（.ddl）。
+ ddl.sqlite             生成SQLite数据库结构SQL脚本（.ddl）。
+ dml                    生成数据库初始 数据SQL脚本（.dml）。
+ msg.android            生成Android国际化资源文件（strings.xml）。
+ msg.ios                生成IOS国际化资源文件（.strings）。
+ msg.json               生成JSON国际化资源文件（.json）。
+ msg.prop               生成Java国际化资源文件（.properties）。
+ msg.resx               生成.NET国际化资源文件（.resx）。
 
-选项：
-   -type: ddl_mysql|ddl_sqlserver|ddl_sqlite|dml|msg
-   -lang: java|sql|js|json
+Options:
+ -fn,--file-name <fn>   生成的文件名，默认为Excel名。
+ -h,--help              显示帮助信息。
+ -out,--out-dir <dir>   输出目录，默认输出到 ./out 目录下。
+ -s,--sheets <names>    要处理的Excel Sheet名，默认全部，"#"开头的不处理。
+ -v,--version           打印版本信息。
 
-默认值：
-   -type: 无
-   -lang: java (type为 ddl/dml时默认值为sql)
-     -in: 无
- -sheets: 所有
-    -out: ./out
+示例: 
+ cg msg.json 001.xlsx
+ cg msg.resx 001.xlsx --sheets Sheet1 Sheet2 Sheet5
+
+帮助: 
+ cg ddl.mysql --help    显示数生成据库结构的更多帮助信息。
+ cg dml --help          显示生成初始数据的更多帮助信息。
+ cg msg.json --help     显示生成国际化资源的更多帮助信息。
+通过 cg command --help 查看详细命令。
+
+---
+Code Generator v4.0.0
+By https://yanglb.com
+
 ```
 
 ## 用法示例
 ```sh
-java -jar cg.jar -type ddl_mysql -lang sql -in xxx.xlsx -out ./out --type mysql
+# 生成 MySql 数据库结构脚本
+java -jar cg4.jar ddl.mysql database.xlsx --engine myisam
 
+# 生成 JSON 多语言资源
+java -jar cg4.jar msg.json msg.xlsx
 ```
 
-> 详细请参考示例 [example](example)
+## 升级说明
+4.x版本不兼容老版本的命令行参数，但Excel模板在所有版本下均可正常使用。
 
 ## License
 
-Copyright (c) Copyright 2015-2019 yanglb.com. All rights reserved.
+Copyright (c) Copyright 2015-2020 yanglb.com. All rights reserved.
 
 Licensed under the [Apache License 2.0](LICENSE) license.
