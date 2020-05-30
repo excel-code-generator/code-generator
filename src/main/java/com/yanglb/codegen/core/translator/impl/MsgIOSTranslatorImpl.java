@@ -24,6 +24,7 @@ import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
 import com.yanglb.codegen.utils.StringUtil;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -60,7 +61,8 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 				keys.put(id, true);
 				
 				// 对字符串进行转换
-				String value = this.convert2CSCode(itm.get(this.msgLang));
+				id = escape(id);
+				String value = this.escape(itm.get(this.msgLang));
 				sb.append(String.format("\"%s\" = \"%s\";\r\n", id, value));
 			}
 		}
@@ -68,13 +70,14 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 		this.writableModel.setData(sb);
 	}
 	
-	private String convert2CSCode(String value) {
+	private String escape(String value) {
 		if(value == null) return null;
-		
-		// 先替换\r\n，防止有文档只有\r或\n 后面再替换一次
-		value = value.replaceAll("\r\n", "\\\\r\\\\n");
-		value = value.replaceAll("\r", "\\\\r\\\\n");
-		value = value.replaceAll("\n", "\\\\r\\\\n");
+
+		value = value.replaceAll("\\\\", "\\\\\\\\");
+		value = value.replaceAll("\"", "\\\\\"");
+
+		value = value.replaceAll("\r", "");
+		value = value.replaceAll("\n", "\\\\n");
 		return value;
 	}
 }
