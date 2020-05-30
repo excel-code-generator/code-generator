@@ -57,11 +57,7 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 		sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
 				Infos.xmlHeader() +
 				"<resources>\r\n");
-		
-		// 替换标记
-		String s = this.replaceFlags(sb.toString(), null);
-		sb = new StringBuilder(s);
-		
+
 		// 用于检查相同的key
 		Map<String, Boolean> keys = new HashMap<String, Boolean>();
 		Map<String, List<String>> arrays = new HashMap<String, List<String>>();

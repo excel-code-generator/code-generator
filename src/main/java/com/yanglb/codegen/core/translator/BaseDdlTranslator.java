@@ -151,7 +151,7 @@ public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
 				// 外键表
 				DdlDetail foreignColumnModel = null;
 				
-				if(foreigns==null || foreigns.length !=2) {
+				if(foreigns.length != 2) {
 					result = false;
 					break;
 				}
@@ -175,7 +175,7 @@ public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
 				foreignDetailModel.setDdlDetail(detail);
 				foreignDetailModel.setForeignDdlModel(foreignTableModel);
 				foreignDetailModel.setForeignDdlDetail(foreignColumnModel);
-			}while(false);
+			} while(false);
 			
 			// 失败时直接抛出异常
 			if(!result) {

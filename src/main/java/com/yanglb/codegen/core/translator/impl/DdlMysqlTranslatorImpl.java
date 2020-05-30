@@ -211,12 +211,10 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		if (detail.getColLength() != null) {
 			if (detail.getColPrecision() != null) {
 				// 长度及精度都有 NUMBER(10,2)
-				type = String.format("%s(%d, %d)", type, detail.getColLength()
-						.intValue(), detail.getColPrecision().intValue());
+				type = String.format("%s(%d, %d)", type, detail.getColLength(), detail.getColPrecision());
 			} else {
 				// 只有长度 VARCHAR2(10)
-				type = String.format("%s(%d)", type, detail.getColLength()
-						.intValue());
+				type = String.format("%s(%d)", type, detail.getColLength());
 			}
 		} else {
 			// 暂时忽略这种情况

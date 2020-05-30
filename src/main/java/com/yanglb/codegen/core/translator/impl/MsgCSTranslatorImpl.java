@@ -74,10 +74,6 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 		// 添加 resheader
 		sb.append(readResource("msg/resx/resheader.txt"));
 		
-		// 替换标记
-		String s = this.replaceFlags(sb.toString(), null);
-		sb = new StringBuilder(s);
-		
 		// 用于检查相同的key
 		Map<String, Boolean> keys = new HashMap<String, Boolean>();
 		for(TableModel tblModel : this.model) {

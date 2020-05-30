@@ -46,10 +46,6 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 		sb.append(Infos.cHeader());
 		sb.append("\n");
 
-		// 替换标记
-		String s = this.replaceFlags(sb.toString(), null);
-		sb = new StringBuilder(s);
-		
 		// 用于检查相同的key
 		Map<String, Boolean> keys = new HashMap<String, Boolean>();
 		for(TableModel tblModel : this.model) {
