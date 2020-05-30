@@ -26,6 +26,7 @@ import com.yanglb.codegen.model.ForeignDetailModel;
 import com.yanglb.codegen.model.ForeignModel;
 import com.yanglb.codegen.core.translator.BaseDdlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.StringUtil;
 
@@ -148,8 +149,8 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 
 		// 引擎、字符集等其它信息
 		StringBuilder info = new StringBuilder();
-		info.append("ENGINE={my_sql_engine} ");
-		info.append("DEFAULT CHARSET={my_sql_defaultCharSet} ");
+		info.append(String.format("ENGINE=%s ", engine()));
+		info.append(String.format("DEFAULT CHARSET=%s ", charset()));
 		if (autoIncrement != null) {
 			info.append(String.format("AUTO_INCREMENT=%d ", autoIncrement));
 		}
@@ -161,6 +162,13 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		sb.append(String.format(") %s;\r\n\r\n", info.toString().trim()));
 
 		return sb.toString();
+	}
+
+	private String engine() {
+		return paramaModel.getOptions().getOptionValue("engine", Conf.getSetting("mysql.engine"));
+	}
+	private String charset() {
+		return paramaModel.getOptions().getOptionValue("charset", Conf.getSetting("mysql.charset"));
 	}
 	
 	private void updateIndexUniqueMap(HashMap<String, List<DdlDetail>> map, String names, DdlDetail detail) {

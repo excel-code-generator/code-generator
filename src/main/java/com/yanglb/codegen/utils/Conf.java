@@ -16,6 +16,7 @@
 package com.yanglb.codegen.utils;
 
 import com.yanglb.codegen.model.CmdModel;
+import org.omg.CORBA.SetOverrideType;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
@@ -49,6 +50,7 @@ public class Conf {
 
 	public static String CATEGORY_READER = "reader";
 	public static String CATEGORY_WRITER = "writer";
+	public static String CATEGORY_SETTINGS = "settings";
 
 	public static String getString(String category, String key) {
 		// 初始化
@@ -57,6 +59,10 @@ public class Conf {
 		Map<String, Object> values = (Map<String, Object>) settings.get(category);
 		String value = values.get(key).toString();
 		return value;
+	}
+
+	public static String getSetting(String key) {
+		return getString(CATEGORY_SETTINGS, key);
 	}
 
 	public static List<String> supportCommands() {
