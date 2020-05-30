@@ -1,10 +1,17 @@
-# Code Generator 4
-此工具主要用于将Excel模板文档转换为数据库结构、初始数据的sql及多语言资源代码。
+# Code Generator
+此工具主要用于将[Excel模板](template)文档转换为数据库结构、初始数据的sql脚本及多语言资源代码。
 
 ## 主要功能
-* 生成Mysql/SQLServer/SQLite的数据库结构代码（ddl）
-* 生成初始数据的sql代码（dml）
-* 生成适用于android/ios/json/java/.net等格式的国际化资源代码
+* DDL - 生成数据库结构代码，支持 Mysql/SQLServer/SQLite
+* DML - 生成初始数据的sql代码
+* MSG - 生成多语言资源代码，支持 Android/IOS/JSON/Java/.NET
+
+## 安装及使用
+1. 下载最新版[cg4.jar](https://github.com/excel-code-generator/code-generator/releases)
+2. 保存cg4.jar到适合目录
+3. 运行 java -jar path-to-cg4.jar xxx
+
+> Excel模板请参考 [template](template)
 
 ## 参数说明
 ```
@@ -40,7 +47,6 @@ Options:
 ---
 Code Generator v4.0.0
 By https://yanglb.com
-
 ```
 
 ## 用法示例
@@ -57,6 +63,6 @@ java -jar cg4.jar msg.json msg.xlsx
 
 ## License
 
-Copyright (c) Copyright 2015-2020 yanglb.com. All rights reserved.
+Copyright (c) 2015-2020 yanglb.com. All rights reserved.
 
 Licensed under the [Apache License 2.0](LICENSE) license.
