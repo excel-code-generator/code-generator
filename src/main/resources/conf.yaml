@@ -1,0 +1,63 @@
+# Commands
+command:
+  ddl.mysql:
+    parser: .core.parser.impl.DdlMySqlParser
+    generator: .core.generator.impl.DdlGeneratorImpl
+    reader: .core.reader.impl.DdlReaderImpl
+    translator: .core.translator.impl.DdlMysqlTranslatorImpl
+  ddl.mssql:
+    parser: .core.parser.impl.DdlParser
+    generator: .core.generator.impl.DdlGeneratorImpl
+    reader: .core.reader.impl.DdlReaderImpl
+    translator: .core.translator.impl.DdlSqlServerTranslatorImpl
+  ddl.sqlite:
+    parser: .core.parser.impl.DdlParser
+    generator: .core.generator.impl.DdlGeneratorImpl
+    reader: .core.reader.impl.DdlReaderImpl
+    translator: .core.translator.impl.DdlSqliteTranslatorImpl
+
+  dml:
+    parser: .core.parser.impl.DmlParser
+    generator: .core.generator.impl.DmlGeneratorImpl
+    reader: .core.reader.impl.DmlReaderImpl
+    translator: .core.translator.impl.DmlTranslatorImpl
+
+  msg.resx:
+    parser: .core.parser.impl.MsgParser
+    generator: .core.generator.impl.MsgGeneratorImpl
+    reader: .core.reader.impl.TableReaderImpl
+    translator: .core.translator.impl.MsgCSTranslatorImpl
+  msg.json:
+    parser: .core.parser.impl.MsgJSONParser
+    generator: .core.generator.impl.MsgGeneratorImpl
+    reader: .core.reader.impl.TableReaderImpl
+    translator: .core.translator.impl.MsgJsonTranslatorImpl
+  msg.ios:
+    parser: .core.parser.impl.MsgParser
+    generator: .core.generator.impl.MsgGeneratorImpl
+    reader: .core.reader.impl.TableReaderImpl
+    translator: .core.translator.impl.MsgIOSTranslatorImpl
+  msg.android:
+    parser: .core.parser.impl.MsgParser
+    generator: .core.generator.impl.MsgGeneratorImpl
+    reader: .core.reader.impl.TableReaderImpl
+    translator: .core.translator.impl.MsgAndroidTranslatorImpl
+  msg.prop:
+    parser: .core.parser.impl.MsgParser
+    generator: .core.generator.impl.MsgGeneratorImpl
+    reader: .core.reader.impl.TableReaderImpl
+    translator: .core.translator.impl.MsgJavaTranslatorImpl
+
+# writer
+writer:
+  utf8: .core.writer.impl.Utf8WriterImpl
+  ascii: .core.writer.impl.AsciiWriterImpl
+
+# reader
+reader:
+  table: .core.reader.impl.TableReaderImpl
+
+# Default settings
+settings:
+  mysql.engine: InnoDB
+  mysql.charset: utf8

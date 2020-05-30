@@ -1,0 +1,105 @@
+/**
+ * Copyright 2015-2020 yanglb.com
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.yanglb.codegen.core.translator.impl;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.yanglb.codegen.model.TableModel;
+import com.yanglb.codegen.core.translator.BaseMsgTranslator;
+import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.utils.Infos;
+import com.yanglb.codegen.utils.StringUtil;
+import org.apache.commons.text.StringEscapeUtils;
+
+public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
+	@Override
+	protected void onBeforeTranslate() throws CodeGenException {
+		super.onBeforeTranslate();
+		
+		this.writableModel.setExtension("xml");
+
+		// 文件名
+		if (this.paramaModel.getFileName() == null) {
+			this.writableModel.setFileName("strings");
+		}
+
+		String fileName = writableModel.getFileName();
+		String path =  (this.isDefaultLanguage() ? "" : this.getSplitString() + this.msgLang);
+		fileName = ("values" + path) + "/" + fileName;
+		writableModel.setFileName(fileName);
+	}
+	
+	@Override
+	protected String getSplitString() {
+		return "-";
+	}
+
+	@Override
+	protected void onTranslate() throws CodeGenException {
+		super.onTranslate();
+		StringBuilder sb = this.writableModel.getData();
+		sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
+				Infos.xmlHeader() +
+				"<resources>\r\n");
+
+		// 用于检查相同的key
+		Map<String, Boolean> keys = new HashMap<String, Boolean>();
+		Map<String, List<String>> arrays = new HashMap<String, List<String>>();
+		for(TableModel tblModel : this.model) {
+			for(Map<String, String> itm : tblModel.toList()) {
+				String id = escape(itm.get("id"));
+				if(StringUtil.isNullOrEmpty(id)) continue;
+				if (!arrays.containsKey(id)) {
+					arrays.put(id, new ArrayList<String>());
+				}
+				
+				// 对字符串进行转换
+				String value = escape(itm.get(this.msgLang));
+				List<String> items = arrays.get(id);
+				items.add(value);
+			}
+		}
+		
+		for(String key:arrays.keySet()) {
+			List<String> items = arrays.get(key);
+
+			if (items.size() > 1) {
+				// list
+				sb.append(String.format("    <string-array name=\"%s\">\r\n", key));
+				for(String value:items) {
+					sb.append(String.format("        <item>%s</item>\r\n", value));
+				}
+				sb.append("    </string-array>\r\n");
+			} else {
+				sb.append(String.format("    <string name=\"%s\">%s</string>\r\n", key, items.get(0)));
+			}
+		}
+		
+		sb.append("</resources>\r\n");
+		
+		this.writableModel.setData(sb);
+	}
+
+	private String escape(String value) {
+		if(value == null) return null;
+
+		value = StringEscapeUtils.escapeXml10(value);
+		return value;
+	}
+}
