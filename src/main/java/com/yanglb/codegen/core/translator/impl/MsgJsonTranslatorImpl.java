@@ -31,6 +31,16 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
 		this.writableModel.setExtension("json");
 	}
 
+	private void tblModel2Json(JSONObject json, TableModel tblModel) {
+		for(Map<String, String> itm : tblModel.toList()) {
+			String id = itm.get("id");
+			String value = itm.get(this.msgLang);
+			if(StringUtil.isNullOrEmpty(id)) continue;
+
+			json.put(id, value);
+		}
+	}
+
 	@Override
 	protected void onTranslate() throws CodeGenException {
 		super.onTranslate();
@@ -40,25 +50,14 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
 		if(this.paramaModel.getOptions().hasOption("combine")) {
 			// 合并输出
 			for(TableModel tblModel : this.model) {
-				for(Map<String, String> itm : tblModel.toList()) {
-					String id = itm.get("id");
-					String value = itm.get(this.msgLang);
-					if(StringUtil.isNullOrEmpty(id)) continue;
-
-					json.put(id, value);
-				}
+				tblModel2Json(json, tblModel);
 			}
 		} else {
 			// 分组输出
 			for(TableModel tblModel : this.model) {
 				JSONObject sub = new JSONObject();
-				for(Map<String, String> itm : tblModel.toList()) {
-					String id = itm.get("id");
-					String value = itm.get(this.msgLang);
-					if(StringUtil.isNullOrEmpty(id)) continue;
+				tblModel2Json(sub, tblModel);
 
-					sub.put(id, value);
-				}
 				String sheetName = tblModel.getSheetName();
 				json.put(sheetName, sub);
 			}
