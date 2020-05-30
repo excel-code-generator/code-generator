@@ -21,6 +21,7 @@ import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.StringUtil;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class MsgJavaTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -46,10 +47,18 @@ public class MsgJavaTranslatorImpl extends BaseMsgTranslator {
 			for(Map<String, String> itm : tblModel.toList()) {
 				String id = itm.get("id");
 				if(StringUtil.isNullOrEmpty(id)) continue;
-				// TODO: 对字符串进行编码转换
-				String value = itm.get(this.msgLang);
-				sb.append(String.format("%s=%s\r\n", id, value));
+
+				id = escape(id);
+				String value = this.escape(itm.get(this.msgLang));
+				sb.append(String.format("%s=%s\n", id, value));
 			}
 		}
+	}
+
+	private String escape(String value) {
+		if(value == null) return null;
+
+		value = StringEscapeUtils.escapeJava(value);
+		return value;
 	}
 }
