@@ -7,9 +7,9 @@
 * MSG - 生成多语言资源代码，支持 Android/IOS/JSON/Java/.NET
 
 ## 安装及使用
-1. 下载最新版[cg4.jar](https://github.com/excel-code-generator/code-generator/releases)
-2. 保存cg4.jar到适合目录
-3. 运行 java -jar path-to-cg4.jar xxx
+1. 下载最新版[cg.jar](https://github.com/excel-code-generator/code-generator/releases)
+2. 保存cg.jar到适合目录
+3. 运行 java -jar path-to-cg.jar xxx
 
 > Excel模板请参考 [template](template)
 
@@ -52,10 +52,10 @@ By https://yanglb.com
 ## 用法示例
 ```sh
 # 生成 MySql 数据库结构脚本
-java -jar cg4.jar ddl.mysql database.xlsx --engine myisam
+java -jar cg.jar ddl.mysql database.xlsx --engine myisam
 
 # 生成 JSON 多语言资源
-java -jar cg4.jar msg.json msg.xlsx
+java -jar cg.jar msg.json msg.xlsx
 ```
 
 ## 升级说明
