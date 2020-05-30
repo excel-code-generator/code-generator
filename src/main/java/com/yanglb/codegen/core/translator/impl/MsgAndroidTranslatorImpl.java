@@ -25,6 +25,7 @@ import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.StringUtil;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -66,14 +67,14 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 		Map<String, List<String>> arrays = new HashMap<String, List<String>>();
 		for(TableModel tblModel : this.model) {
 			for(Map<String, String> itm : tblModel.toList()) {
-				String id = itm.get("id");
+				String id = escape(itm.get("id"));
 				if(StringUtil.isNullOrEmpty(id)) continue;
 				if (!arrays.containsKey(id)) {
 					arrays.put(id, new ArrayList<String>());
 				}
 				
 				// 对字符串进行转换
-				String value = this.convert2CSCode(itm.get(this.msgLang));
+				String value = escape(itm.get(this.msgLang));
 				List<String> items = arrays.get(id);
 				items.add(value);
 			}
@@ -81,6 +82,7 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 		
 		for(String key:arrays.keySet()) {
 			List<String> items = arrays.get(key);
+
 			if (items.size() > 1) {
 				// list
 				sb.append(String.format("    <string-array name=\"%s\">\r\n", key));
@@ -97,14 +99,11 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 		
 		this.writableModel.setData(sb);
 	}
-	
-	private String convert2CSCode(String value) {
+
+	private String escape(String value) {
 		if(value == null) return null;
-		
-		// 先替换\r\n，防止有文档只有\r或\n 后面再替换一次
-		value = value.replaceAll("\r\n", "\\\\r\\\\n");
-		value = value.replaceAll("\r", "\\\\r\\\\n");
-		value = value.replaceAll("\n", "\\\\r\\\\n");
+
+		value = StringEscapeUtils.escapeXml10(value);
 		return value;
 	}
 }
