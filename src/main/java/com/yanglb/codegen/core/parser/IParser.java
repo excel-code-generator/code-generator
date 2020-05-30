@@ -36,10 +36,9 @@ public interface IParser {
 
     static IParser parserByArgs(String[] args) {
         IParser parser;
-        String cmd = args[0];
-        CmdModel model = Conf.getCmdModel(cmd);
-
         try {
+            String cmd = args[0];
+            CmdModel model = Conf.getCmdModel(cmd);
             parser = GenFactory.createByName(model.getParser());
         } catch (Exception e) {
             parser = new BaseParser();

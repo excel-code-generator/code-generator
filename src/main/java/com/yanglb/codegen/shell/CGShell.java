@@ -24,15 +24,6 @@ import com.yanglb.codegen.exceptions.ParamaCheckException;
 
 public class CGShell {
 	public boolean invoke(String[] args) {
-
-		// test data
-//		args = new String[] {"msg.android", "/Users/yanglibing/Work/cg/tests/msg.xlsx", "-s", "#Android"};
-//		args = new String[] {"msg.ios", "/Users/yanglibing/Work/cg/tests/msg.xlsx"};
-		args = new String[] {"ddl.mysql", "/Users/yanglibing/Work/cg/tests/ddl.xlsx", "-engine", "MyBTT", "-charset", "utf-8", "-h"};
-//		args = new String[] {"dml", "/Users/yanglibing/Work/cg/tests/dml.xlsx"};
-//		args = new String[] {"", "-h"};
-//		args = new String[] {"msg.prop", "message.xlsx", "-out", "src/main/resources"};
-
 		IParser parser = IParser.parserByArgs(args);
 		ParamaModel model;
 		try {

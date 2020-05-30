@@ -40,4 +40,11 @@ public class DdlMySqlParser extends DdlParser {
 
         return options;
     }
+
+    @Override
+    protected boolean headerHelp() {
+        System.out.println("生成MySql数据库结构SQL脚本。");
+        System.out.println("用法：cg ddl.mysql file [options]");
+        return true;
+    }
 }
