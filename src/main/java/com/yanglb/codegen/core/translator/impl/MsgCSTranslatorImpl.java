@@ -28,7 +28,7 @@ import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
 import com.yanglb.codegen.utils.StringUtil;
-import org.yaml.snakeyaml.reader.StreamReader;
+import org.apache.commons.text.StringEscapeUtils;
 import org.yaml.snakeyaml.reader.UnicodeReader;
 
 public class MsgCSTranslatorImpl extends BaseMsgTranslator {
@@ -71,8 +71,7 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 			sb.append(readResource("msg/resx/schema.txt"));
 		}
 		
-		// 添加 resheader 
-//		sb.append(this.settingMap.get("resheader"));
+		// 添加 resheader
 		sb.append(readResource("msg/resx/resheader.txt"));
 		
 		// 替换标记
@@ -93,7 +92,8 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 				keys.put(id, true);
 				
 				// 对字符串进行转换
-				String value = this.convert2CSCode(itm.get(this.msgLang));
+				id = escape(id);
+				String value = this.escape(itm.get(this.msgLang));
 				sb.append(String.format("    <data name=\"%s\">\r\n", id));
 				sb.append(String.format("        <value>%s</value>\r\n", value));
 				sb.append(String.format("    </data>\r\n"));
@@ -108,14 +108,11 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 		
 		this.writableModel.setData(sb);
 	}
-	
-	private String convert2CSCode(String value) {
+
+	private String escape(String value) {
 		if(value == null) return null;
-		
-		// 先替换\r\n，防止有文档只有\r或\n 后面再替换一次
-//		value = value.replaceAll("\r\n", "\\\\r\\\\n");
-//		value = value.replaceAll("\r", "\\\\r\\\\n");
-//		value = value.replaceAll("\n", "\\\\r\\\\n");
+
+		value = StringEscapeUtils.escapeXml10(value);
 		return value;
 	}
 }
