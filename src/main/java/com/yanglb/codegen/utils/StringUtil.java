@@ -62,17 +62,18 @@ public class StringUtil {
 	}
 
 	/**
-	 * 字符串转换unicode
-	 * @param string
+	 * 处理IOS字符串
+	 * @param value
 	 * @return
 	 */
-	public static String string2Unicode(String string) {
-		StringBuffer unicode = new StringBuffer();
-		for (int i = 0; i < string.length(); i++) {
-			char c = string.charAt(i);
-			unicode.append("\\u" + Integer.toHexString(c));
-		}
+	public static String escapeIOSString(String value) {
+		if(value == null) return null;
 
-		return unicode.toString();
+		value = value.replaceAll("\\\\", "\\\\\\\\");
+		value = value.replaceAll("\"", "\\\\\"");
+
+		value = value.replaceAll("\r", "");
+		value = value.replaceAll("\n", "\\\\n");
+		return value;
 	}
 }

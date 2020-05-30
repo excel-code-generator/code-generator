@@ -24,7 +24,6 @@ import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
 import com.yanglb.codegen.utils.StringUtil;
-import org.apache.commons.text.StringEscapeUtils;
 
 public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 	@Override
@@ -73,11 +72,7 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 	private String escape(String value) {
 		if(value == null) return null;
 
-		value = value.replaceAll("\\\\", "\\\\\\\\");
-		value = value.replaceAll("\"", "\\\\\"");
-
-		value = value.replaceAll("\r", "");
-		value = value.replaceAll("\n", "\\\\n");
+		value = StringUtil.escapeIOSString(value);
 		return value;
 	}
 }
