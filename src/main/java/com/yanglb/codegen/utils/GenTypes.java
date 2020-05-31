@@ -18,9 +18,9 @@ package com.yanglb.codegen.utils;
 public class GenTypes {
     public enum Reader {
         ddl, dml, hashmap, setting, table
-    };
+    }
 
     public enum Writer {
         utf8, ascii
-    };
+    }
 }

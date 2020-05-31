@@ -172,10 +172,7 @@ public class BaseReader<T> implements IReader<T>{
 	 * @return
 	 */
 	private boolean isReadable(String sheetName) {
-		if(sheetName.equals("说明") || sheetName.startsWith("#")) {
-			return false;
-		}
-		return true;
+		return !sheetName.equals("说明") && !sheetName.startsWith("#");
 	}
 	
 	/**

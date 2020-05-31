@@ -21,9 +21,9 @@ package com.yanglb.codegen.utils;
  *
  */
 public class DataFormatType {
-	public static final short FRAMAT_GENERAL = 0;
-	
-	public static final short FORMAT_INTERAGE = 59;
+	public static final short FORMAT_GENERAL = 0;
+
+	public static final short FORMAT_INTEGER = 59;
 	
 	public static final short FORMAT_DATE = 60;
 }

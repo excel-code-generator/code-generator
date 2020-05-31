@@ -26,7 +26,7 @@ public interface IReader<T> {
 	 * @return
 	 * @throws CodeGenException 
 	 */
-	public List<T> reader(String excelFile) throws CodeGenException;
+	List<T> reader(String excelFile) throws CodeGenException;
 	
 	/**
 	 * 读取Excel中指定的几个Sheet
@@ -35,7 +35,7 @@ public interface IReader<T> {
 	 * @return
 	 * @throws CodeGenException 
 	 */
-	public List<T> reader(String excelFile, String[] sheets) throws CodeGenException;
+	List<T> reader(String excelFile, String[] sheets) throws CodeGenException;
 	
 	/**
 	 * 读取Excel中指定的一个Sheet
@@ -44,41 +44,12 @@ public interface IReader<T> {
 	 * @return
 	 * @throws CodeGenException 
 	 */
-	public T reader(String excelFile, String sheet) throws CodeGenException;
-	
-//	/**
-//	 * 子类必须实现
-//	 * @param sheet
-//	 * @return
-//	 * @throws UnImplementException 
-//	 * @throws CodeGenException 
-//	 */
-//	protected T onReader(XSSFSheet sheet) throws UnImplementException, CodeGenException;
-//	
-//	/**
-//	 * 进行读取
-//	 * @throws CodeGenException 
-//	 */
-//	private void doReader() throws CodeGenException;
-//	
-//	/**
-//	 * 检查特定的Sheet名是否可读
-//	 * @param sheetName
-//	 * @return
-//	 */
-//	private boolean isReadable(String sheetName);
-	
-//	/**
-//	 * 取得Cell的字符串数据，当不是字符串时进行转换
-//	 * @param cell
-//	 * @return
-//	 */
-//	public String getCellStringValue(XSSFCell cell);
-	
+	T reader(String excelFile, String sheet) throws CodeGenException;
+
 	/**
 	 * 设置开始位置
 	 * @param startRowNo 开始行
 	 * @param startColNo 开始列
 	 */
-	public void setStartPoint(int startRowNo, int startColNo);
+	void setStartPoint(int startRowNo, int startColNo);
 }

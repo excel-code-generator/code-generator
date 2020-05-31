@@ -28,7 +28,7 @@ import com.yanglb.codegen.utils.StringUtil;
 
 public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
 	// 外键关系列表
-	protected List<ForeignModel> foreignKeyList = new ArrayList<ForeignModel>();
+	protected final List<ForeignModel> foreignKeyList = new ArrayList<>();
 	
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {

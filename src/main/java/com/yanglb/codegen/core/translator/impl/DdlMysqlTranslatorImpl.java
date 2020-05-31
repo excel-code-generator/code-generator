@@ -200,9 +200,8 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		// 名字加后缀
 		name += isIndex ? "INDEX":"UNIQUE";
 		sb.deleteCharAt(sb.lastIndexOf(","));
-		
-		String result = String.format("%s %s(%s)", isIndex ? "INDEX":"UNIQUE INDEX", name, sb.toString());
-		return result;
+
+		return String.format("%s %s(%s)", isIndex ? "INDEX":"UNIQUE INDEX", name, sb.toString());
 	}
 
 	private String genDdlDetail(DdlDetail detail) {

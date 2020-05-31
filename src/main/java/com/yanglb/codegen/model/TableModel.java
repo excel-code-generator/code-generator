@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TableModel extends BaseModel {
-	private List<Map<String, String>> metaData;
+	private final List<Map<String, String>> metaData;
 	private String[] columns;
 	
 	public TableModel() {

@@ -152,7 +152,7 @@ public class BaseParser implements IParser {
             file = as[1];
 
             // 检查参数是否正确
-            if (Conf.supportCommands().indexOf(cmd) < 0) {
+            if (!Conf.supportCommands().contains(cmd)) {
                 throw new IllegalArgumentException(String.format("未知命令: %s，请使用 --help 命令查看用法。", cmd));
             }
             File f = new File(file);

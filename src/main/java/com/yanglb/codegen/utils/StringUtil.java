@@ -42,24 +42,6 @@ public class StringUtil {
 		}
 		return sb.toString();
 	}
-	
-	/**
-	 * 查找{Flag} 标记
-	 * @param data 要查找的字符
-	 * @return
-	 */
-	public static List<String> findFlags(String data) {
-		Pattern parttern = Pattern.compile("\\{([a-zA-Z\\_]*)\\}");
-		Matcher matcher = parttern.matcher(data);
-		List<String> listKey = new ArrayList<String>();
-		
-		boolean result = matcher.find();
-		while(result) {
-			listKey.add(matcher.group(1));
-			result = matcher.find();
-		}
-		return listKey;
-	}
 
 	/**
 	 * 处理IOS字符串

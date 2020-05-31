@@ -16,7 +16,6 @@
 package com.yanglb.codegen.utils;
 
 import com.yanglb.codegen.model.CmdModel;
-import org.omg.CORBA.SetOverrideType;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
@@ -40,25 +39,23 @@ public class Conf {
 	public static CmdModel getCmdModel(String cmd) {
 		init();
 
-		Map<String, Map<String, String>> values = (Map<String, Map<String, String>>) settings.get("command");
+		Map<String, Map<String, String>> values = ObjectUtil.cast(settings.get("command"));
 		Map<String, String> map = values.get(cmd);
 		if (map == null) return null;
 
-		CmdModel model = new CmdModel(map);
-		return model;
+		return new CmdModel(map);
 	}
 
-	public static String CATEGORY_READER = "reader";
-	public static String CATEGORY_WRITER = "writer";
-	public static String CATEGORY_SETTINGS = "settings";
+	public static final String CATEGORY_READER = "reader";
+	public static final String CATEGORY_WRITER = "writer";
+	public static final String CATEGORY_SETTINGS = "settings";
 
 	public static String getString(String category, String key) {
 		// 初始化
 		init();
 
-		Map<String, Object> values = (Map<String, Object>) settings.get(category);
-		String value = values.get(key).toString();
-		return value;
+		Map<String, Object> values = ObjectUtil.cast(settings.get(category));
+		return values.get(key).toString();
 	}
 
 	public static String getSetting(String key) {
@@ -68,7 +65,7 @@ public class Conf {
 	public static List<String> supportCommands() {
 		init();
 
-		Map<String, Map<String, String>> values = (Map<String, Map<String, String>>) settings.get("command");
+		Map<String, Map<String, String>> values = ObjectUtil.cast(settings.get("command"));
 		return new ArrayList<>(values.keySet());
 	}
 }

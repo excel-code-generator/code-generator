@@ -16,6 +16,7 @@
 package com.yanglb.codegen.core;
 
 import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.utils.ObjectUtil;
 import com.yanglb.codegen.utils.Resources;
 
 public class GenFactory<T> {
@@ -41,9 +42,9 @@ public class GenFactory<T> {
 
 	private T create(String implName)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException  {
-		T instance = null;
 		if (implName.startsWith(".")) implName = "com.yanglb.codegen" + implName;
-		instance = (T) Class.forName(implName).newInstance();
-		return instance;
+
+		Object instance = Class.forName(implName).newInstance();
+		return ObjectUtil.cast(instance);
 	}
 }

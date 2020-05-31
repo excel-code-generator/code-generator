@@ -29,7 +29,6 @@ private static ResourceBundle resourceBundle = null;
 		// 初始化
 		init();
 
-		String value = resourceBundle.getString(key);
-		return value;
+		return resourceBundle.getString(key);
 	}
 }

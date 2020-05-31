@@ -28,7 +28,7 @@ import com.yanglb.codegen.utils.StringUtil;
 
 public class BaseTranslator<T> implements ITranslator<T> {
 	protected T model;
-	protected WritableModel writableModel;
+	protected final WritableModel writableModel;
 	protected HashMap<String, String> settingMap;
 	protected ParamaModel paramaModel;
 	
@@ -88,53 +88,5 @@ public class BaseTranslator<T> implements ITranslator<T> {
 		this.onBeforeTranslate();
 		this.onTranslate();
 		this.onAfterTranslate();
-	}
-	
-	/**
-	 * 模板替换
-	 * @param template 模板内容
-	 * @param replaceModel 
-	 * @return
-	 * @throws CodeGenException
-	 */
-	protected String replaceFlags(String template, Object replaceModel) throws CodeGenException {
-		List<String> flags = StringUtil.findFlags(template);
-		String data = new String(template);
-		for(String key:flags) {
-			// Map元素
-			String value = null;
-			boolean hasKey = false;
-			if(this.settingMap.containsKey(key)) {
-				hasKey = true;
-				value = this.settingMap.get(key);
-			} else if(replaceModel != null) {
-				// Model元素
-				Field field = null;
-				hasKey = true;
-				// 在replaceModel查找key属性，如果有则使用该属性值。
-				try {
-					field = ObjectUtil.getDeepField(replaceModel.getClass(), key);
-					field.setAccessible(true);
-					if(field.get(replaceModel) != null) {
-						value = field.get(replaceModel).toString();
-					}
-				} catch (NoSuchFieldException e) {
-					// 没有此属性
-					hasKey = false;
-				} catch (Exception e) {
-					throw new CodeGenException(String.format(Resources.getString("E_006"),
-							replaceModel.getClass().toString(),
-							field.getName(),
-							e.getMessage()));
-				}
-			}
-			
-			// 如果有值则替换
-			if(hasKey) {
-				String f = String.format("\\$\\{%s\\}", key);
-				data = data.replaceAll(f, value);
-			}
-		}
-		return data;
 	}
 }

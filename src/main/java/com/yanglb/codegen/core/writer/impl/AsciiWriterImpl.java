@@ -17,6 +17,7 @@ package com.yanglb.codegen.core.writer.impl;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import com.yanglb.codegen.core.writer.BaseWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
@@ -38,7 +39,7 @@ public class AsciiWriterImpl extends BaseWriter {
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(this.writableModel.getFullPath());
-			fos.write(this.writableModel.getData().toString().getBytes("ASCII"));
+			fos.write(this.writableModel.getData().toString().getBytes(StandardCharsets.US_ASCII));
 			fos.flush();
 	        
 		} catch (IOException e) {

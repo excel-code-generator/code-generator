@@ -26,7 +26,7 @@ public interface ISettingReader extends IReader<HashMap<String, String>> {
 	 * @return
 	 * @throws CodeGenException
 	 */
-	public HashMap<String, String> settingReader() throws CodeGenException;
+	HashMap<String, String> settingReader() throws CodeGenException;
 	
 	/**
 	 * 读取一个配置项目（会将Infos内容添加到结果集中，且属性添加generator前缀）
@@ -34,7 +34,7 @@ public interface ISettingReader extends IReader<HashMap<String, String>> {
 	 * @return
 	 * @throws CodeGenException
 	 */
-	public HashMap<String, String> settingReader(String settingSheet) throws CodeGenException;
+	HashMap<String, String> settingReader(String settingSheet) throws CodeGenException;
 	
 	/**
 	 * 读取多个配置项目（会将Infos内容添加到结果集中，且属性添加generator前缀）
@@ -42,5 +42,5 @@ public interface ISettingReader extends IReader<HashMap<String, String>> {
 	 * @return
 	 * @throws CodeGenException
 	 */
-	public HashMap<String, String> settingReader(String[] settingSheets) throws CodeGenException;
+	HashMap<String, String> settingReader(String[] settingSheets) throws CodeGenException;
 }

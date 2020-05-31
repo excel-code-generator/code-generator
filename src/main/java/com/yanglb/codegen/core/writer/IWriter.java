@@ -25,5 +25,5 @@ public interface IWriter {
 	 * @param writableModel
 	 * @throws CodeGenException
 	 */
-	public void writer(WritableModel writableModel) throws CodeGenException;
+    void writer(WritableModel writableModel) throws CodeGenException;
 }

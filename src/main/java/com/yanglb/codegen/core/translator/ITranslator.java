@@ -30,7 +30,7 @@ public interface ITranslator<T> {
 	 * @return WritableModel 一个可写的Model
 	 * @throws CodeGenException 翻译出错时抛出此异常
 	 */
-	public WritableModel translate(HashMap<String, String> settingMap, ParamaModel paramaModel, T model) throws CodeGenException;
+    WritableModel translate(HashMap<String, String> settingMap, ParamaModel paramaModel, T model) throws CodeGenException;
 	
 //	/**
 //	 * 预翻译器（子类如果重写，则必须显示调用超类的此方法）

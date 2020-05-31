@@ -18,6 +18,7 @@ package com.yanglb.codegen.core.writer.impl;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 
 import com.yanglb.codegen.core.writer.BaseWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
@@ -36,7 +37,7 @@ public class Utf8WriterImpl extends BaseWriter {
 		OutputStreamWriter osw = null;
 		try {
 			fos = new FileOutputStream(this.writableModel.getFullPath());
-			osw = new OutputStreamWriter(fos, "UTF-8");
+			osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
 	        osw.write(this.writableModel.getData().toString()); 
 	        osw.flush();
 	        

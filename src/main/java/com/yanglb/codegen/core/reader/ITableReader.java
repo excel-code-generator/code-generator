@@ -32,5 +32,5 @@ public interface ITableReader extends IReader<TableModel> {
 	 * @return
 	 * @throws CodeGenException 
 	 */
-	public TableModel reader(XSSFSheet sheet) throws CodeGenException;
+	TableModel reader(XSSFSheet sheet) throws CodeGenException;
 }
