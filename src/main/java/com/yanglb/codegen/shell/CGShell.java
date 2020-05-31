@@ -17,7 +17,7 @@ package com.yanglb.codegen.shell;
 
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.generator.IGenerator;
-import com.yanglb.codegen.model.ParamaModel;
+import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.core.parser.IParser;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
@@ -25,7 +25,7 @@ import com.yanglb.codegen.exceptions.ParamaCheckException;
 public class CGShell {
 	public boolean invoke(String[] args) {
 		IParser parser = IParser.parserByArgs(args);
-		ParamaModel model;
+		ParameterModel model;
 		try {
 			model = parser.parsing();
 			if (model == null) return true;

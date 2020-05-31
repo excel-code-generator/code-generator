@@ -15,18 +15,15 @@
  */
 package com.yanglb.codegen.core.generator;
 
-import java.util.List;
-
-import com.yanglb.codegen.model.OptionModel;
-import com.yanglb.codegen.model.ParamaModel;
+import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
 
 public interface IGenerator {
 	/**
 	 * 执行生成工作
-	 * @param paramaModel 参数模型
+	 * @param parameterModel 参数模型
 	 * @throws CodeGenException 出错信息
 	 */
-	void invoke(ParamaModel paramaModel) throws CodeGenException, ParamaCheckException;
+	void invoke(ParameterModel parameterModel) throws CodeGenException, ParamaCheckException;
 }

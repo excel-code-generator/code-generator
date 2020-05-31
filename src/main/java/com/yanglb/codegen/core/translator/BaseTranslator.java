@@ -15,22 +15,17 @@
  */
 package com.yanglb.codegen.core.translator;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
-import java.util.List;
 
-import com.yanglb.codegen.model.ParamaModel;
+import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.Resources;
-import com.yanglb.codegen.utils.ObjectUtil;
-import com.yanglb.codegen.utils.StringUtil;
 
 public class BaseTranslator<T> implements ITranslator<T> {
 	protected T model;
 	protected final WritableModel writableModel;
 	protected HashMap<String, String> settingMap;
-	protected ParamaModel paramaModel;
+	protected ParameterModel parameterModel;
 	
 	protected BaseTranslator() {
 		this.writableModel = new WritableModel();
@@ -40,15 +35,15 @@ public class BaseTranslator<T> implements ITranslator<T> {
 	 * 进行翻译处理
 	 * @param settingMap 配置信息
 	 * @param model 等待翻译的Model
-	 * @param paramaModel 参数/选项模型
+	 * @param parameterModel 参数/选项模型
 	 * @return WritableModel 一个可写的Model
 	 * @throws CodeGenException 翻译出错时抛出此异常
 	 */
-	public WritableModel translate(HashMap<String, String> settingMap, ParamaModel paramaModel, T model) 
+	public WritableModel translate(HashMap<String, String> settingMap, ParameterModel parameterModel, T model)
 			throws CodeGenException {
 		this.settingMap = settingMap;
 		this.model = model;
-		this.paramaModel = paramaModel;
+		this.parameterModel = parameterModel;
 		
 		this.doTranslate();
 		return this.writableModel;
@@ -63,7 +58,7 @@ public class BaseTranslator<T> implements ITranslator<T> {
 		this.writableModel.setEncode("utf-8");
 		this.writableModel.setFileName("untitled");
 		this.writableModel.setData(new StringBuilder());
-		this.writableModel.setOutputDir(this.paramaModel.getOptDir());
+		this.writableModel.setOutputDir(this.parameterModel.getOptDir());
 	}
 	
 	/**

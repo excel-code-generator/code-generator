@@ -37,9 +37,9 @@ public class MsgGeneratorImpl extends BaseGenerator {
 		super.onGeneration();
 
 		// 读取DB信息表
-		ITableReader tableReader = GenFactory.createByName(paramaModel.getCmdModel().getReader());
+		ITableReader tableReader = GenFactory.createByName(parameterModel.getCmdModel().getReader());
 		tableReader.setStartPoint(3, 2);
-		List<TableModel> list = tableReader.reader(this.paramaModel.getFile(), this.paramaModel.getSheets());
+		List<TableModel> list = tableReader.reader(this.parameterModel.getFile(), this.parameterModel.getSheets());
 		if(list.size() == 0) {
 			throw new CodeGenException(Resources.getString("E_003"));
 		}
@@ -52,11 +52,11 @@ public class MsgGeneratorImpl extends BaseGenerator {
 				langList.add(key);
 				
 				settingMap.put("MsgLang", key);
-				String trans = paramaModel.getCmd();
+				String trans = parameterModel.getCmd();
 
 				// 转换为可写入的Model（单个文件）
-				ITranslator<List<TableModel>> translator = GenFactory.createByName(paramaModel.getCmdModel().getTranslator());
-				WritableModel writableModel = translator.translate(settingMap, paramaModel, list);
+				ITranslator<List<TableModel>> translator = GenFactory.createByName(parameterModel.getCmdModel().getTranslator());
+				WritableModel writableModel = translator.translate(settingMap, parameterModel, list);
 
 				// 默认使用UTF-8编码
 				GenTypes.Writer supportWriter = GenTypes.Writer.utf8;

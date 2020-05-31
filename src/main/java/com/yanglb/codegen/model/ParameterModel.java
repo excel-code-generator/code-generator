@@ -17,7 +17,7 @@ package com.yanglb.codegen.model;
 
 import org.apache.commons.cli.CommandLine;
 
-public class ParamaModel {
+public class ParameterModel {
 	private String cmd;
 	private String file;
 	CommandLine options;

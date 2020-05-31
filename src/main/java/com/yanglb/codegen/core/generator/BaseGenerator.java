@@ -17,7 +17,7 @@ package com.yanglb.codegen.core.generator;
 
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
-import com.yanglb.codegen.model.ParamaModel;
+import com.yanglb.codegen.model.ParameterModel;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 
@@ -25,15 +25,15 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class BaseGenerator implements IGenerator{
-	protected ParamaModel paramaModel;
+	protected ParameterModel parameterModel;
 	protected HashMap<String, String> settingMap;
 	
 	protected void printInfo() {
 		System.out.println("生成信息:");
-		System.out.printf("%8s: %s\n", "cmd", paramaModel.getCmd());
-		System.out.printf("%8s: %s\n", "file", paramaModel.getFile());
+		System.out.printf("%8s: %s\n", "cmd", parameterModel.getCmd());
+		System.out.printf("%8s: %s\n", "file", parameterModel.getFile());
 		System.out.printf("%8s: \n", "options");
-		CommandLine cl = paramaModel.getOptions();
+		CommandLine cl = parameterModel.getOptions();
 		for(Option opt : cl.getOptions()) {
 			String s = opt.getLongOpt();
 			if (s == null) s = opt.getOpt();
@@ -50,18 +50,18 @@ public class BaseGenerator implements IGenerator{
 
 	/**
 	 * 初始化
-	 * @param paramaModel
+	 * @param parameterModel
 	 */
-	protected void init(ParamaModel paramaModel) {
-		this.paramaModel = paramaModel;
+	protected void init(ParameterModel parameterModel) {
+		this.parameterModel = parameterModel;
 		this.settingMap = new HashMap<>();
 		
 		this.settingMap.put("generationDate", new Date().toString());
 	}
 
 	@Override
-	public final void invoke(ParamaModel paramaModel) throws CodeGenException, ParamaCheckException {
-		init(paramaModel);
+	public final void invoke(ParameterModel parameterModel) throws CodeGenException, ParamaCheckException {
+		init(parameterModel);
 
 		printInfo();
 		

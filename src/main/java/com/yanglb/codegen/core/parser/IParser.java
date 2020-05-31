@@ -17,7 +17,7 @@ package com.yanglb.codegen.core.parser;
 
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.model.CmdModel;
-import com.yanglb.codegen.model.ParamaModel;
+import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.utils.Conf;
 
 public interface IParser {
@@ -32,7 +32,7 @@ public interface IParser {
      * 解析命令数据
      * @return 命令行参数
      */
-    ParamaModel parsing() throws IllegalArgumentException;
+    ParameterModel parsing() throws IllegalArgumentException;
 
     static IParser parserByArgs(String[] args) {
         IParser parser;

@@ -35,7 +35,7 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 		this.writableModel.setExtension("xml");
 
 		// 文件名
-		if (this.paramaModel.getFileName() == null) {
+		if (this.parameterModel.getFileName() == null) {
 			this.writableModel.setFileName("strings");
 		}
 

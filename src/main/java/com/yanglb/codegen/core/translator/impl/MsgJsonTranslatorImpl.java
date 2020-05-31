@@ -47,7 +47,7 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
 		JSONObject json = new JSONObject();
 		StringBuilder sb = this.writableModel.getData();
 
-		if(this.paramaModel.getOptions().hasOption("combine")) {
+		if(this.parameterModel.getOptions().hasOption("combine")) {
 			// 合并输出
 			for(TableModel tblModel : this.model) {
 				tblModel2Json(json, tblModel);
@@ -65,7 +65,7 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
 
 		// to JSON string
 		int indentFactor = 4;
-		if (paramaModel.getOptions().hasOption("minify")) indentFactor = 0;
+		if (parameterModel.getOptions().hasOption("minify")) indentFactor = 0;
 		sb.append(json.toString(indentFactor));
 	}
 }

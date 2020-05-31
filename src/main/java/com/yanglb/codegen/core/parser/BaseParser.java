@@ -15,8 +15,7 @@
  */
 package com.yanglb.codegen.core.parser;
 
-import com.yanglb.codegen.model.ParamaModel;
-import com.yanglb.codegen.core.parser.IParser;
+import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
@@ -127,7 +126,7 @@ public class BaseParser implements IParser {
     }
 
     @Override
-    public ParamaModel parsing() {
+    public ParameterModel parsing() {
         CommandLineParser parser = new DefaultParser();
         CommandLine commandLine;
         String cmd;
@@ -166,7 +165,7 @@ public class BaseParser implements IParser {
             throw new IllegalArgumentException("您输入的参数不正确，请使用 --help 命令查看用法。");
         }
 
-        ParamaModel model = new ParamaModel();
+        ParameterModel model = new ParameterModel();
         model.setCmd(cmd);
         model.setFile(file);
         model.setOptions(commandLine);

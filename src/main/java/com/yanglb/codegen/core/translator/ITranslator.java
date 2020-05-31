@@ -17,7 +17,7 @@ package com.yanglb.codegen.core.translator;
 
 import java.util.HashMap;
 
-import com.yanglb.codegen.model.ParamaModel;
+import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 
@@ -26,9 +26,9 @@ public interface ITranslator<T> {
 	 * 进行翻译处理
 	 * @param settingMap 配置信息
 	 * @param model 等待翻译的Model
-	 * @param paramaModel 参数/选项模型
+	 * @param parameterModel 参数/选项模型
 	 * @return WritableModel 一个可写的Model
 	 * @throws CodeGenException 翻译出错时抛出此异常
 	 */
-    WritableModel translate(HashMap<String, String> settingMap, ParamaModel paramaModel, T model) throws CodeGenException;
+    WritableModel translate(HashMap<String, String> settingMap, ParameterModel parameterModel, T model) throws CodeGenException;
 }

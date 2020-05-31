@@ -36,15 +36,15 @@ public class DmlGeneratorImpl extends BaseGenerator {
 		super.onGeneration();
 
 		// 读取DML信息表
-		IReader<DdlModel> ddlReader = GenFactory.createByName(paramaModel.getCmdModel().getReader());
-		List<DdlModel> list = ddlReader.reader(this.paramaModel.getFile(), this.paramaModel.getSheets());
+		IReader<DdlModel> ddlReader = GenFactory.createByName(parameterModel.getCmdModel().getReader());
+		List<DdlModel> list = ddlReader.reader(this.parameterModel.getFile(), this.parameterModel.getSheets());
 		if(list.size() == 0) {
 			throw new CodeGenException(Resources.getString("E_003"));
 		}
 
 		// 转换为可写入的Model（单个文件）
-		ITranslator<List<DdlModel>> translator = GenFactory.createByName(paramaModel.getCmdModel().getTranslator());
-		WritableModel writableModel = translator.translate(settingMap, this.paramaModel, list);
+		ITranslator<List<DdlModel>> translator = GenFactory.createByName(parameterModel.getCmdModel().getTranslator());
+		WritableModel writableModel = translator.translate(settingMap, this.parameterModel, list);
 
 		// 默认使用UTF-8编码
 		GenTypes.Writer supportWriter = GenTypes.Writer.utf8;

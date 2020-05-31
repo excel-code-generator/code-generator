@@ -165,10 +165,10 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 	}
 
 	private String engine() {
-		return paramaModel.getOptions().getOptionValue("engine", Conf.getSetting("mysql.engine"));
+		return parameterModel.getOptions().getOptionValue("engine", Conf.getSetting("mysql.engine"));
 	}
 	private String charset() {
-		return paramaModel.getOptions().getOptionValue("charset", Conf.getSetting("mysql.charset"));
+		return parameterModel.getOptions().getOptionValue("charset", Conf.getSetting("mysql.charset"));
 	}
 	
 	private void updateIndexUniqueMap(HashMap<String, List<DdlDetail>> map, String names, DdlDetail detail) {

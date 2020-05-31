@@ -144,20 +144,20 @@ public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
 			do{
 				// 外键名
 				String referenceName = detail.getColForeign();
-				String[] foreigns = referenceName.split("\\.");
+				String[] foreign = referenceName.split("\\.");
 				
 				// 外键表
 				DdlModel foreignTableModel = null;
 				// 外键表
 				DdlDetail foreignColumnModel = null;
 				
-				if(foreigns.length != 2) {
+				if(foreign.length != 2) {
 					result = false;
 					break;
 				}
 				
 				// 获取外键表
-				foreignTableModel = this.findFullTableModel(foreigns[0]);
+				foreignTableModel = this.findFullTableModel(foreign[0]);
 				if(foreignTableModel == null) {
 					result = false;
 					break;
@@ -165,7 +165,7 @@ public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
 				
 				// 获取外键表
 				for(DdlDetail item:foreignTableModel.getDetail()) {
-					if(item.getColName().equals(foreigns[1])) {
+					if(item.getColName().equals(foreign[1])) {
 						foreignColumnModel = item;
 						break;
 					}
