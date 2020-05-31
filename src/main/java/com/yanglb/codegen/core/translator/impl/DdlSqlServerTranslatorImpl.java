@@ -63,10 +63,10 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 	private String genForeignKey() throws CodeGenException {
 		StringBuilder sb = new StringBuilder();
 		if(this.foreignKeyList.size()>0) {
-			sb.append("\r\n");
-			sb.append("---------------------------------\r\n");
-			sb.append("-- foreign key list\r\n");
-			sb.append("---------------------------------\r\n");
+			sb.append("\n");
+			sb.append("---------------------------------\n");
+			sb.append("-- foreign key list\n");
+			sb.append("---------------------------------\n");
 		}
 		
 		// 所有表的外键放在最后处理
@@ -110,9 +110,9 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 			// 表名
 			String tableName = genFullTableName(model.getDdlModel());
 			String referenceTableName = genFullTableName(model.getForeignColumns().get(0).getForeignDdlModel());
-			sb.append(String.format("ALTER TABLE %s WITH CHECK ADD CONSTRAINT %s FOREIGN KEY(%s)\r\n"
-					+ "REFERENCES  %s (%s)\r\n"
-					+ "GO\r\n\r\n",
+			sb.append(String.format("ALTER TABLE %s WITH CHECK ADD CONSTRAINT %s FOREIGN KEY(%s)\n"
+					+ "REFERENCES  %s (%s)\n"
+					+ "GO\n\n",
 					tableName,
 					foreignKeyName,
 					columnName,
@@ -135,9 +135,9 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 		
 		//　表名
 		String tableName = this.genFullTableName(model);
-		sb.append(String.format("-- %s \r\n", model.getSheetName()));
-		sb.append(String.format("-- DROP TABLE %s; \r\n", tableName));
-		sb.append(String.format("CREATE TABLE %s (\r\n", tableName));
+		sb.append(String.format("-- %s \n", model.getSheetName()));
+		sb.append(String.format("-- DROP TABLE %s; \n", tableName));
+		sb.append(String.format("CREATE TABLE %s (\n", tableName));
 		
 		// 逐列添加
 		for(DdlDetail detail:model.getDetail()) {
@@ -155,13 +155,13 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 		
 		// 主键
 		if(!StringUtil.isNullOrEmpty(primaryKey)) {
-			sb.append(String.format("    PRIMARY KEY (%s),\r\n", primaryKey));
+			sb.append(String.format("    PRIMARY KEY (%s),\n", primaryKey));
 		}
 		
 		// 删除最后一个 ,号
 		sb.deleteCharAt(sb.lastIndexOf(","));
-		sb.append(")\r\nGO \r\n");
-		sb.append("\r\n");
+		sb.append(")\nGO \n");
+		sb.append("\n");
 		
 		return sb.toString();
 	}
@@ -207,7 +207,7 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 			}
 		}
 		
-	    sb.append(",\r\n");
+	    sb.append(",\n");
 		return sb.toString();
 	}
 }

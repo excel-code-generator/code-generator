@@ -157,7 +157,7 @@ public class BaseParser implements IParser {
             }
             File f = new File(file);
             if(!(f.exists() && f.isFile())) {
-                throw new IllegalArgumentException(String.format("指定的文件(%s)不存在或者是一个目录。\r\n", file));
+                throw new IllegalArgumentException(String.format("指定的文件(%s)不存在或者是一个目录。\n", file));
             }
 
             // 根据命令生成解析

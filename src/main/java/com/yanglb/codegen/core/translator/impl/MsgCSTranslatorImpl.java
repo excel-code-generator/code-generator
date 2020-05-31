@@ -63,9 +63,9 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 	protected void onTranslate() throws CodeGenException {
 		super.onTranslate();
 		StringBuilder sb = this.writableModel.getData();
-		sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
+		sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
 				Infos.xmlHeader() +
-				"<root>\r\n");
+				"<root>\n");
 		
 		if (this.isDefaultLanguage()) {
 			sb.append(readResource("msg/resx/schema.txt"));
@@ -78,8 +78,8 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 		Map<String, Boolean> keys = new HashMap<String, Boolean>();
 		for(TableModel tblModel : this.model) {
 			// 添加Sheet注释
-			sb.append(String.format("    \r\n"));
-			sb.append(String.format("    <!-- %s -->\r\n", tblModel.getSheetName()));
+			sb.append(String.format("    \n"));
+			sb.append(String.format("    <!-- %s -->\n", tblModel.getSheetName()));
 			
 			for(Map<String, String> itm : tblModel.toList()) {
 				String id = itm.get("id");
@@ -90,9 +90,9 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 				// 对字符串进行转换
 				id = escape(id);
 				String value = this.escape(itm.get(this.msgLang));
-				sb.append(String.format("    <data name=\"%s\">\r\n", id));
-				sb.append(String.format("        <value>%s</value>\r\n", value));
-				sb.append(String.format("    </data>\r\n"));
+				sb.append(String.format("    <data name=\"%s\">\n", id));
+				sb.append(String.format("        <value>%s</value>\n", value));
+				sb.append(String.format("    </data>\n"));
 			}
 		}
 		
@@ -100,7 +100,7 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 		if(idx != -1) {
 			sb.deleteCharAt(idx);
 		}
-		sb.append("</root>\r\n");
+		sb.append("</root>\n");
 		
 		this.writableModel.setData(sb);
 	}

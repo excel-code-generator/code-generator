@@ -72,9 +72,9 @@ public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 		String primaryKey = "";
 		
 		String tableName = this.genFullTableName(model);
-		sb.append(String.format("-- %s \r\n", model.getSheetName()));
-		sb.append(String.format("-- DROP TABLE %s; \r\n", tableName));
-		sb.append(String.format("CREATE TABLE %s (\r\n", tableName));
+		sb.append(String.format("-- %s \n", model.getSheetName()));
+		sb.append(String.format("-- DROP TABLE %s; \n", tableName));
+		sb.append(String.format("CREATE TABLE %s (\n", tableName));
 		for(DdlDetail detail:model.getDetail()) {
 			if(detail.isColKey()) {
 				if(!StringUtil.isNullOrEmpty(primaryKey)) {
@@ -91,7 +91,7 @@ public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 		
 		// 主键
 		if(!StringUtil.isNullOrEmpty(primaryKey)) {
-			sb.append(String.format("    PRIMARY KEY (%s),\r\n", primaryKey));
+			sb.append(String.format("    PRIMARY KEY (%s),\n", primaryKey));
 		}
 		
 		// 外键
@@ -99,9 +99,9 @@ public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 		
 		// 删除最后一个 ,号
 		sb.deleteCharAt(sb.lastIndexOf(","));		
-		sb.append(");\r\n");
+		sb.append(");\n");
 		
-		sb.append("\r\n");
+		sb.append("\n");
 		
 		return sb.toString();
 	}
@@ -148,7 +148,7 @@ public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 			}
 		}
 		
-	    sb.append(",\r\n");
+	    sb.append(",\n");
 		return sb.toString();
 	}
 	
@@ -193,7 +193,7 @@ public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 			// 表名
 			//String tableName = genFullTableName(model.getDdlModel());
 			String referenceTableName = genFullTableName(model.getForeignColumns().get(0).getForeignDdlModel());
-			sb.append(String.format("    FOREIGN KEY(%s) REFERENCES %s(%s),\r\n",
+			sb.append(String.format("    FOREIGN KEY(%s) REFERENCES %s(%s),\n",
 					columnName,
 					referenceTableName,
 					referenceColumnName));

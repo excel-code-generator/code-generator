@@ -61,9 +61,9 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 		StringBuilder sb = new StringBuilder();
 		
 		// 头部信息
-		sb.append("\r\n");
-		sb.append(String.format("-- %s\r\n", model.getSheetName()));
-		sb.append(String.format("-- %s %s\r\n", model.getAuthor(), model.getRenewDate()));
+		sb.append("\n");
+		sb.append(String.format("-- %s\n", model.getSheetName()));
+		sb.append(String.format("-- %s %s\n", model.getAuthor(), model.getRenewDate()));
 		
 		// 每一行dml语句
 		String columns = "";
@@ -79,7 +79,7 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 			}
 			
 			// 生成完整语句并添加到sb中
-			sb.append(String.format("INSERT INTO %s%s(%s) VALUES (%s);\r\n", 
+			sb.append(String.format("INSERT INTO %s%s(%s) VALUES (%s);\n",
 					space,
 					model.getName(),
 					columns, 

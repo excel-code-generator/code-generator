@@ -43,7 +43,7 @@ public class MsgJavaTranslatorImpl extends BaseMsgTranslator {
 		
 		int cnt = 0;
 		for(TableModel tblModel : this.model) {
-			sb.append(String.format("%s# %s\r\n", (cnt++ == 0)?"":"\r\n", tblModel.getSheetName()));
+			sb.append(String.format("%s# %s\n", (cnt++ == 0)?"":"\n", tblModel.getSheetName()));
 			for(Map<String, String> itm : tblModel.toList()) {
 				String id = itm.get("id");
 				if(StringUtil.isNullOrEmpty(id)) continue;

@@ -34,19 +34,19 @@ public class BaseGenerator implements IGenerator{
 	
 	protected void printInfo() {
 		System.out.println("生成信息:");
-		System.out.printf("%8s: %s\r\n", "cmd", paramaModel.getCmd());
-		System.out.printf("%8s: %s\r\n", "file", paramaModel.getFile());
-		System.out.printf("%8s: \r\n", "options");
+		System.out.printf("%8s: %s\n", "cmd", paramaModel.getCmd());
+		System.out.printf("%8s: %s\n", "file", paramaModel.getFile());
+		System.out.printf("%8s: \n", "options");
 		CommandLine cl = paramaModel.getOptions();
 		for(Option opt : cl.getOptions()) {
 			String s = opt.getLongOpt();
 			if (s == null) s = opt.getOpt();
 			if (opt.hasArgs()) {
-				System.out.printf("%8s-%s=%s\r\n", "", s, opt.getValuesList());
+				System.out.printf("%8s-%s=%s\n", "", s, opt.getValuesList());
 			} else if (opt.hasArg()) {
-				System.out.printf("%8s-%s=%s\r\n", "", s, opt.getValue());
+				System.out.printf("%8s-%s=%s\n", "", s, opt.getValue());
 			} else {
-				System.out.printf("%8s-%s\r\n", "", s);
+				System.out.printf("%8s-%s\n", "", s);
 			}
 		}
 		System.out.println();

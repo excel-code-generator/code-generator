@@ -54,9 +54,9 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 	protected void onTranslate() throws CodeGenException {
 		super.onTranslate();
 		StringBuilder sb = this.writableModel.getData();
-		sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
+		sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
 				Infos.xmlHeader() +
-				"<resources>\r\n");
+				"<resources>\n");
 
 		// 用于检查相同的key
 		Map<String, Boolean> keys = new HashMap<String, Boolean>();
@@ -81,17 +81,17 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 
 			if (items.size() > 1) {
 				// list
-				sb.append(String.format("    <string-array name=\"%s\">\r\n", key));
+				sb.append(String.format("    <string-array name=\"%s\">\n", key));
 				for(String value:items) {
-					sb.append(String.format("        <item>%s</item>\r\n", value));
+					sb.append(String.format("        <item>%s</item>\n", value));
 				}
-				sb.append("    </string-array>\r\n");
+				sb.append("    </string-array>\n");
 			} else {
-				sb.append(String.format("    <string name=\"%s\">%s</string>\r\n", key, items.get(0)));
+				sb.append(String.format("    <string name=\"%s\">%s</string>\n", key, items.get(0)));
 			}
 		}
 		
-		sb.append("</resources>\r\n");
+		sb.append("</resources>\n");
 		
 		this.writableModel.setData(sb);
 	}

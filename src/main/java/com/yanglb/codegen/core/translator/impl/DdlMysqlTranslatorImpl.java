@@ -96,9 +96,9 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		
 		// 　表名
 		String tableName = this.genFullTableName(model);
-		sb.append(String.format("-- %s \r\n", model.getSheetName()));
-		sb.append(String.format("-- version %s \r\n", model.getVersion()));
-		sb.append(String.format("CREATE TABLE %s (\r\n", tableName));
+		sb.append(String.format("-- %s \n", model.getSheetName()));
+		sb.append(String.format("-- version %s \n", model.getVersion()));
+		sb.append(String.format("CREATE TABLE %s (\n", tableName));
 
 		Integer autoIncrement = null;
 		for (DdlDetail detail : model.getDetail()) {
@@ -127,20 +127,20 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 
 		// 主键
 		if (!StringUtil.isNullOrEmpty(primaryKey)) {
-			sb.append(String.format("    PRIMARY KEY (%s),\r\n", primaryKey));
+			sb.append(String.format("    PRIMARY KEY (%s),\n", primaryKey));
 		}
 		
 		// 索引
 		if (!indexMap.isEmpty()) {
 			for(List<DdlDetail> list : indexMap.values()) {
-				sb.append(String.format("    %s,\r\n", this.indexUniqueSql(list, true)));
+				sb.append(String.format("    %s,\n", this.indexUniqueSql(list, true)));
 			}
 		}
 		
 		// 约束
 		if (!uniqueMap.isEmpty()) {
 			for(List<DdlDetail> list : uniqueMap.values()) {
-				sb.append(String.format("    %s,\r\n", this.indexUniqueSql(list, false)));
+				sb.append(String.format("    %s,\n", this.indexUniqueSql(list, false)));
 			}
 		}
 
@@ -159,7 +159,7 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 		info.append(String.format("COMMENT='%s'", model.getSheetName()));
 
 		// 结束
-		sb.append(String.format(") %s;\r\n\r\n", info.toString().trim()));
+		sb.append(String.format(") %s;\n\n", info.toString().trim()));
 
 		return sb.toString();
 	}
@@ -260,7 +260,7 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 			sb.append(String.format(" COMMENT '%s'", name));
 		}
 
-		sb.append(",\r\n");
+		sb.append(",\n");
 		return sb.toString();
 	}
 
@@ -272,10 +272,10 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 	private String genForeignKey() throws CodeGenException {
 		StringBuilder sb = new StringBuilder();
 		if (this.foreignKeyList.size() > 0) {
-			sb.append("\r\n");
-			sb.append("-- -------------------------------\r\n");
-			sb.append("-- foreign key list\r\n");
-			sb.append("-- -------------------------------\r\n");
+			sb.append("\n");
+			sb.append("-- -------------------------------\n");
+			sb.append("-- foreign key list\n");
+			sb.append("-- -------------------------------\n");
 		}
 
 		// 所有表的外键放在最后处理
@@ -307,9 +307,9 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
 			String tableName = genFullTableName(model.getDdlModel());
 			String referenceTableName = genFullTableName(model
 					.getForeignColumns().get(0).getForeignDdlModel());
-			sb.append(String.format("ALTER TABLE %s ADD FOREIGN KEY(%s) \r\n"
-					+ "REFERENCES  %s (%s) \r\n"
-					+ "ON DELETE CASCADE ON UPDATE CASCADE; \r\n\r\n",
+			sb.append(String.format("ALTER TABLE %s ADD FOREIGN KEY(%s) \n"
+					+ "REFERENCES  %s (%s) \n"
+					+ "ON DELETE CASCADE ON UPDATE CASCADE; \n\n",
 					tableName, columnName, referenceTableName,
 					referenceColumnName));
 		}

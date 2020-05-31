@@ -58,7 +58,7 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 				// 对字符串进行转换
 				id = escape(id);
 				String value = this.escape(itm.get(this.msgLang));
-				sb.append(String.format("\"%s\" = \"%s\";\r\n", id, value));
+				sb.append(String.format("\"%s\" = \"%s\";\n", id, value));
 			}
 		}
 		
