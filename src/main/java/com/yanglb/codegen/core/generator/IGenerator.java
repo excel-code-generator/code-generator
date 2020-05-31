@@ -29,10 +29,4 @@ public interface IGenerator {
 	 * @throws CodeGenException 出错信息
 	 */
 	void invoke(ParamaModel paramaModel) throws CodeGenException, ParamaCheckException;
-	
-	/**
-	 * 取得该生成器支持的选项
-	 * @return 该生成器支持的选项
-	 */
-	List<OptionModel> getSupportOptions();
 }

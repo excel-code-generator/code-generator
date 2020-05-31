@@ -16,11 +16,6 @@
 package com.yanglb.codegen.exceptions;
 
 public class UnImplementException extends Exception {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	public UnImplementException() {
 		super("该方法未实现！");
 	}

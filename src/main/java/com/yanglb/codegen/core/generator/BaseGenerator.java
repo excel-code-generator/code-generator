@@ -15,21 +15,17 @@
  */
 package com.yanglb.codegen.core.generator;
 
-import com.yanglb.codegen.model.OptionModel;
-import com.yanglb.codegen.model.ParamaModel;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
+import com.yanglb.codegen.model.ParamaModel;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 public class BaseGenerator implements IGenerator{
 	protected ParamaModel paramaModel;
-	protected List<OptionModel> supportOptions;
 	protected HashMap<String, String> settingMap;
 	
 	protected void printInfo() {
@@ -58,8 +54,7 @@ public class BaseGenerator implements IGenerator{
 	 */
 	protected void init(ParamaModel paramaModel) {
 		this.paramaModel = paramaModel;
-		this.supportOptions = new ArrayList<OptionModel>();
-		this.settingMap = new HashMap<String, String>();
+		this.settingMap = new HashMap<>();
 		
 		this.settingMap.put("generationDate", new Date().toString());
 	}
@@ -68,23 +63,12 @@ public class BaseGenerator implements IGenerator{
 	public final void invoke(ParamaModel paramaModel) throws CodeGenException, ParamaCheckException {
 		init(paramaModel);
 
-		onCheck();
-		
 		printInfo();
 		
 		// 生成代码
 		onGeneration();
 	}
 
-	@Override
-	public List<OptionModel> getSupportOptions() {
-		return this.supportOptions;
-	}
-	
-	protected void onCheck() throws ParamaCheckException {
-		// 如需要检查请子类自行检查
-	}
-	
 	protected void onGeneration() throws CodeGenException {
 		// 子类实现
 	}

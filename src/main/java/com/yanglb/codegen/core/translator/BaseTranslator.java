@@ -64,7 +64,6 @@ public class BaseTranslator<T> implements ITranslator<T> {
 		this.writableModel.setFileName("untitled");
 		this.writableModel.setData(new StringBuilder());
 		this.writableModel.setOutputDir(this.paramaModel.getOptDir());
-		return;
 	}
 	
 	/**

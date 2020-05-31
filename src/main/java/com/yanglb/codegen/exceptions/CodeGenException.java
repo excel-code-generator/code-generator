@@ -16,11 +16,6 @@
 package com.yanglb.codegen.exceptions;
 
 public class CodeGenException extends Exception {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	public CodeGenException(String errMsg) {
 		super(errMsg);
 	}

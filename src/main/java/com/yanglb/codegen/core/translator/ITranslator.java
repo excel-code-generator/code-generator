@@ -31,25 +31,4 @@ public interface ITranslator<T> {
 	 * @throws CodeGenException 翻译出错时抛出此异常
 	 */
     WritableModel translate(HashMap<String, String> settingMap, ParamaModel paramaModel, T model) throws CodeGenException;
-	
-//	/**
-//	 * 预翻译器（子类如果重写，则必须显示调用超类的此方法）
-//	 * @throws CodeGenException 错误信息
-//	 */
-//	protected void onBeforeTranslate() throws CodeGenException;
-//	
-//	/**
-//	 * 进行转换操作
-//	 * @throws CodeGenException 错误信息
-//	 */
-//	protected void onTranslate() throws CodeGenException;
-//	
-//	/**
-//	 * 编码转换等操作
-//	 * @throws CodeGenException 错误信息
-//	 */
-//	protected void onAfterTranslate() throws CodeGenException;
-//	
-//	// 翻译操作
-//	private void doTranslate() throws CodeGenException;
 }

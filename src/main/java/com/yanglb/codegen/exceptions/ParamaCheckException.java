@@ -16,12 +16,6 @@
 package com.yanglb.codegen.exceptions;
 
 public class ParamaCheckException extends Exception {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	public ParamaCheckException() {
 		super("您输入的参数不正确，请使用 --help 命令查看用法。");
 	}
