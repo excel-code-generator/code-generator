@@ -31,17 +31,12 @@ public class AsciiWriterImpl extends BaseWriter {
 	
 	@Override
 	protected void onCharEncodeTranslator() throws CodeGenException {
-//		super.onCharEncodeTranslator();
-		
 	}
 
 	@Override
 	protected void onWriter() throws CodeGenException {
-//		super.onWriter();
-		
 		FileOutputStream fos = null;
 		try {
-			// TODO: ANSI形式的文件写入未完
 			fos = new FileOutputStream(this.writableModel.getFullPath());
 			fos.write(this.writableModel.getData().toString().getBytes("ASCII"));
 			fos.flush();

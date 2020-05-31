@@ -59,7 +59,6 @@ public class BaseWriter implements IWriter{
 		
 		outPath = String.format("%s/%s.%s",
 				outPath, 
-//				this.writableModel.getFilePath(),
 				this.writableModel.getFileName(),
 				this.writableModel.getExtension());
 		

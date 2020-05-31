@@ -74,7 +74,6 @@ public class BeanMapConverter<T> {
 						}
 					}
 				} else {
-					// TODO: 其它类型的转换需要添加
 					value = mapValue;
 				}
 				field.set(result, value);

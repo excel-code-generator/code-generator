@@ -32,8 +32,6 @@ public class Utf8WriterImpl extends BaseWriter {
 
 	@Override
 	protected void onWriter() throws CodeGenException {
-//		super.onWriter();
-		
 		FileOutputStream fos = null;
 		OutputStreamWriter osw = null;
 		try {
