@@ -35,16 +35,16 @@ public class BaseParser implements IParser {
     protected Options options() {
         Options options = new Options();
 
-        Option help = new Option("h", "help", false, "显示帮助信息。");
+        Option help = new Option("h", "help", false, "显示帮助信息");
         options.addOption(help);
 
-        Option version = new Option("v", "version", false, "打印版本信息。");
+        Option version = new Option("v", "version", false, "打印版本信息");
         options.addOption(version);
 
-        Option outDir = Option.builder("out")
-                .longOpt("out-dir")
+        Option outDir = Option.builder("o")
+                .longOpt("out")
                 .argName("dir")
-                .desc("输出目录，默认输出到 ./out 目录下。")
+                .desc("输出目录，默认输出到out目录")
                 .hasArg(true)
                 .build();
         options.addOption(outDir);
@@ -52,7 +52,7 @@ public class BaseParser implements IParser {
         Option fn = Option.builder("fn")
                 .longOpt("file-name")
                 .argName("fn")
-                .desc("生成的文件名，默认为Excel名。")
+                .desc("生成的文件名，默认为Excel名")
                 .hasArg(true)
                 .build();
         options.addOption(fn);
@@ -60,7 +60,7 @@ public class BaseParser implements IParser {
         Option sheets = Option.builder("s")
                 .longOpt("sheets")
                 .argName("names")
-                .desc("要处理的Excel Sheet名，默认全部，\"#\"开头的不处理。")
+                .desc("要处理的Excel Sheet名，默认除\"#\"开头外的全部Sheet")
                 .hasArg(true)
                 .hasArgs()
                 .build();
@@ -97,10 +97,11 @@ public class BaseParser implements IParser {
 
         System.out.println();
         System.out.println("帮助: ");
-        System.out.println(String.format(" %-23s显示数生成据库结构的更多帮助信息。", "cg ddl.mysql --help"));
-        System.out.println(String.format(" %-23s显示生成初始数据的更多帮助信息。", "cg dml --help"));
-        System.out.println(String.format(" %-23s显示生成国际化资源的更多帮助信息。", "cg msg.json --help"));
-        System.out.println("通过 cg command --help 查看详细命令。");
+        System.out.println(String.format(" %-23s显示数生成据库结构的更多帮助信息", "cg ddl.mysql --help"));
+        System.out.println(String.format(" %-23s显示生成初始数据的更多帮助信息", "cg dml --help"));
+        System.out.println(String.format(" %-23s显示生成国际化资源的更多帮助信息", "cg msg.json --help"));
+        System.out.println();
+        System.out.println("通过 cg command --help 查看指定命令的详细说明。");
         return true;
     }
 

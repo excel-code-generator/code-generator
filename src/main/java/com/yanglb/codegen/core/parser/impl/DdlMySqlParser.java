@@ -27,14 +27,14 @@ public class DdlMySqlParser extends DdlParser {
         Option engine = Option.builder()
                 .longOpt("engine")
                 .hasArg()
-                .desc(String.format("指定MySql Engine，默认为 %s 。", Conf.getSetting("mysql.engine")))
+                .desc(String.format("指定MySql Engine，默认为 %s", Conf.getSetting("mysql.engine")))
                 .build();
         options.addOption(engine);
 
         Option charset = Option.builder()
                 .longOpt("charset")
                 .hasArg()
-                .desc(String.format("指定MySql Default Charset，默认为 %s 。", Conf.getSetting("mysql.charset")))
+                .desc(String.format("指定MySql Default Charset，默认为 %s", Conf.getSetting("mysql.charset")))
                 .build();
         options.addOption(charset);
 

@@ -25,13 +25,13 @@ public class MsgJSONParser extends MsgParser {
 
         Option group = Option.builder("c")
                 .longOpt("combine")
-                .desc("是否将内容合并输出，合并后将所有Sheet合并输出。\n否则将以Sheet名为key保存该Sheet下的数据。")
+                .desc("是否将内容合并输出，合并后将所有Sheet合并输出\n否则将以Sheet名为key保存该Sheet下的数据")
                 .build();
         options.addOption(group);
 
         Option min = Option.builder("m")
                 .longOpt("minify")
-                .desc("是否压缩输出内容。")
+                .desc("是否压缩输出内容")
                 .build();
         options.addOption(min);
 
