@@ -6,13 +6,13 @@
 * DML - 生成初始数据的sql代码
 * MSG - 生成多语言资源代码，支持 Android/IOS/JSON/Java/.NET
 
-## 安装及使用
+## 安装
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/excel-code-generator/code-generator/master/install.sh)"
 ```
 将以上命令粘贴至终端。
 
-> Excel模板请参考 [template](template)
+> Windows 用户请先安装 [Bash Shell](https://git-scm.com/download/win)
 
 ## 参数说明
 ```
@@ -55,11 +55,12 @@ By https://yanglb.com
 ## 用法示例
 ```sh
 # 生成 MySql 数据库结构脚本
-java -jar cg.jar ddl.mysql database.xlsx --engine myisam
+cg ddl.mysql database.xlsx --engine myisam
 
 # 生成 JSON 多语言资源
-java -jar cg.jar msg.json msg.xlsx
+cg msg.json msg.xlsx
 ```
+> Excel模板请参考 [template](template)
 
 ## 升级说明
 4.x版本不兼容老版本的命令行参数，但Excel模板在所有版本下均可正常使用。
