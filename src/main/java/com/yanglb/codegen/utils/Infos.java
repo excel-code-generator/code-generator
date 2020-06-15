@@ -17,7 +17,7 @@ package com.yanglb.codegen.utils;
 
 public class Infos {
 	public static final String Name       = "Code Generator";
-	public static final String Version    = "4.0.1";
+	public static final String Version    = "4.0.2";
 	public static final String Copyright  = "Copyright 2015-2020 yanglb.com All Rights Reserved.";
 	public static final String Author     = "me@yanglb.com";
 	public static final String Website    = "https://yanglb.com";
