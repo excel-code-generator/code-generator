@@ -15,7 +15,7 @@ VER=`curl --silent "$BASE_PATH/releases/latest" | sed 's#.*tag/\(.*\)".*#\1#'`
 echo "Latest version: $VER"
 
 # download
-SH_FILE="$RAW_PATH/$VER/LICENSE"
+SH_FILE="$RAW_PATH/$VER/cg"
 JAR_FILE="$BASE_PATH/releases/download/$VER/cg.jar"
 
 download_file() {

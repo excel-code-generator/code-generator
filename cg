@@ -14,9 +14,9 @@ if [ ! -f $CG_PATH ];then
   exit 1
 fi
 
+# update
 do_update () {
-  echo "updatet "
-  curl https://raw.githubusercontent.com/excel-code-generator/code-generator/master/LICENSE|bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/excel-code-generator/code-generator/master/install.sh)"
 }
 
 if [ "update" = "$1" ];then
