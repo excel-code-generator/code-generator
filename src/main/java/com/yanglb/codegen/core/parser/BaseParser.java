@@ -77,6 +77,8 @@ public class BaseParser implements IParser {
 
         List<String> keys = Conf.supportCommands();
         Collections.sort(keys);
+
+        keys.add(0, "update");
         for (String key : keys) {
             System.out.println(String.format(" %-23s%s", key, Resources.getString(key)));
         }

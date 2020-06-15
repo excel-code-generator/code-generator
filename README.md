@@ -7,9 +7,10 @@
 * MSG - 生成多语言资源代码，支持 Android/IOS/JSON/Java/.NET
 
 ## 安装及使用
-1. 下载最新版[cg.jar](https://github.com/excel-code-generator/code-generator/releases)
-2. 保存cg.jar到适合目录
-3. 运行 java -jar path-to-cg.jar xxx
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/excel-code-generator/code-generator/master/install.sh)"
+```
+将以上命令粘贴至终端。
 
 > Excel模板请参考 [template](template)
 
@@ -17,6 +18,7 @@
 ```
 用法：cg command file [options]
 Commands: 
+ update                 检查并更新到最新版本
  ddl.mssql              生成SqlServer数据库结构SQL脚本（.ddl）
  ddl.mysql              生成MySql数据库结构SQL脚本（.ddl）
  ddl.sqlite             生成SQLite数据库结构SQL脚本（.ddl）
