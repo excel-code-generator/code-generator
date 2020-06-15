@@ -26,11 +26,13 @@ download_file cg.jar "$repoPath/releases/download/$tag/cg.jar"
 echo "Download success."
 
 # move file
-cgDir=$HOME/.cg/bin
-mkdir -p $cgDir
-mv /tmp/cg.jar $cgDir/
+cgDir=/usr/local/lib/cg/bin
+sudo mkdir -p $cgDir
 
-chmod +x /tmp/cg
-sudo mv /tmp/cg /usr/bin/
+sudo mv /tmp/cg.jar $cgDir/
+sudo mv /tmp/cg $cgDir/
+
+sudo chmod +x $cgDir/cg
+sudo ln -s $cgDir/cg /usr/local/bin/cg
 
 echo "Install success!"
