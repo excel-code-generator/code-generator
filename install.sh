@@ -28,10 +28,9 @@ echo "Download success."
 # move file
 cgDir=$HOME/.cg/bin
 mkdir -p $cgDir
-
-chmod +x /tmp/cg
-mv /tmp/cg /usr/bin/
 mv /tmp/cg.jar $cgDir/
 
+chmod +x /tmp/cg
+sudo mv /tmp/cg /usr/bin/
+
 echo "Install success!"
-cg -v

@@ -18,13 +18,16 @@ Write-Output "Latest version: $tag"
 
 # download
 Write-Output "Downloading..."
+$tempPath = Get-Random -Maximum 500
+$tempPath = "$env:TEMP\cg-$tempPath"
+if ( Test-Path $tempPath ) {
+    rm $tempPath\*
+} else {
+    mkdir -p $tempPath
+}
 function download_file($name, $path) {
     Write-Output "Download file $path "
-    if ( Test-Path "$env:TEMP\$name" ) {
-        del "$env:TEMP\$name"
-    }
-
-    Invoke-WebRequest $path -Out "$env:TEMP\$name"
+    Invoke-WebRequest $path -Out "$tempPath\$name"
 }
 download_file cg "$rawPath/$tag/cg"
 download_file cg.bat "$rawPath/$tag/cg.bat"
@@ -33,14 +36,14 @@ Write-Output "Download success."
 
 # move file
 $cgPath = "$env:APPDATA\cg\bin"
-$existDir = Test-Path $cgPath
-if ($existDir -eq $False) {
+if (Test-Path $cgPath) {
+    rm $cgPath\*
+} else {
     mkdir -p $cgPath
 }
 
-mv "$env:TEMP\cg" $cgPath
-mv "$env:TEMP\cg.bat" $cgPath
-mv "$env:TEMP\cg.jar" $cgPath
+mv "$tempPath\*" $cgPath
+rm $tempPath
 
 # set environment
 Write-Output "setting environment."
@@ -54,4 +57,3 @@ if (! $alreadyAdded) {
 }
 
 Write-Output "Install success!"
-cg -v
