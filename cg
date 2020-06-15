@@ -16,11 +16,10 @@
 
 set -e
 
-# For more information about the cg.jar, please vist the following page:
-# https://github.com/excel-code-generator/code-generator
+# cg.jar path
 CG_PATH=/usr/local/lib/cg/bin/cg.jar
 case "`uname`" in MINGW*)
-  CG_PATH=$0.jar
+  CG_PATH="`dirname $0`"/cg.jar
 esac
 
 # update

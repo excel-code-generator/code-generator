@@ -1,3 +1,4 @@
+@echo off
 REM Copyright 2015-2020 yanglb.com
 REM 
 REM Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,10 +13,7 @@ REM WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 REM See the License for the specific language governing permissions and
 REM limitations under the License.
 
-@echo off
-
-REM For more information about the cg.jar, please vist the following page:
-REM https://github.com/excel-code-generator/code-generator
+REM cg.jar path
 set CG_PATH=%APPDATA%\cg\bin\cg.jar
 
 REM update
