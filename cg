@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+set -e
+
+# For more information about the cg.jar, please vist the following page:
+# https://github.com/excel-code-generator/code-generator
+CG_PATH=$HOME/.cg/bin/cg.jar
+
+if [ ! -f $CG_PATH ];then
+  echo "`tput setaf 1`ERROR: The file \"$CG_PATH\" does not exist.`tput sgr0`"
+  echo
+  echo "For more information about the cg.jar, please vist the following page:"
+  echo "`tput setaf 4`https://github.com/excel-code-generator/code-generator `tput sgr0`"
+  exit 1
+fi
+
+do_update () {
+  echo "updatet "
+  curl https://raw.githubusercontent.com/excel-code-generator/code-generator/master/LICENSE|bash
+}
+
+if [ "update" = "$1" ];then
+  echo update code generator
+  do_update
+  exit 0
+fi
+
+java -jar $CG_PATH $@
