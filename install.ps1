@@ -11,25 +11,25 @@ $repoPath="https://github.com/$repo"
 $rawPath="https://raw.githubusercontent.com/$repo"
 
 # latest version
-echo "Get the latest version"
+Write-Output "Get the latest version"
 $releasesUri = "https://api.github.com/repos/$repo/releases/latest"
 $tag = (Invoke-WebRequest $releasesUri | ConvertFrom-Json)[0].tag_name
-echo "Latest version: $tag"
+Write-Output "Latest version: $tag"
 
 # download
-echo "Downloading..."
+Write-Output "Downloading..."
 function download_file($name, $path) {
-    echo "Download file $path "
+    Write-Output "Download file $path "
     if ( Test-Path "$env:TEMP\$name" ) {
         del "$env:TEMP\$name"
     }
 
     Invoke-WebRequest $path -Out "$env:TEMP\$name"
 }
-download_file cg "$rawPath/$tag/LICENSE"
+download_file cg "$rawPath/$tag/cg"
 download_file cg.bat "$rawPath/$tag/cg.bat"
 download_file cg.jar "$repoPath/releases/download/$tag/cg.jar"
-echo "Download success."
+Write-Output "Download success."
 
 # move file
 $cgPath = "$env:APPDATA\cg\bin"
@@ -43,7 +43,7 @@ mv "$env:TEMP\cg.bat" $cgPath
 mv "$env:TEMP\cg.jar" $cgPath
 
 # set environment
-echo "setting environment."
+Write-Output "setting environment."
 $alreadyAdded = $False
 $path = [environment]::GetEnvironmentvariable("PATH", "User")
 $path.Split(";") | ForEach-Object -Process {if ($_ -eq $cgPath) { $alreadyAdded = $True }}
@@ -53,5 +53,5 @@ if (! $alreadyAdded) {
     $path = [environment]::SetEnvironmentvariable("PATH", $path, "User")
 }
 
-echo "Install success!"
+Write-Output "Install success!"
 cg -v
