@@ -147,6 +147,11 @@ public class BaseParser implements IParser {
             }
 
             String[] as = commandLine.getArgs();
+            if (as.length > 0 && "update".equals(as[0])) {
+                System.out.println("请访问以下连接进行更新");
+                System.out.println("https://github.com/excel-code-generator/code-generator");
+                return null;
+            }
             if (as.length < 2) {
                 throw new IllegalArgumentException("您输入的参数不正确，请使用 --help 命令查看用法。");
             }
