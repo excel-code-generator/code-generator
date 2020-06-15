@@ -24,7 +24,14 @@ esac
 
 # update
 do_update () {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/excel-code-generator/code-generator/master/install.sh)"
+  case "`uname`"
+    in MINGW*)
+      powershell "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/excel-code-generator/code-generator/master/install.ps1'))"
+    ;;
+    *)
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/excel-code-generator/code-generator/master/install.sh)"
+    ;;
+  esac
 }
 
 if [ "update" = "$1" ];then
