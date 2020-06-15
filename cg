@@ -4,7 +4,10 @@ set -e
 
 # For more information about the cg.jar, please vist the following page:
 # https://github.com/excel-code-generator/code-generator
-CG_PATH=$HOME/.cg/bin/cg.jar
+CG_PATH=/usr/local/lib/cg/bin/cg.jar
+case "`uname`" in MINGW*)
+  CG_PATH=$0.jar
+esac
 
 # update
 do_update () {
