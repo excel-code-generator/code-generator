@@ -21,6 +21,12 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
 ```
 > 将以上命令粘贴至PowerShell。
 
+**更新**
+```sh
+cg update
+```
+> Windows/Mac/Linux 均相同。
+
 ## 参数说明
 ```
 用法：cg command file [options]
