@@ -30,7 +30,8 @@ public class ParameterModel {
 		return options.getOptionValue("out", "out");
 	}
 	public String getFileName() {
-		return options.getOptionValue("fn");
+		if (!options.hasOption("fn")) return null;
+		return options.getOptionValue("fn", "");
 	}
 
 	public String getCmd() {

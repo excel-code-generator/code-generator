@@ -52,8 +52,9 @@ public class BaseParser implements IParser {
         Option fn = Option.builder("fn")
                 .longOpt("file-name")
                 .argName("fn")
-                .desc("生成的文件名，默认为Excel名")
+                .desc("生成的文件名，默认为Excel名，可为空值。")
                 .hasArg(true)
+                .optionalArg(true)
                 .build();
         options.addOption(fn);
 
