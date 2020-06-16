@@ -48,6 +48,6 @@ sudo mv /tmp/cg.jar $cgDir/
 sudo mv /tmp/cg $cgDir/
 
 sudo chmod +x $cgDir/cg
-sudo ln -s $cgDir/cg /usr/local/bin/cg
+sudo ln -bs $cgDir/cg /usr/local/bin/cg
 
 echo "Install success!"
