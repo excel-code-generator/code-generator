@@ -16,6 +16,15 @@
 
 set -e
 
+# check require
+type java >/dev/null 2>&1 || { 
+  echo >&2 "`tput setaf 1`ERROR: This script require java but it's not installed. `tput sgr0`"
+  echo >&2
+  echo >&2 "Please install java first."
+  echo >&2 "`tput setaf 4`https://www.java.com`tput sgr0`"
+  exit 1
+}
+
 # Always download the latest version
 # For more information about the cg.jar, please vist the following page:
 # https://github.com/excel-code-generator/code-generator
