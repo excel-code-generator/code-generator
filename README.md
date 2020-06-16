@@ -37,7 +37,7 @@ Commands:
  msg.resx               生成.NET国际化资源文件（.resx）
 
 Options:
- -fn,--file-name <fn>   生成的文件名，默认为Excel名
+ -fn,--file-name <fn>   生成的文件名，默认为Excel名，可为空值。
  -h,--help              显示帮助信息
  -o,--out <dir>         输出目录，默认输出到out目录
  -s,--sheets <names>    要处理的Excel Sheet名，默认除"#"开头外的全部Sheet
@@ -55,7 +55,7 @@ Options:
 通过 cg command --help 查看指定命令的详细说明。
 
 ---
-Code Generator v4.0.0
+Code Generator v4.0.3
 By https://yanglb.com
 ```
 
