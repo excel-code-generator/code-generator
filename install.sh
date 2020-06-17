@@ -57,6 +57,11 @@ sudo mv /tmp/cg.jar $cgDir/
 sudo mv /tmp/cg $cgDir/
 
 sudo chmod +x $cgDir/cg
-sudo ln -bs $cgDir/cg /usr/local/bin/cg
+
+if [ -f /usr/local/bin/cg ];then
+  echo "remove old cg command."
+  sudo rm /usr/local/bin/cg
+fi
+sudo ln -s $cgDir/cg /usr/local/bin/cg
 
 echo "Install success!"
