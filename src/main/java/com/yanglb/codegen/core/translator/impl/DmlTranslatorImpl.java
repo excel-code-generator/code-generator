@@ -50,7 +50,7 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 				break;
 			case "mssql":
 				sqlColumnStart = "[";
-				sqlColumnEnd = "[";
+				sqlColumnEnd = "]";
 				break;
 			case "sqlite":
 				sqlColumnStart = "\"";
