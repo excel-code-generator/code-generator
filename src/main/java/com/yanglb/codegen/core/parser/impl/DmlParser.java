@@ -16,8 +16,23 @@
 package com.yanglb.codegen.core.parser.impl;
 
 import com.yanglb.codegen.core.parser.BaseParser;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
 
 public class DmlParser extends BaseParser {
+    @Override
+    protected Options options() {
+        Options options = super.options();
+
+        Option target = Option.builder()
+                .longOpt("target")
+                .hasArg()
+                .desc("指定生成目标，可选 mysql/mssql/sqlite，默认为mysql")
+                .build();
+        options.addOption(target);
+        return options;
+    }
+
     @Override
     protected boolean headerHelp() {
         System.out.println("生成初始数据SQL脚本，用于向数据添加初始数据。");

@@ -17,8 +17,6 @@ package com.yanglb.codegen.core.translator;
 
 import java.util.List;
 
-import com.yanglb.codegen.exceptions.CodeGenException;
-
 public class BaseSqlTranslator<T> extends BaseTranslator<List<T>> {
 	// 列引号字符，如：SQL Server为[], MySQL为`等
 	protected String sqlColumnStart = "\"";

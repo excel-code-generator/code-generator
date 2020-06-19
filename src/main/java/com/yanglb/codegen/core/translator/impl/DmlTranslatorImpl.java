@@ -41,6 +41,22 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 			fileName = fileName.substring(0, index);
 		}
 		this.writableModel.setFileName(fileName);
+
+		String target = parameterModel.getOptions().getOptionValue("target", "mysql");
+		switch (target) {
+			case "mysql":
+				sqlColumnStart = "`";
+				sqlColumnEnd = "`";
+				break;
+			case "mssql":
+				sqlColumnStart = "[";
+				sqlColumnEnd = "[";
+				break;
+			case "sqlite":
+				sqlColumnStart = "\"";
+				sqlColumnEnd = "\"";
+				break;
+		}
 	}
 
 	@Override

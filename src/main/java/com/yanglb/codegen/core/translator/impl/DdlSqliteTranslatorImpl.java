@@ -28,6 +28,11 @@ import com.yanglb.codegen.utils.StringUtil;
 
 public class DdlSqliteTranslatorImpl extends BaseDdlTranslator {
 
+	public DdlSqliteTranslatorImpl() {
+		this.sqlColumnStart = "\"";
+		this.sqlColumnEnd = "\"";
+	}
+
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
