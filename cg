@@ -44,7 +44,7 @@ if [ ! -f $CG_PATH ];then
   echo "`tput setaf 1`ERROR: The file \"$CG_PATH\" does not exist.`tput sgr0`"
   echo "run \``tput setaf 2`cg update`tput sgr0`\` command to reinstall."
   echo
-  echo "For more information about the cg.jar, please vist the following page:"
+  echo "For more information about the cg.jar, please visit the following page:"
   echo "`tput setaf 4`https://github.com/excel-code-generator/code-generator `tput sgr0`"
   exit 1
 fi

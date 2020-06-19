@@ -17,7 +17,7 @@ $ErrorActionPreference = "Stop"
 $PSDefaultParameterValues['*:ErrorAction']='Stop'
 
 # Always download the latest version
-# For more information about the cg.jar, please vist the following page:
+# For more information about the cg.jar, please visit the following page:
 # https://github.com/excel-code-generator/code-generator
 
 $repo="excel-code-generator/code-generator"

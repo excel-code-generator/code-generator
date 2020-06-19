@@ -28,7 +28,7 @@ if not exist %CG_PATH% (
   echo ERROR: The file %CG_PATH% does not exist.
   echo run `cg update` command to reinstall.
   echo=
-  echo For more information about the cg.jar, please vist the following page:
+  echo For more information about the cg.jar, please visit the following page:
   echo https://github.com/excel-code-generator/code-generator
   exit /B 1
 )
