@@ -29,11 +29,10 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
-		
 		this.writableModel.setExtension("strings");
-		String path = (this.isDefaultLanguage() ? "Base" : this.msgLang) + ".lproj";
 
-		// 文件名
+		// IOS 资源输出目录结构为: Base.lproj/xxx.strings、zh.lproj/xxx.strings 等
+		String path = (this.isDefaultLanguage() ? "Base" : this.msgLang) + ".lproj";
 		String fileName = path + "/" + getFileName();
 		this.writableModel.setFileName(fileName);
 	}

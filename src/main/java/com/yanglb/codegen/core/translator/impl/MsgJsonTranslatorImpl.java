@@ -27,7 +27,6 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
-		
 		this.writableModel.setExtension("json");
 	}
 

@@ -35,7 +35,6 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
-		
 		this.writableModel.setExtension("resx");
 	}
 

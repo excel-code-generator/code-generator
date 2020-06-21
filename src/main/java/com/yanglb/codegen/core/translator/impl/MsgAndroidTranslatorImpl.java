@@ -31,10 +31,9 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 	@Override
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
-		
 		this.writableModel.setExtension("xml");
 
-		// Android 资源输出目录结构为  strings、strings-zh等
+		// Android 资源输出目录结构为: strings/strings.xml、strings-zh/strings.xml 等
 		String path = "values";
 		if (!this.isDefaultLanguage()) {
 			path = String.format("values-%s", this.msgLang);
