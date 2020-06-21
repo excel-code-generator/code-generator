@@ -50,28 +50,6 @@ public class BaseMsgTranslator extends BaseTranslator<List<TableModel>> {
 	}
 	
 	/**
-	 * 文件名，优先使用--fn参数指定的文件名，如不指定使用excel名称
-	 * @return 文件名
-	 */
-	protected String getFileName() {
-		String fileName = this.parameterModel.getFileName();
-		if (fileName != null) {
-			fileName.replaceAll("\"", "");
-		} else {
-			fileName = this.model.get(0).getExcelFileName();
-			File file = new File(fileName);
-			fileName = file.getName();
-			
-			int index = fileName.lastIndexOf(".");
-			if(index != -1) {
-				fileName = fileName.substring(0, index);
-			}
-		}
-		
-		return fileName;
-	}
-	
-	/**
 	 * 获取当前语言是否为默认语言
 	 * @return
 	 */

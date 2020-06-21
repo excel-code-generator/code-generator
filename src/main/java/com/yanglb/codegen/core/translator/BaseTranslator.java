@@ -15,6 +15,7 @@
  */
 package com.yanglb.codegen.core.translator;
 
+import java.io.File;
 import java.util.HashMap;
 
 import com.yanglb.codegen.model.ParameterModel;
@@ -30,7 +31,29 @@ public class BaseTranslator<T> implements ITranslator<T> {
 	protected BaseTranslator() {
 		this.writableModel = new WritableModel();
 	}
-	
+
+	/**
+	 * 文件名，优先使用--fn参数指定的文件名，如不指定使用excel名称
+	 * @return 文件名
+	 */
+	protected String getFileName() {
+		String fileName = this.parameterModel.getFileName();
+		if (fileName != null) {
+			fileName.replaceAll("\"", "");
+		} else {
+			fileName = this.parameterModel.getFile();
+			File file = new File(fileName);
+			fileName = file.getName();
+
+			int index = fileName.lastIndexOf(".");
+			if(index != -1) {
+				fileName = fileName.substring(0, index);
+			}
+		}
+
+		return fileName;
+	}
+
 	/**
 	 * 进行翻译处理
 	 * @param settingMap 配置信息
@@ -56,7 +79,7 @@ public class BaseTranslator<T> implements ITranslator<T> {
 	protected void onBeforeTranslate() throws CodeGenException {
 		// 设置文件名、等初始化操作
 		this.writableModel.setEncode("utf-8");
-		this.writableModel.setFileName("untitled");
+		this.writableModel.setFileName(getFileName());
 		this.writableModel.setData(new StringBuilder());
 		this.writableModel.setOutputDir(this.parameterModel.getOptDir());
 	}

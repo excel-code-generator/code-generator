@@ -31,17 +31,6 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 		super.onBeforeTranslate();
 		this.writableModel.setExtension("dml");
 
-		// 设置文件名（同Excel名）
-		String fileName = this.model.get(0).getExcelFileName();
-		File file = new File(fileName);
-		fileName = file.getName();
-		
-		int index = fileName.lastIndexOf(".");
-		if(index != -1) {
-			fileName = fileName.substring(0, index);
-		}
-		this.writableModel.setFileName(fileName);
-
 		String target = parameterModel.getOptions().getOptionValue("target", "mysql");
 		switch (target) {
 			case "mysql":

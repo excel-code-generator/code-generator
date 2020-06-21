@@ -31,11 +31,6 @@ public class DdlSqlServerTranslatorImpl extends BaseDdlTranslator {
 		this.sqlColumnStart = "[";
 		this.sqlColumnEnd = "]";
 	}
-	
-	@Override
-	protected void onBeforeTranslate() throws CodeGenException {
-		super.onBeforeTranslate();
-	}
 
 	@Override
 	protected void onTranslate() throws CodeGenException {

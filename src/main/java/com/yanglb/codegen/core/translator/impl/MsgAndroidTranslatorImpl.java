@@ -34,14 +34,19 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 		
 		this.writableModel.setExtension("xml");
 
-		// 文件名
-		if (this.parameterModel.getFileName() == null) {
-			this.writableModel.setFileName("strings");
+		// Android 资源输出目录结构为  strings、strings-zh等
+		String path = "values";
+		if (!this.isDefaultLanguage()) {
+			path = String.format("values-%s", this.msgLang);
 		}
 
+		// 文件名，未设置时默认为strings
 		String fileName = writableModel.getFileName();
-		String path =  (this.isDefaultLanguage() ? "" : this.getSplitString() + this.msgLang);
-		fileName = ("values" + path) + "/" + fileName;
+		if (StringUtil.isNullOrEmpty(this.parameterModel.getFileName())) {
+			fileName = "strings";
+		}
+
+		fileName = path + "/" + fileName;
 		writableModel.setFileName(fileName);
 	}
 	

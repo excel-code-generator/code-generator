@@ -34,17 +34,6 @@ public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
 	protected void onBeforeTranslate() throws CodeGenException {
 		super.onBeforeTranslate();
 		this.writableModel.setExtension("ddl");
-
-		// 设置文件名（同Excel名）
-		String fileName = this.model.get(0).getExcelFileName();
-		File file = new File(fileName);
-		fileName = file.getName();
-		
-		int index = fileName.lastIndexOf(".");
-		if(index != -1) {
-			fileName = fileName.substring(0, index);
-		}
-		this.writableModel.setFileName(fileName);
 	}
 	
 	@Override
