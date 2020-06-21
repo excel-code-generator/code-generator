@@ -38,7 +38,7 @@ command:
     reader: .core.reader.impl.TableReaderImpl
     translator: .core.translator.impl.MsgIOSTranslatorImpl
   msg.android:
-    parser: .core.parser.impl.MsgParser
+    parser: .core.parser.impl.MsgAndroidParser
     generator: .core.generator.impl.MsgGeneratorImpl
     reader: .core.reader.impl.TableReaderImpl
     translator: .core.translator.impl.MsgAndroidTranslatorImpl
