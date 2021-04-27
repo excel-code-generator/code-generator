@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,10 @@ package com.yanglb.codegen.shell;
 
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.generator.IGenerator;
-import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.core.parser.IParser;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
+import com.yanglb.codegen.model.ParameterModel;
 
 public class CGShell {
 	public boolean invoke(String[] args) {

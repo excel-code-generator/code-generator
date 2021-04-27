@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +15,19 @@
  */
 package com.yanglb.codegen.core.generator.impl;
 
-import java.util.List;
-
 import com.yanglb.codegen.core.GenFactory;
 import com.yanglb.codegen.core.generator.BaseGenerator;
-import com.yanglb.codegen.model.DdlModel;
-import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.core.reader.IReader;
 import com.yanglb.codegen.core.translator.ITranslator;
 import com.yanglb.codegen.core.writer.IWriter;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.GenTypes;
+import com.yanglb.codegen.model.DdlModel;
+import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.utils.Conf;
+import com.yanglb.codegen.utils.GenTypes;
 import com.yanglb.codegen.utils.Resources;
+import java.util.List;
+
 
 public class DmlGeneratorImpl extends BaseGenerator {
 

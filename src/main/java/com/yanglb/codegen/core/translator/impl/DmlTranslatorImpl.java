@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,14 @@
  */
 package com.yanglb.codegen.core.translator.impl;
 
-import java.io.File;
-import java.util.Map;
-
-import com.yanglb.codegen.model.DmlModel;
-import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseSqlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.model.DmlModel;
+import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.StringUtil;
+import java.util.Map;
+
 
 public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
 	@Override

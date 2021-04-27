@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
  */
 package com.yanglb.codegen.core.writer.impl;
 
+import com.yanglb.codegen.core.writer.BaseWriter;
+import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.utils.Resources;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import com.yanglb.codegen.core.writer.BaseWriter;
-import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.Resources;
 
 /**
  * ANSI文件写入器

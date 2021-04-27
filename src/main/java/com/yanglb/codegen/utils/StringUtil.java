@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,6 @@
 package com.yanglb.codegen.utils;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class StringUtil {
 	

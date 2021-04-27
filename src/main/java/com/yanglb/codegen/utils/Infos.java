@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package com.yanglb.codegen.utils;
 public class Infos {
 	public static final String Name       = "Code Generator";
 	public static final String Version    = "4.1.1";
-	public static final String Copyright  = "Copyright 2015-2020 yanglb.com All Rights Reserved.";
+	public static final String Copyright  = "Copyright 2015-2021 yanglb.com All Rights Reserved.";
 	public static final String Author     = "me@yanglb.com";
 	public static final String Website    = "https://yanglb.com";
 	public static final String Repository = "https://github.com/excel-code-generator/code-generator";

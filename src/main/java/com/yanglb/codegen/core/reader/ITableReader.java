@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,10 @@
  */
 package com.yanglb.codegen.core.reader;
 
+import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.model.TableModel;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
-import com.yanglb.codegen.model.TableModel;
-import com.yanglb.codegen.exceptions.CodeGenException;
 
 /**
  * Table读取器接口

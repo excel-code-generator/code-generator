@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,11 @@ package com.yanglb.codegen.core.generator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.exceptions.ParamaCheckException;
 import com.yanglb.codegen.model.ParameterModel;
+import java.util.Date;
+import java.util.HashMap;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 
-import java.util.Date;
-import java.util.HashMap;
 
 public class BaseGenerator implements IGenerator{
 	protected ParameterModel parameterModel;

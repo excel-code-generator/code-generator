@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,15 @@
  */
 package com.yanglb.codegen.core.translator.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
 import com.yanglb.codegen.utils.StringUtil;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
 	@Override

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
  */
 package com.yanglb.codegen.core.translator;
 
+import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.model.ParameterModel;
+import com.yanglb.codegen.model.WritableModel;
 import java.io.File;
 import java.util.HashMap;
 
-import com.yanglb.codegen.model.ParameterModel;
-import com.yanglb.codegen.model.WritableModel;
-import com.yanglb.codegen.exceptions.CodeGenException;
 
 public class BaseTranslator<T> implements ITranslator<T> {
 	protected T model;
@@ -62,6 +62,7 @@ public class BaseTranslator<T> implements ITranslator<T> {
 	 * @return WritableModel 一个可写的Model
 	 * @throws CodeGenException 翻译出错时抛出此异常
 	 */
+ @Override
 	public WritableModel translate(HashMap<String, String> settingMap, ParameterModel parameterModel, T model)
 			throws CodeGenException {
 		this.settingMap = settingMap;

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
  */
 package com.yanglb.codegen.core.writer;
 
+import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.model.WritableModel;
+import com.yanglb.codegen.utils.Resources;
 import java.io.File;
 
-import com.yanglb.codegen.model.WritableModel;
-import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.utils.Resources;
 
 public class BaseWriter implements IWriter{
 	protected WritableModel writableModel;

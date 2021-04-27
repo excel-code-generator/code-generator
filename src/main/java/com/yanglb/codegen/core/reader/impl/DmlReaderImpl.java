@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,17 +15,17 @@
  */
 package com.yanglb.codegen.core.reader.impl;
 
-import com.yanglb.codegen.utils.Conf;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-
 import com.yanglb.codegen.core.GenFactory;
-import com.yanglb.codegen.model.DmlModel;
-import com.yanglb.codegen.model.TableModel;
 import com.yanglb.codegen.core.reader.BaseModelReader;
 import com.yanglb.codegen.core.reader.ITableReader;
 import com.yanglb.codegen.exceptions.CodeGenException;
+import com.yanglb.codegen.model.DmlModel;
+import com.yanglb.codegen.model.TableModel;
+import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.GenTypes;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+
 
 public class DmlReaderImpl extends BaseModelReader<DmlModel> {
 	/**

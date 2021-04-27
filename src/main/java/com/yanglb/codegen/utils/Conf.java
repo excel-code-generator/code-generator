@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,12 @@
 package com.yanglb.codegen.utils;
 
 import com.yanglb.codegen.model.CmdModel;
-import org.yaml.snakeyaml.Yaml;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.yaml.snakeyaml.Yaml;
+
 
 public class Conf {
 	private static Map<String, Object> settings = null;

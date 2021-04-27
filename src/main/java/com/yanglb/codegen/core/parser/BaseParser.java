@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2020 yanglb.com
+ * Copyright 2015-2021 yanglb.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +19,11 @@ import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
-import org.apache.commons.cli.*;
-
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
+import org.apache.commons.cli.*;
+
 
 public class BaseParser implements IParser {
     protected String[] args;
