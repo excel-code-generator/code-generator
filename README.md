@@ -27,6 +27,12 @@ cg update
 ```
 > Windows/Mac/Linux 均相同。
 
+## 在Docker中使用
+```sh
+docker pull yanglibing/code-generator
+docker run --rm -it yanglibing/code-generator
+```
+
 ## 参数说明
 ```
 用法：cg command file [options]
