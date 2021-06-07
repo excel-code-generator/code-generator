@@ -9,14 +9,12 @@
 ## 安装
 **Mac/Linux 用户**
 ```sh
-#!/usr/bin/env sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/excel-code-generator/code-generator/master/install.sh)"
 ```
 > 将以上命令粘贴至终端。
 
 **Windows 用户**
 ```ps1
-# PowerShell
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/excel-code-generator/code-generator/master/install.ps1'))
 ```
 > 将以上命令粘贴至PowerShell。
