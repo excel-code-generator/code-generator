@@ -32,10 +32,11 @@ type java >/dev/null 2>&1 || {
 repo="excel-code-generator/code-generator"
 repoPath="https://github.com/$repo"
 rawPath="https://raw.githubusercontent.com/$repo"
+apiPath="https://api.github.com/repos/$repo/releases/latest"
 
 # latest version
 echo "Get the latest version"
-tag=`curl --silent "$repoPath/releases/latest" | sed 's#.*tag/\(.*\)".*#\1#'`
+tag=`curl --silent $apiPath | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g'
 echo "Latest version: $tag"
 
 # download
