@@ -36,7 +36,7 @@ apiPath="https://api.github.com/repos/$repo/releases/latest"
 
 # latest version
 echo "Get the latest version"
-tag=`curl --silent $apiPath | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g'
+tag=`curl --silent $apiPath | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g'`
 echo "Latest version: $tag"
 
 # download
