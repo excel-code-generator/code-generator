@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.List;
 import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -185,23 +186,23 @@ public class BaseReader<T> implements IReader<T>{
 	 */
 	public String getCellStringValue(XSSFCell cell) {
 		String result = null;
-    	int type = cell.getCellType();
-    	if(type == Cell.CELL_TYPE_FORMULA) type = cell.getCachedFormulaResultType();
-    	if(type == Cell.CELL_TYPE_BLANK) return null;
-    	if(type == Cell.CELL_TYPE_ERROR) {
+    	CellType type = cell.getCellType();
+    	if(type == CellType.FORMULA) type = cell.getCachedFormulaResultType();
+    	if(type == CellType.BLANK) return null;
+    	if(type == CellType.ERROR) {
     		return "#VALUE!";
     	}
     	
     	switch(type) {
-    	case Cell.CELL_TYPE_BOOLEAN:
+			case BOOLEAN:
     		result = String.valueOf(cell.getBooleanCellValue());
     		break;
     		
-    	case Cell.CELL_TYPE_STRING:
+			case STRING:
     		result = cell.getStringCellValue();
     		break;
     		
-    	case Cell.CELL_TYPE_NUMERIC:
+			case NUMERIC:
     	{
     		if(cell.getCellStyle().getDataFormat() == DataFormatType.FORMAT_DATE) {
     			Date date = cell.getDateCellValue();
