@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2021 yanglb.com
+ * Copyright 2015-2023 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ import com.yanglb.codegen.core.reader.BaseReader;
 import com.yanglb.codegen.utils.StringUtil;
 import java.util.HashMap;
 import java.util.List;
+
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -43,7 +45,7 @@ public class HashMapReaderImpl extends BaseReader<HashMap<String, String>> {
 			XSSFRow xssfRow = sheet.getRow(row);
 			String key = this.getCellStringValue(xssfRow.getCell(this.startColNo));
 			// key不为空时添加到Map中
-			if(xssfRow.getCell(this.startColNo).getCellType() == XSSFCell.CELL_TYPE_BLANK
+			if(xssfRow.getCell(this.startColNo).getCellType() == CellType.BLANK
 					|| StringUtil.isNullOrEmpty(key)) {
 				continue;
 			}

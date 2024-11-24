@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2021 yanglb.com
+ * Copyright 2015-2023 yanglb.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -78,8 +80,8 @@ public class TableReaderImpl extends BaseModelReader<TableModel> implements ITab
 					throw new CodeGenException(String.format("error: sheet(%s), row(%d), col(%d)", 
 							sheet.getSheetName(), rowNo, colNo));
 				}
-				if(cell.getCellType() != XSSFCell.CELL_TYPE_BLANK
-						&& cell.getCellType() != XSSFCell.CELL_TYPE_ERROR) {
+				if(cell.getCellType() != CellType.BLANK
+						&& cell.getCellType() != CellType.ERROR) {
 					allBlank = false;
 				}
 				String value = this.getCellStringValue(cell);
@@ -87,7 +89,7 @@ public class TableReaderImpl extends BaseModelReader<TableModel> implements ITab
 				// 第一行为KEY
 				if(rowNo == this.startRowNo) {
 					if(StringUtil.isNullOrEmpty(value)
-							|| cell.getCellType() ==XSSFCell.CELL_TYPE_BLANK
+							|| cell.getCellType() ==CellType.BLANK
 							|| "-".equals(value)) {
 						// 空白/忽略的列无视
 						continue;
