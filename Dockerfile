@@ -3,8 +3,12 @@
 # image: yanglibing/code-generator
 # by yanglb.com
 #
-FROM openjdk:8-jre-alpine
-LABEL maintainer "yanglb <dev@yanglb.com>"
+# 升级记录
+#  v1.0 | 2021/4/27  | 原始版本
+#  v2.0 | 2024/11/30 | 升级jdk版本及支持Arm64架构
+
+FROM eclipse-temurin:23-jre-alpine
+LABEL org.opencontainers.image.authors="yanglb <dev@yanglb.com>"
 
 COPY ./target/code-generator-*-jar-with-dependencies.jar /usr/local/lib/cg/bin/cg.jar
 COPY ./cg /usr/local/bin/cg
