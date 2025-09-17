@@ -43,8 +43,8 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
         }
 
         // 文件名，未设置时默认为strings
-        String fileName = writableModel.getFileName();
-        if (StringUtil.isNullOrEmpty(this.parameterModel.getFileName())) {
+        String fileName = this.parameterModel.getFileName();
+        if (StringUtil.isNullOrEmpty(fileName)) {
             fileName = "strings";
         }
 
