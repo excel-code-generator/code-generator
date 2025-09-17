@@ -76,7 +76,7 @@ Options:
 通过 cg command --help 查看指定命令的详细说明。
 
 ---
-Code Generator v4.3.0
+Code Generator v4.4.0
 By https://yanglb.com
 ```
 
@@ -98,6 +98,6 @@ cg msg.json msg.xlsx
 
 ## License
 
-Copyright (c) 2015-2023 yanglb.com. All rights reserved.
+Copyright (c) 2015-2025 yanglb.com. All rights reserved.
 
 Licensed under the [Apache License 2.0](LICENSE) license.
