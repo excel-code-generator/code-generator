@@ -50,7 +50,7 @@ public class DdlGeneratorImpl extends BaseGenerator {
 
         // 默认使用UTF-8编码
         GenTypes.Writer supportWriter = GenTypes.Writer.utf8;
-        if (writableModel.getEncode() == "ascii") supportWriter = GenTypes.Writer.ascii;
+        if ("ascii".equals(writableModel.getEncode())) supportWriter = GenTypes.Writer.ascii;
 
         // 写入到文件中
         IWriter writer = GenFactory.createByName(Conf.getString(Conf.CATEGORY_WRITER, supportWriter.name()));

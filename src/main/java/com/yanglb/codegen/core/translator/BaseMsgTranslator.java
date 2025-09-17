@@ -33,7 +33,7 @@ public class BaseMsgTranslator extends BaseTranslator<List<TableModel>> {
 
         // 文件名
         String fileName = getFileName();
-        if (fileName.equals("")) {
+        if (fileName.isEmpty()) {
             // 空文件名
             fileName = this.msgLang;
         } else {
@@ -51,7 +51,6 @@ public class BaseMsgTranslator extends BaseTranslator<List<TableModel>> {
 
     /**
      * 获取当前语言是否为默认语言
-     * @return
      */
     protected boolean isDefaultLanguage() {
         return this.msgLang.equals("default");

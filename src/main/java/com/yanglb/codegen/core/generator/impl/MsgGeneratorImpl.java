@@ -41,12 +41,12 @@ public class MsgGeneratorImpl extends BaseGenerator {
         ITableReader tableReader = GenFactory.createByName(parameterModel.getCmdModel().getReader());
         tableReader.setStartPoint(3, 2);
         List<TableModel> list = tableReader.reader(this.parameterModel.getFile(), this.parameterModel.getSheets());
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             throw new CodeGenException(Resources.getString("E_003"));
         }
 
         // 获取语言（每种语言翻译一次）
-        List<String> langList = new ArrayList<String>();
+        List<String> langList = new ArrayList<>();
         TableModel tableModel = list.get(0);
         for (String key : tableModel.getColumns()) {
             if (!"id".equals(key)) {
@@ -61,7 +61,7 @@ public class MsgGeneratorImpl extends BaseGenerator {
 
                 // 默认使用UTF-8编码
                 GenTypes.Writer supportWriter = GenTypes.Writer.utf8;
-                if (writableModel.getEncode() == "ascii") supportWriter = GenTypes.Writer.ascii;
+                if ("ascii".equals(writableModel.getEncode())) supportWriter = GenTypes.Writer.ascii;
 
                 // 写入到文件中
                 IWriter writer = GenFactory.createByName(Conf.getString(Conf.CATEGORY_WRITER, supportWriter.name()));
