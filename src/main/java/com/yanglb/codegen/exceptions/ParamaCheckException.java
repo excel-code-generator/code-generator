@@ -1,12 +1,12 @@
 /**
  * Copyright 2015-2023 yanglb.com
- * 
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
- *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,11 +16,11 @@
 package com.yanglb.codegen.exceptions;
 
 public class ParamaCheckException extends Exception {
-	public ParamaCheckException() {
-		super("您输入的参数不正确，请使用 --help 命令查看用法。");
-	}
-	
-	public ParamaCheckException(String errMsg) {
-		super(errMsg);
-	}
+    public ParamaCheckException() {
+        super("您输入的参数不正确，请使用 --help 命令查看用法。");
+    }
+
+    public ParamaCheckException(String errMsg) {
+        super(errMsg);
+    }
 }

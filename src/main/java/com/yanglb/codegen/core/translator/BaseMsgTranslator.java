@@ -1,12 +1,12 @@
 /**
  * Copyright 2015-2023 yanglb.com
- * 
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
- *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,42 +17,43 @@ package com.yanglb.codegen.core.translator;
 
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.model.TableModel;
+
 import java.util.List;
 
 
 public class BaseMsgTranslator extends BaseTranslator<List<TableModel>> {
-	protected String msgLang = "";
-	
-	@Override
-	protected void onBeforeTranslate() throws CodeGenException {
-		super.onBeforeTranslate();
-		
-		// 当前生成的国际化语言
-		this.msgLang = this.settingMap.get("MsgLang");
-		
-		// 文件名
-		String fileName = getFileName();
-		if (fileName.equals("")) {
-			// 空文件名
-			fileName = this.msgLang;
-		} else {
-			if(!this.isDefaultLanguage()) {
-				fileName = fileName + this.getSplitString() + this.msgLang;
-			}
-		}
-		
-		this.writableModel.setFileName(fileName);
-	}
-	
-	protected String getSplitString() {
-		return ".";
-	}
-	
-	/**
-	 * 获取当前语言是否为默认语言
-	 * @return
-	 */
-	protected boolean isDefaultLanguage() {
-		return this.msgLang.equals("default");
-	}
+    protected String msgLang = "";
+
+    @Override
+    protected void onBeforeTranslate() throws CodeGenException {
+        super.onBeforeTranslate();
+
+        // 当前生成的国际化语言
+        this.msgLang = this.settingMap.get("MsgLang");
+
+        // 文件名
+        String fileName = getFileName();
+        if (fileName.equals("")) {
+            // 空文件名
+            fileName = this.msgLang;
+        } else {
+            if (!this.isDefaultLanguage()) {
+                fileName = fileName + this.getSplitString() + this.msgLang;
+            }
+        }
+
+        this.writableModel.setFileName(fileName);
+    }
+
+    protected String getSplitString() {
+        return ".";
+    }
+
+    /**
+     * 获取当前语言是否为默认语言
+     * @return
+     */
+    protected boolean isDefaultLanguage() {
+        return this.msgLang.equals("default");
+    }
 }

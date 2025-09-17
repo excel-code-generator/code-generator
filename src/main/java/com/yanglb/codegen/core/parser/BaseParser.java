@@ -1,12 +1,12 @@
 /**
  * Copyright 2015-2023 yanglb.com
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,14 +19,17 @@ import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
+
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
+
 import org.apache.commons.cli.*;
 
 
 public class BaseParser implements IParser {
     protected String[] args;
+
     @Override
     public void setArgs(String[] args) {
         this.args = args;
@@ -73,6 +76,7 @@ public class BaseParser implements IParser {
         System.out.println("用法：cg command file [options]");
         return true;
     }
+
     protected boolean commandHelp() {
         System.out.println("Commands: ");
 
@@ -100,9 +104,9 @@ public class BaseParser implements IParser {
 
         System.out.println();
         System.out.println("帮助: ");
-        System.out.println(String.format(" %-23s显示数生成据库结构的更多帮助信息", "cg ddl.mysql --help"));
-        System.out.println(String.format(" %-23s显示生成初始数据的更多帮助信息", "cg dml --help"));
-        System.out.println(String.format(" %-23s显示生成国际化资源的更多帮助信息", "cg msg.json --help"));
+        System.out.printf(" %-23s显示数生成据库结构的更多帮助信息%n", "cg ddl.mysql --help");
+        System.out.printf(" %-23s显示生成初始数据的更多帮助信息%n", "cg dml --help");
+        System.out.printf(" %-23s显示生成国际化资源的更多帮助信息%n", "cg msg.json --help");
         System.out.println();
         System.out.println("通过 cg command --help 查看指定命令的详细说明。");
         return true;
@@ -164,7 +168,7 @@ public class BaseParser implements IParser {
                 throw new IllegalArgumentException(String.format("未知命令: %s，请使用 --help 命令查看用法。", cmd));
             }
             File f = new File(file);
-            if(!(f.exists() && f.isFile())) {
+            if (!(f.exists() && f.isFile())) {
                 throw new IllegalArgumentException(String.format("指定的文件(%s)不存在或者是一个目录。\n", file));
             }
 

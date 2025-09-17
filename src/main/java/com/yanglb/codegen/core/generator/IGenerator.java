@@ -1,12 +1,12 @@
 /**
  * Copyright 2015-2023 yanglb.com
- * 
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
- *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,10 +20,10 @@ import com.yanglb.codegen.exceptions.ParamaCheckException;
 import com.yanglb.codegen.model.ParameterModel;
 
 public interface IGenerator {
-	/**
-	 * 执行生成工作
-	 * @param parameterModel 参数模型
-	 * @throws CodeGenException 出错信息
-	 */
-	void invoke(ParameterModel parameterModel) throws CodeGenException, ParamaCheckException;
+    /**
+     * 执行生成工作
+     * @param parameterModel 参数模型
+     * @throws CodeGenException 出错信息
+     */
+    void invoke(ParameterModel parameterModel) throws CodeGenException, ParamaCheckException;
 }
