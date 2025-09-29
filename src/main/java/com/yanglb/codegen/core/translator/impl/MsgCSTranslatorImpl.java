@@ -154,8 +154,8 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 
                 // 对字符串进行转换
                 id = escape(id);
-                String value = this.escape(itm.get(this.msgLang));
-                code.append(String.format("        %s static string %s {\n", designerAccessibility, id));
+                String propertyName = StringUtil.toValidPropertyName(id);
+                code.append(String.format("        %s static string %s {\n", designerAccessibility, propertyName));
                 code.append(String.format("            get {\n"));
                 code.append(String.format("                return ResourceManager.GetString(\"%s\", resourceCulture);\n", id));
                 code.append(String.format("            }\n"));
@@ -166,7 +166,7 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
         String template = readResource("msg/resx/designer.cs.txt");
         Map<String, String> values = new HashMap<>();
         values.put("namespace", designerNamespace);
-        values.put("className", writableModel.getFileName());
+        values.put("className", StringUtil.toValidPropertyName(writableModel.getFileName()));
         values.put("accessibility", designerAccessibility);
         values.put("code", code.toString());
 

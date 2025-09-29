@@ -50,4 +50,40 @@ public class StringUtil {
         value = value.replaceAll("\n", "\\\\n");
         return value;
     }
+
+    public static String toValidPropertyName(String input) {
+        if (input == null || input.isEmpty()) {
+            return "_";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        // .NET 属性名必须以字母或下划线开头
+        char first = input.charAt(0);
+        if (Character.isLetter(first) || first == '_') {
+            sb.append(first);
+        } else {
+            sb.append('_');
+        }
+
+        // 处理剩余字符：字母 / 数字 / 下划线 保留，其它替换成 "_"
+        for (int i = 1; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (Character.isLetterOrDigit(c) || c == '_') {
+                sb.append(c);
+            } else {
+                sb.append('_');
+            }
+        }
+
+        return sb.toString();
+    }
+
+    // 简单测试
+    public static void main(String[] args) {
+        System.out.println(toValidPropertyName("123Name"));     // _23Name
+        System.out.println(toValidPropertyName("user-name"));   // user_name
+        System.out.println(toValidPropertyName("name@domain")); // name_domain
+        System.out.println(toValidPropertyName("正常属性"));       // 正常属性（中文是合法的 Unicode 字母）
+    }
 }
