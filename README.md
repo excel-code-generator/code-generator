@@ -45,7 +45,7 @@ docker run --rm -it yanglibing/code-generator
 
 ```text
 用法：cg command file [options]
-Commands:
+Commands: 
  update                 检查并更新到最新版本
  ddl.mssql              生成SqlServer数据库结构SQL脚本（.ddl）
  ddl.mysql              生成MySql数据库结构SQL脚本（.ddl）
@@ -64,11 +64,11 @@ Options:
  -s,--sheets <names>    要处理的Excel Sheet名，默认除"#"开头外的全部Sheet
  -v,--version           打印版本信息
 
-示例:
+示例: 
  cg msg.json 001.xlsx
  cg msg.resx 001.xlsx --sheets Sheet1 Sheet2 Sheet5
 
-帮助:
+帮助: 
  cg ddl.mysql --help    显示数生成据库结构的更多帮助信息
  cg dml --help          显示生成初始数据的更多帮助信息
  cg msg.json --help     显示生成国际化资源的更多帮助信息
@@ -76,7 +76,7 @@ Options:
 通过 cg command --help 查看指定命令的详细说明。
 
 ---
-Code Generator v4.4.0
+Code Generator v4.5.1
 By https://yanglb.com
 ```
 
