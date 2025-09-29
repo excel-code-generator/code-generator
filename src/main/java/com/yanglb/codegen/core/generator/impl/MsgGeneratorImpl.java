@@ -28,7 +28,6 @@ import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.GenTypes;
 import com.yanglb.codegen.utils.Resources;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,26 +46,25 @@ public class MsgGeneratorImpl extends BaseGenerator {
         }
 
         // 获取语言（每种语言翻译一次）
-        List<String> langList = new ArrayList<>();
         TableModel tableModel = list.get(0);
         for (String key : tableModel.getColumns()) {
             if (needOutput(key)) {
-                langList.add(key);
-
                 settingMap.put("MsgLang", key);
                 String trans = parameterModel.getCmd();
 
                 // 转换为可写入的Model（单个文件）
                 ITranslator<List<TableModel>> translator = GenFactory.createByName(parameterModel.getCmdModel().getTranslator());
-                WritableModel writableModel = translator.translate(settingMap, parameterModel, list);
+                List<WritableModel> writableModels = translator.translate(settingMap, parameterModel, list);
 
-                // 默认使用UTF-8编码
-                GenTypes.Writer supportWriter = GenTypes.Writer.utf8;
-                if ("ascii".equals(writableModel.getEncode())) supportWriter = GenTypes.Writer.ascii;
+                for (WritableModel writableModel : writableModels) {
+                    // 默认使用UTF-8编码
+                    GenTypes.Writer supportWriter = GenTypes.Writer.utf8;
+                    if ("ascii".equals(writableModel.getEncode())) supportWriter = GenTypes.Writer.ascii;
 
-                // 写入到文件中
-                IWriter writer = GenFactory.createByName(Conf.getString(Conf.CATEGORY_WRITER, supportWriter.name()));
-                writer.writer(writableModel);
+                    // 写入到文件中
+                    IWriter writer = GenFactory.createByName(Conf.getString(Conf.CATEGORY_WRITER, supportWriter.name()));
+                    writer.writer(writableModel);
+                }
             }
         }
     }

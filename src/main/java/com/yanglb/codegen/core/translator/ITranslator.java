@@ -20,15 +20,17 @@ import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.model.WritableModel;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface ITranslator<T> {
     /**
      * 进行翻译处理
-     * @param settingMap 配置信息
-     * @param model 等待翻译的Model
+     *
+     * @param settingMap     配置信息
+     * @param model          等待翻译的Model
      * @param parameterModel 参数/选项模型
      * @return WritableModel 一个可写的Model
      * @throws CodeGenException 翻译出错时抛出此异常
      */
-    WritableModel translate(HashMap<String, String> settingMap, ParameterModel parameterModel, T model) throws CodeGenException;
+    List<WritableModel> translate(HashMap<String, String> settingMap, ParameterModel parameterModel, T model) throws CodeGenException;
 }

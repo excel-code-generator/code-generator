@@ -20,21 +20,24 @@ import com.yanglb.codegen.model.ParameterModel;
 import com.yanglb.codegen.model.WritableModel;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class BaseTranslator<T> implements ITranslator<T> {
     protected T model;
-    protected final WritableModel writableModel;
+    protected final List<WritableModel> writableModel;
     protected HashMap<String, String> settingMap;
     protected ParameterModel parameterModel;
 
     protected BaseTranslator() {
-        this.writableModel = new WritableModel();
+        this.writableModel = new ArrayList<>();
     }
 
     /**
      * 文件名，优先使用--fn参数指定的文件名，如不指定使用excel名称
+     *
      * @return 文件名
      */
     protected String getFileName() {
@@ -57,14 +60,15 @@ public class BaseTranslator<T> implements ITranslator<T> {
 
     /**
      * 进行翻译处理
-     * @param settingMap 配置信息
-     * @param model 等待翻译的Model
+     *
+     * @param settingMap     配置信息
+     * @param model          等待翻译的Model
      * @param parameterModel 参数/选项模型
      * @return WritableModel 一个可写的Model
      * @throws CodeGenException 翻译出错时抛出此异常
      */
     @Override
-    public WritableModel translate(HashMap<String, String> settingMap, ParameterModel parameterModel, T model)
+    public List<WritableModel> translate(HashMap<String, String> settingMap, ParameterModel parameterModel, T model)
             throws CodeGenException {
         this.settingMap = settingMap;
         this.model = model;
@@ -76,36 +80,43 @@ public class BaseTranslator<T> implements ITranslator<T> {
 
     /**
      * 预翻译器（子类如果重写，则必须显示调用超类的此方法）
+     *
      * @throws CodeGenException 错误信息
      */
     protected void onBeforeTranslate() throws CodeGenException {
         // 设置文件名、等初始化操作
-        this.writableModel.setEncode("utf-8");
-        this.writableModel.setFileName(getFileName());
-        this.writableModel.setData(new StringBuilder());
-        this.writableModel.setOutputDir(this.parameterModel.getOptDir());
+        WritableModel model = new WritableModel();
+        model.setEncode("utf-8");
+        model.setFileName(getFileName());
+        model.setData(new StringBuilder());
+        model.setOutputDir(this.parameterModel.getOptDir());
+        this.writableModel.add(model);
     }
 
     /**
      * 进行转换操作
+     *
      * @throws CodeGenException 错误信息
      */
-    protected void onTranslate() throws CodeGenException {
+    protected void onTranslate(WritableModel writableModel) throws CodeGenException {
         // 父类没什么可做的了
     }
 
     /**
      * 编码转换等操作
+     *
      * @throws CodeGenException 错误信息
      */
-    protected void onAfterTranslate() throws CodeGenException {
+    protected void onAfterTranslate(WritableModel writableModel) throws CodeGenException {
         // 编码转换在写入器完成
     }
 
     // 翻译操作
     private void doTranslate() throws CodeGenException {
         this.onBeforeTranslate();
-        this.onTranslate();
-        this.onAfterTranslate();
+        for (WritableModel writableModel : writableModel) {
+            this.onTranslate(writableModel);
+            this.onAfterTranslate(writableModel);
+        }
     }
 }

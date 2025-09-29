@@ -19,6 +19,7 @@ import com.yanglb.codegen.core.translator.BaseSqlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.model.DmlModel;
 import com.yanglb.codegen.model.TableModel;
+import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.StringUtil;
 
@@ -29,7 +30,7 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
     @Override
     protected void onBeforeTranslate() throws CodeGenException {
         super.onBeforeTranslate();
-        this.writableModel.setExtension("dml");
+        this.writableModel.get(0).setExtension("dml");
 
         String target = parameterModel.getOptions().getOptionValue("target", "mysql");
         switch (target) {
@@ -49,9 +50,9 @@ public class DmlTranslatorImpl extends BaseSqlTranslator<DmlModel> {
     }
 
     @Override
-    protected void onTranslate() throws CodeGenException {
-        super.onTranslate();
-        StringBuilder sb = this.writableModel.getData();
+    protected void onTranslate(WritableModel writableModel) throws CodeGenException {
+        super.onTranslate(writableModel);
+        StringBuilder sb = writableModel.getData();
 
         // 添加文件头
         sb.append(Infos.sqlHeader());

@@ -18,6 +18,7 @@ package com.yanglb.codegen.core.translator.impl;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.model.TableModel;
+import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.utils.StringUtil;
 
 import java.util.Map;
@@ -29,7 +30,7 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
     @Override
     protected void onBeforeTranslate() throws CodeGenException {
         super.onBeforeTranslate();
-        this.writableModel.setExtension("json");
+        this.writableModel.get(0).setExtension("json");
     }
 
     private void tblModel2Json(JSONObject json, TableModel tblModel) {
@@ -43,10 +44,10 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
     }
 
     @Override
-    protected void onTranslate() throws CodeGenException {
-        super.onTranslate();
+    protected void onTranslate(WritableModel writableModel) throws CodeGenException {
+        super.onTranslate(writableModel);
         JSONObject json = new JSONObject();
-        StringBuilder sb = this.writableModel.getData();
+        StringBuilder sb = writableModel.getData();
 
         if (this.parameterModel.getOptions().hasOption("combine")) {
             // 合并输出

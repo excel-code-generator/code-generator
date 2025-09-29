@@ -17,10 +17,7 @@ package com.yanglb.codegen.core.translator.impl;
 
 import com.yanglb.codegen.core.translator.BaseDdlTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.model.DdlDetail;
-import com.yanglb.codegen.model.DdlModel;
-import com.yanglb.codegen.model.ForeignDetailModel;
-import com.yanglb.codegen.model.ForeignModel;
+import com.yanglb.codegen.model.*;
 import com.yanglb.codegen.utils.Conf;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.StringUtil;
@@ -43,9 +40,9 @@ public class DdlMysqlTranslatorImpl extends BaseDdlTranslator {
     }
 
     @Override
-    protected void onTranslate() throws CodeGenException {
-        super.onTranslate();
-        StringBuilder sb = this.writableModel.getData();
+    protected void onTranslate(WritableModel writableModel) throws CodeGenException {
+        super.onTranslate(writableModel);
+        StringBuilder sb = writableModel.getData();
 
         // 添加文件头
         sb.append(Infos.sqlHeader());

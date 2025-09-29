@@ -16,10 +16,7 @@
 package com.yanglb.codegen.core.translator;
 
 import com.yanglb.codegen.exceptions.CodeGenException;
-import com.yanglb.codegen.model.DdlDetail;
-import com.yanglb.codegen.model.DdlModel;
-import com.yanglb.codegen.model.ForeignDetailModel;
-import com.yanglb.codegen.model.ForeignModel;
+import com.yanglb.codegen.model.*;
 import com.yanglb.codegen.utils.StringUtil;
 
 import java.util.ArrayList;
@@ -33,12 +30,12 @@ public class BaseDdlTranslator extends BaseSqlTranslator<DdlModel> {
     @Override
     protected void onBeforeTranslate() throws CodeGenException {
         super.onBeforeTranslate();
-        this.writableModel.setExtension("ddl");
+        this.writableModel.get(0).setExtension("ddl");
     }
 
     @Override
-    protected void onTranslate() throws CodeGenException {
-        super.onTranslate();
+    protected void onTranslate(WritableModel writableModel) throws CodeGenException {
+        super.onTranslate(writableModel);
 
         // 计算需要处理的外键
         for (DdlModel model : this.model) {

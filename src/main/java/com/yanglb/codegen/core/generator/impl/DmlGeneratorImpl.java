@@ -45,14 +45,16 @@ public class DmlGeneratorImpl extends BaseGenerator {
 
         // 转换为可写入的Model（单个文件）
         ITranslator<List<DdlModel>> translator = GenFactory.createByName(parameterModel.getCmdModel().getTranslator());
-        WritableModel writableModel = translator.translate(settingMap, this.parameterModel, list);
+        List<WritableModel> writableModels = translator.translate(settingMap, this.parameterModel, list);
 
-        // 默认使用UTF-8编码
-        GenTypes.Writer supportWriter = GenTypes.Writer.utf8;
-        if ("ascii".equals(writableModel.getEncode())) supportWriter = GenTypes.Writer.ascii;
+        for (WritableModel writableModel : writableModels) {
+            // 默认使用UTF-8编码
+            GenTypes.Writer supportWriter = GenTypes.Writer.utf8;
+            if ("ascii".equals(writableModel.getEncode())) supportWriter = GenTypes.Writer.ascii;
 
-        // 写入到文件中
-        IWriter writer = GenFactory.createByName(Conf.getString(Conf.CATEGORY_WRITER, supportWriter.name()));
-        writer.writer(writableModel);
+            // 写入到文件中
+            IWriter writer = GenFactory.createByName(Conf.getString(Conf.CATEGORY_WRITER, supportWriter.name()));
+            writer.writer(writableModel);
+        }
     }
 }

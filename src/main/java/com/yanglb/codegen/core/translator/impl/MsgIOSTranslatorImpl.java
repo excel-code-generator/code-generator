@@ -18,6 +18,7 @@ package com.yanglb.codegen.core.translator.impl;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.model.TableModel;
+import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.Resources;
 import com.yanglb.codegen.utils.StringUtil;
@@ -30,18 +31,18 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
     @Override
     protected void onBeforeTranslate() throws CodeGenException {
         super.onBeforeTranslate();
-        this.writableModel.setExtension("strings");
+        this.writableModel.get(0).setExtension("strings");
 
         // IOS 资源输出目录结构为: Base.lproj/xxx.strings、zh.lproj/xxx.strings 等
         String path = (this.isDefaultLanguage() ? "Base" : this.msgLang) + ".lproj";
         String fileName = path + "/" + getFileName();
-        this.writableModel.setFileName(fileName);
+        this.writableModel.get(0).setFileName(fileName);
     }
 
     @Override
-    protected void onTranslate() throws CodeGenException {
-        super.onTranslate();
-        StringBuilder sb = this.writableModel.getData();
+    protected void onTranslate(WritableModel writableModel) throws CodeGenException {
+        super.onTranslate(writableModel);
+        StringBuilder sb = writableModel.getData();
 
         sb.append(Infos.cHeader());
         sb.append("\n");
@@ -62,7 +63,7 @@ public class MsgIOSTranslatorImpl extends BaseMsgTranslator {
             }
         }
 
-        this.writableModel.setData(sb);
+        writableModel.setData(sb);
     }
 
     private String escape(String value) {

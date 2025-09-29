@@ -18,6 +18,7 @@ package com.yanglb.codegen.core.translator.impl;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.model.TableModel;
+import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.StringUtil;
 
@@ -34,7 +35,7 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
     @Override
     protected void onBeforeTranslate() throws CodeGenException {
         super.onBeforeTranslate();
-        this.writableModel.setExtension("xml");
+        this.writableModel.get(0).setExtension("xml");
 
         // Android 资源输出目录结构为: strings/strings.xml、strings-zh/strings.xml 等
         String path = "values";
@@ -49,7 +50,7 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
         }
 
         fileName = path + "/" + fileName;
-        writableModel.setFileName(fileName);
+        writableModel.get(0).setFileName(fileName);
     }
 
     @Override
@@ -58,9 +59,9 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
     }
 
     @Override
-    protected void onTranslate() throws CodeGenException {
-        super.onTranslate();
-        StringBuilder sb = this.writableModel.getData();
+    protected void onTranslate(WritableModel writableModel) throws CodeGenException {
+        super.onTranslate(writableModel);
+        StringBuilder sb = writableModel.getData();
         sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 Infos.xmlHeader() +
                 "<resources>\n");
@@ -100,7 +101,7 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 
         sb.append("</resources>\n");
 
-        this.writableModel.setData(sb);
+        writableModel.setData(sb);
     }
 
     private String escape(String value) {

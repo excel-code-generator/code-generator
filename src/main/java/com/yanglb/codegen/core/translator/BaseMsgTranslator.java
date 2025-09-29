@@ -42,7 +42,7 @@ public class BaseMsgTranslator extends BaseTranslator<List<TableModel>> {
             }
         }
 
-        this.writableModel.setFileName(fileName);
+        this.writableModel.get(0).setFileName(fileName);
     }
 
     protected String getSplitString() {

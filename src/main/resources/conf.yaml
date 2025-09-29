@@ -23,7 +23,7 @@ command:
     translator: .core.translator.impl.DmlTranslatorImpl
 
   msg.resx:
-    parser: .core.parser.impl.MsgParser
+    parser: .core.parser.impl.MsgResxParser
     generator: .core.generator.impl.MsgGeneratorImpl
     reader: .core.reader.impl.TableReaderImpl
     translator: .core.translator.impl.MsgCSTranslatorImpl
