@@ -10,7 +10,6 @@
 namespace ${namespace} {
     using System;
 
-
     /// <summary>
     ///   一个强类型的资源类，用于查找本地化的字符串等。
     /// </summary>
@@ -22,11 +21,8 @@ namespace ${namespace} {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     ${accessibility} class ${className} {
-
         private static global::System.Resources.ResourceManager resourceMan;
-
         private static global::System.Globalization.CultureInfo resourceCulture;
-
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal ${className}() {
         }
