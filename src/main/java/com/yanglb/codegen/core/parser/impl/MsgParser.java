@@ -16,8 +16,26 @@
 package com.yanglb.codegen.core.parser.impl;
 
 import com.yanglb.codegen.core.parser.BaseParser;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
 
 public class MsgParser extends BaseParser {
+    @Override
+    protected Options options() {
+        Options options = super.options();
+
+        Option lang = Option.builder()
+                .longOpt("lang")
+                .argName("lang")
+                .desc("待处理语言列表，无需填写默认语言(default)，默认为全部")
+                .hasArg(true)
+                .hasArgs()
+                .build();
+        options.addOption(lang);
+
+        return options;
+    }
+
     @Override
     protected boolean headerHelp() {
         System.out.println("生成多语言资源信息");

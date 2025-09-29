@@ -29,6 +29,7 @@ import com.yanglb.codegen.utils.GenTypes;
 import com.yanglb.codegen.utils.Resources;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -49,7 +50,7 @@ public class MsgGeneratorImpl extends BaseGenerator {
         List<String> langList = new ArrayList<>();
         TableModel tableModel = list.get(0);
         for (String key : tableModel.getColumns()) {
-            if (!"id".equals(key)) {
+            if (needOutput(key)) {
                 langList.add(key);
 
                 settingMap.put("MsgLang", key);
@@ -68,5 +69,13 @@ public class MsgGeneratorImpl extends BaseGenerator {
                 writer.writer(writableModel);
             }
         }
+    }
+
+    private boolean needOutput(String key) {
+        if ("id".equals(key)) return false;
+        if ("default".equals(key)) return true;
+        String[] lang = parameterModel.getOptions().getOptionValues("lang");
+        if (lang == null || lang.length == 0) return true;
+        return Arrays.asList(lang).contains(key);
     }
 }
