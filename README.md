@@ -76,7 +76,7 @@ Options:
 通过 cg command --help 查看指定命令的详细说明。
 
 ---
-Code Generator v4.5.1
+Code Generator v4.5.2
 By https://yanglb.com
 ```
 
