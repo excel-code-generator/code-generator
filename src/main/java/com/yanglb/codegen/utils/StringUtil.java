@@ -79,6 +79,53 @@ public class StringUtil {
         return sb.toString();
     }
 
+
+    /**
+     * 生成 C# XML doc <summary> 注释块。
+     * <p>
+     * 格式固定为：
+     * <pre>
+     *     /// <summary>
+     *     /// line1
+     *     /// line2
+     *     /// </summary>
+     * </pre>
+     *
+     * @param summary 要放到 <summary> 内的文本，可能包含换行符；为 null 时等同于空串
+     * @param padLeft 每行前面额外的空格数（缩进）
+     * @return 完整的多行注释字符串（每行以 '\n' 结尾）
+     */
+    public static String generateCSharpSummary(String summary, int padLeft) {
+        if (summary == null) summary = "";
+        if (padLeft < 0) padLeft = 0;
+
+        String indent = " ".repeat(padLeft);
+        String linePrefix = indent + "/// ";
+        StringBuilder sb = new StringBuilder();
+
+        // 简单的 XML 实体转义
+        java.util.function.Function<String, String> escapeXml = s -> {
+            if (s == null || s.isEmpty()) return s;
+            return s
+                    .replace("&", "&amp;")
+                    .replace("<", "&lt;")
+                    .replace(">", "&gt;")
+                    .replace("\"", "&quot;")
+                    .replace("'", "&apos;");
+        };
+
+        // 按行分割（支持 \r\n, \r, \n）
+        String[] lines = summary.split("\\r?\\n|\\r", -1); // 保留尾随空行
+
+        sb.append(linePrefix).append("<summary>").append("\n");
+        for (String line : lines) {
+            sb.append(linePrefix).append(escapeXml.apply(line)).append("\n");
+        }
+        sb.append(linePrefix).append("</summary>");
+
+        return sb.toString();
+    }
+
     // 简单测试
     public static void main(String[] args) {
         System.out.println(toValidPropertyName("123Name"));     // _23Name
