@@ -154,7 +154,11 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
 
                 // 对字符串进行转换
                 id = escape(id);
+                String value = escape(itm.get(this.msgLang));
+
                 String propertyName = StringUtil.toValidPropertyName(id);
+                code.append(StringUtil.generateCSharpSummary(value, 8));
+                code.append("\n");
                 code.append(String.format("        %s static string %s {\n", designerAccessibility, propertyName));
                 code.append(String.format("            get {\n"));
                 code.append(String.format("                return ResourceManager.GetString(\"%s\", resourceCulture);\n", id));
