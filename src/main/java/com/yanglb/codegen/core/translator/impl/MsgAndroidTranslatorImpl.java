@@ -22,11 +22,7 @@ import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.utils.Infos;
 import com.yanglb.codegen.utils.StringUtil;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -68,7 +64,7 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
 
         // 用于检查相同的key
         Map<String, Boolean> keys = new HashMap<String, Boolean>();
-        Map<String, List<String>> arrays = new HashMap<String, List<String>>();
+        Map<String, List<String>> arrays = new LinkedHashMap<>();
         for (TableModel tblModel : this.model) {
             for (Map<String, String> itm : tblModel.toList()) {
                 String id = escape(itm.get("id"));
