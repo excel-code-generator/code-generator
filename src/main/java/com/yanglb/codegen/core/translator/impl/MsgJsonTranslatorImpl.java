@@ -15,6 +15,10 @@
  */
 package com.yanglb.codegen.core.translator.impl;
 
+import com.google.gson.FormattingStyle;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.yanglb.codegen.core.translator.BaseMsgTranslator;
 import com.yanglb.codegen.exceptions.CodeGenException;
 import com.yanglb.codegen.model.TableModel;
@@ -22,8 +26,6 @@ import com.yanglb.codegen.model.WritableModel;
 import com.yanglb.codegen.utils.StringUtil;
 
 import java.util.Map;
-
-import org.json.JSONObject;
 
 
 public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
@@ -33,20 +35,20 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
         this.writableModel.get(0).setExtension("json");
     }
 
-    private void tblModel2Json(JSONObject json, TableModel tblModel) {
+    private void tblModel2Json(JsonObject json, TableModel tblModel) {
         for (Map<String, String> itm : tblModel.toList()) {
             String id = itm.get("id");
             String value = itm.get(this.msgLang);
             if (StringUtil.isNullOrEmpty(id)) continue;
 
-            json.put(id, value);
+            json.addProperty(id, value);
         }
     }
 
     @Override
     protected void onTranslate(WritableModel writableModel) throws CodeGenException {
         super.onTranslate(writableModel);
-        JSONObject json = new JSONObject();
+        JsonObject json = new JsonObject();
         StringBuilder sb = writableModel.getData();
 
         if (this.parameterModel.getOptions().hasOption("combine")) {
@@ -57,17 +59,18 @@ public class MsgJsonTranslatorImpl extends BaseMsgTranslator {
         } else {
             // 分组输出
             for (TableModel tblModel : this.model) {
-                JSONObject sub = new JSONObject();
+                JsonObject sub = new JsonObject();
                 tblModel2Json(sub, tblModel);
 
                 String sheetName = tblModel.getSheetName();
-                json.put(sheetName, sub);
+                json.add(sheetName, sub);
             }
         }
 
         // to JSON string
-        int indentFactor = 4;
-        if (parameterModel.getOptions().hasOption("minify")) indentFactor = 0;
-        sb.append(json.toString(indentFactor));
+        FormattingStyle formattingStyle = FormattingStyle.PRETTY;
+        if (parameterModel.getOptions().hasOption("minify")) formattingStyle = FormattingStyle.COMPACT;
+        Gson gson = new GsonBuilder().setFormattingStyle(formattingStyle).create();
+        sb.append(gson.toJson(json));
     }
 }
