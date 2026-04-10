@@ -19,6 +19,7 @@ import com.yanglb.codegen.core.reader.BaseReader;
 import com.yanglb.codegen.utils.StringUtil;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.CellType;
@@ -30,14 +31,14 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
  *
  * @author yanglibing
  */
-public class HashMapReaderImpl extends BaseReader<HashMap<String, String>> {
+public class HashMapReaderImpl extends BaseReader<LinkedHashMap<String, String>> {
 
     /**
      * 读取Sheet内容
      */
     @Override
-    protected HashMap<String, String> onReader(XSSFSheet sheet) {
-        HashMap<String, String> result = new HashMap<String, String>();
+    protected LinkedHashMap<String, String> onReader(XSSFSheet sheet) {
+        LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
 
         for (int row = this.startRowNo; row <= sheet.getLastRowNum(); row++) {
             XSSFRow xssfRow = sheet.getRow(row);
@@ -56,8 +57,8 @@ public class HashMapReaderImpl extends BaseReader<HashMap<String, String>> {
     /**
      * 合并
      */
-    public HashMap<String, String> mergeResult(List<HashMap<String, String>> listMap) {
-        HashMap<String, String> result = new HashMap<String, String>();
+    public LinkedHashMap<String, String> mergeResult(List<LinkedHashMap<String, String>> listMap) {
+        LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
         for (HashMap<String, String> itm : listMap) {
             result.putAll(itm);
         }
