@@ -63,14 +63,13 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
                 "<resources>\n");
 
         // 用于检查相同的key
-        Map<String, Boolean> keys = new HashMap<String, Boolean>();
         Map<String, List<String>> arrays = new LinkedHashMap<>();
         for (TableModel tblModel : this.model) {
             for (Map<String, String> itm : tblModel.toList()) {
                 String id = escape(itm.get("id"));
                 if (StringUtil.isNullOrEmpty(id)) continue;
                 if (!arrays.containsKey(id)) {
-                    arrays.put(id, new ArrayList<String>());
+                    arrays.put(id, new ArrayList<>());
                 }
 
                 // 对字符串进行转换
@@ -104,6 +103,12 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
         if (value == null) return null;
 
         value = StringEscapeUtils.escapeXml10(value);
+
+        // 处理 换行符 - Android 转为 \n
+        value = value.replace("\r\n", "\\n")
+                .replace("\n", "\\n")
+                .replace("\r", "\\n");
+
         return value;
     }
 }
