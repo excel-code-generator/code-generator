@@ -6,7 +6,7 @@
 
     <groupId>org.yanglb</groupId>
     <artifactId>code-generator</artifactId>
-    <version>4.5.4</version>
+    <version>4.5.5</version>
     <packaging>jar</packaging>
 
     <dependencies>
