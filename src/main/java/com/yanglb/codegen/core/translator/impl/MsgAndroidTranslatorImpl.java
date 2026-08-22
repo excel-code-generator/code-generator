@@ -90,7 +90,11 @@ public class MsgAndroidTranslatorImpl extends BaseMsgTranslator {
                 }
                 sb.append("    </string-array>\n");
             } else {
-                sb.append(String.format("    <string name=\"%s\">%s</string>\n", key, items.get(0)));
+                if (items.get(0) == null) {
+                    sb.append(String.format("    <string name=\"%s\" />\n", key));
+                } else {
+                    sb.append(String.format("    <string name=\"%s\">%s</string>\n", key, items.get(0)));
+                }
             }
         }
 
