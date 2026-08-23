@@ -128,8 +128,9 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
                 // 对字符串进行转换
                 id = escape(id);
                 String value = this.escape(itm.get(this.msgLang));
+                String xmlValue = value == null ? "<value />" : String.format("<value>%s</value>", value);
                 sb.append(String.format("    <data name=\"%s\">\n", id));
-                sb.append(String.format("        <value>%s</value>\n", value));
+                sb.append(String.format("        %s\n", xmlValue));
                 sb.append(String.format("    </data>\n"));
             }
         }
