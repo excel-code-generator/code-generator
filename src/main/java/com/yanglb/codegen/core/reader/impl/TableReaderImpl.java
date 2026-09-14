@@ -74,8 +74,11 @@ public class TableReaderImpl extends BaseModelReader<TableModel> implements ITab
             for (int colNo = this.startColNo; colNo < row.getLastCellNum(); colNo++) {
                 XSSFCell cell = row.getCell(colNo);
                 if (cell == null) {
-                    throw new CodeGenException(String.format("error: sheet(%s), row(%d), col(%d)",
-                            sheet.getSheetName(), rowNo, colNo));
+                    if (rowNo == this.startRowNo) {
+                        throw new CodeGenException(String.format("error: sheet(%s), row(%d), col(%d)",
+                                sheet.getSheetName(), rowNo, colNo));
+                    }
+                    cell = row.createCell(colNo, CellType.STRING);
                 }
                 if (cell.getCellType() != CellType.BLANK
                         && cell.getCellType() != CellType.ERROR) {
