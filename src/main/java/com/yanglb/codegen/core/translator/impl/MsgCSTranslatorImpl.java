@@ -135,10 +135,6 @@ public class MsgCSTranslatorImpl extends BaseMsgTranslator {
             }
         }
 
-        int idx = sb.lastIndexOf(",");
-        if (idx != -1) {
-            sb.deleteCharAt(idx);
-        }
         sb.append("</root>\n");
     }
 
