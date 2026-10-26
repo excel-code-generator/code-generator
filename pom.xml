@@ -60,6 +60,7 @@
                     <archive>
                         <manifest>
                             <mainClass>cg</mainClass>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>
                 </configuration>

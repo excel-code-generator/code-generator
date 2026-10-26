@@ -17,11 +17,16 @@ package com.yanglb.codegen.utils;
 
 public class Infos {
 	public static final String Name       = "Code Generator";
-	public static final String Version    = "4.5.9";
+	public static final String Version    = getVersion();
 	public static final String Copyright  = "Copyright 2015-2025 yanglb.com All Rights Reserved.";
 	public static final String Author     = "me@yanglb.com";
 	public static final String Website    = "https://yanglb.com";
 	public static final String Repository = "https://github.com/excel-code-generator/code-generator";
+
+	private static String getVersion() {
+		String version = Infos.class.getPackage().getImplementationVersion();
+		return version != null ? version : "unknown";
+	}
 
 	public static String sqlHeader () {
 		return String.format(
