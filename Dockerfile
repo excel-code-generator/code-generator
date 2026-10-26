@@ -11,7 +11,7 @@
 FROM eclipse-temurin:24-jre-alpine
 LABEL org.opencontainers.image.authors="yanglb <dev@yanglb.com>"
 
-COPY ./target/code-generator-*-jar-with-dependencies.jar /usr/local/lib/cg/bin/cg.jar
+COPY ./cg.jar /usr/local/lib/cg/bin/cg.jar
 COPY ./cg /usr/local/bin/cg
 
 CMD [ "cg" ]
